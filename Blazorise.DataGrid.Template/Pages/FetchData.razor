@@ -7,31 +7,23 @@
 
 <p>This component demonstrates fetching data from a service.</p>
 
-@if (forecasts == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <DataGrid TItem="WeatherForecast" Data="@forecasts">
-        <ChildContent>
-            <DataGridColumn TItem="WeatherForecast" Field="@nameof(WeatherForecast.Date)" Caption="Date">
-                <DisplayTemplate>
-                    @($"{context.Date.ToShortDateString()}")
-                </DisplayTemplate>
-            </DataGridColumn>
-            <DataGridColumn TItem="WeatherForecast" Field="@nameof(WeatherForecast.TemperatureC)" Caption="Temp. (C)" />
-            <DataGridColumn TItem="WeatherForecast" Field="@nameof(WeatherForecast.TemperatureF)" Caption="Temp. (F)" />
-            <DataGridColumn TItem="WeatherForecast" Field="@nameof(WeatherForecast.Summary)" Caption="Summary" />
-        </ChildContent>    
-    </DataGrid>  
-}
+<DataGrid TItem="WeatherForecast"
+    Data="@ForecastService.Data" ReadData="@ForecastService.OnReadDataAsync" TotalItems="@ForecastService.TotalItems"
+    ShowPager="true">
+    <ChildContent>
+        <DataGridColumn TItem="WeatherForecast" Field="@nameof(WeatherForecast.Date)" Caption="Date">
+            <DisplayTemplate>
+                @($"{context.Date.ToShortDateString()}")
+            </DisplayTemplate>
+        </DataGridColumn>
+        <DataGridColumn TItem="WeatherForecast" Field="@nameof(WeatherForecast.TemperatureC)" Caption="Temp. (C)" />
+        <DataGridColumn TItem="WeatherForecast" Field="@nameof(WeatherForecast.TemperatureF)" Caption="Temp. (F)" />
+        <DataGridColumn TItem="WeatherForecast" Field="@nameof(WeatherForecast.Summary)" Caption="Summary" />
+    </ChildContent> 
+    <LoadingTemplate>
+        <p><em>Loading...</em></p>
+    </LoadingTemplate>             
+</DataGrid>
 
 @code {
-    private WeatherForecast[] forecasts;
-
-    protected override async Task OnInitializedAsync()
-    {
-        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
-    }
 }
