@@ -9,6 +9,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Blazorise.DataGrid.Template.Data;
+using Blazorise;
+using Blazorise.Bootstrap;
+using Blazorise.Icons.FontAwesome;
 
 namespace Blazorise.DataGrid.Template
 {
@@ -27,6 +30,10 @@ namespace Blazorise.DataGrid.Template
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            services.AddBlazorise(options => { options.ChangeTextOnKeyPress = true; } )
+                    .AddBootstrapProviders()
+                    .AddFontAwesomeIcons();
+
             services.AddSingleton<WeatherForecastService>();
         }
 
