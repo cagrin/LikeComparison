@@ -22,6 +22,20 @@ namespace Blazorise.DataGrid.Template.Data
 
             var query = _forecasts;
 
+            var filteredColumns = e.Columns.Where(f => !string.IsNullOrEmpty(f.SearchValue?.ToString())).ToArray();
+            foreach (var column in filteredColumns)
+            {
+                var search = column.SearchValue?.ToString();
+                query = (column.Field) switch
+                {
+                    nameof(WeatherForecast.Date) => query.Where(f => f.Date.ToShortDateString().Contains(search)),
+                    nameof(WeatherForecast.TemperatureC) => query.Where(f => f.TemperatureC.ToString().Contains(search)),
+                    nameof(WeatherForecast.TemperatureF) => query.Where(f => f.TemperatureF.ToString().Contains(search)),
+                    nameof(WeatherForecast.Summary) => query.Where(f => f.Summary.Contains(search)),
+                    _ => query
+                };
+            }
+
             var sortedColumns = e.Columns.Where(f => f.SortIndex >= 0).OrderByDescending(f => f.SortIndex).ToArray();
             foreach (var column in sortedColumns)
             {

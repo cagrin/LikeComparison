@@ -9,7 +9,9 @@
 
 <DataGrid TItem="WeatherForecast"
     Data="@ForecastService.Data" ReadData="@ForecastService.OnReadDataAsync" TotalItems="@ForecastService.TotalItems"
-    ShowPager="true">
+    ShowPager="true"
+    Filterable="true"
+    Class="table-bordered">
     <ChildContent>
         <DataGridColumn TItem="WeatherForecast" Field="@nameof(WeatherForecast.Date)" Caption="Date">
             <DisplayTemplate>
@@ -19,10 +21,10 @@
         <DataGridColumn TItem="WeatherForecast" Field="@nameof(WeatherForecast.TemperatureC)" Caption="Temp. (C)" />
         <DataGridColumn TItem="WeatherForecast" Field="@nameof(WeatherForecast.TemperatureF)" Caption="Temp. (F)" />
         <DataGridColumn TItem="WeatherForecast" Field="@nameof(WeatherForecast.Summary)" Caption="Summary" />
-    </ChildContent> 
+    </ChildContent>
     <LoadingTemplate>
         <p><em>Loading...</em></p>
-    </LoadingTemplate>             
+    </LoadingTemplate>
 </DataGrid>
 
 @code {
