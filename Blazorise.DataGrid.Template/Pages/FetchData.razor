@@ -9,7 +9,7 @@
 
 <DataGrid TItem="WeatherForecast"
     Data="@ForecastService.Data" ReadData="@ForecastService.OnReadDataAsync" TotalItems="@ForecastService.TotalItems"
-    ShowPager="true"
+    ShowPager="true" ShowPageSizes="true" PagerPosition="@DataGridPagerPosition.Top"
     Filterable="true"
     Class="table-bordered">
     <ChildContent>

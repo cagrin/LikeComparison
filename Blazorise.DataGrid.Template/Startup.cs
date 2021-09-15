@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Blazorise.DataGrid.Template.Data;
 using Blazorise;
+using Blazorise.Localization;
 using Blazorise.Bootstrap;
 using Blazorise.Icons.FontAwesome;
 
@@ -38,7 +39,7 @@ namespace Blazorise.DataGrid.Template
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ITextLocalizerService locale)
         {
             if (env.IsDevelopment())
             {
@@ -58,6 +59,9 @@ namespace Blazorise.DataGrid.Template
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
             });
+
+            // This method change language for Blazorise components
+            locale.ChangeLanguage("pl");
         }
     }
 }
