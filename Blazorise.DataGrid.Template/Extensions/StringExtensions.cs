@@ -6,6 +6,8 @@ namespace Blazorise.DataGrid.Template.Extensions
     {
         public static bool Like(this string matchExpression, string pattern)
         {
+            if (pattern == null) throw new ArgumentNullException("Value cannot be null. (Parameter 'pattern')");
+
             bool startsWithAsterix = pattern.StartsWith("*");
             bool endsWithAsterix = pattern.EndsWith("*");
 
