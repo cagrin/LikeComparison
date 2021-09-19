@@ -4,36 +4,81 @@ namespace Blazorise.DataGrid.Template.Extensions
 {
     public static class StringExtensions
     {
-        public static bool Like(this string matchExpression, string pattern)
+        public static bool Like(this string matchExpression, string pattern, StringComparison comparisonType)
         {
             if (pattern == null) throw new ArgumentNullException("Value cannot be null. (Parameter 'pattern')");
 
-            bool startsWithAsterix = pattern.StartsWith("*");
-            bool endsWithAsterix = pattern.EndsWith("*");
-
-            if (pattern.Length > 1)
+            if (pattern.Contains("*"))
             {
-                if (startsWithAsterix && !endsWithAsterix)
+                int matched = 0;
+                for (int i = 0; i < pattern.Length; )
                 {
-                    pattern = pattern.Substring(1);
-                    return matchExpression.EndsWith(pattern);
+                    if (matched > matchExpression.Length)
+                    {
+                        return false;
+                    }
+
+                    string c = pattern[i++].ToString();
+                    if (c == "*")
+                    {
+                        if (i < pattern.Length)
+                        {
+                            string next = pattern[i].ToString();
+                            int j = matchExpression.IndexOf(next, matched, comparisonType);
+                            if (j < 0)
+                            {
+                                return false;
+                            }
+                            else
+                            {
+                                if(matchExpression.Length > j)
+                                {
+                                    string subExpression = matchExpression.Substring(j + 1);
+                                    string subPattern = pattern.Substring(i - 1);
+                                    bool inception = subExpression.Like(subPattern, comparisonType);
+                                    if (inception)
+                                    {
+                                        return true;
+                                    }
+                                }
+                            }
+
+                            matched = j;
+                        }
+                        else
+                        {
+                            matched = matchExpression.Length;
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        if (matched >= matchExpression.Length)
+                        {
+                            return false;
+                        }
+
+                        string m = matchExpression[matched].ToString();
+                        bool areEqual = m.Equals(c, comparisonType);
+
+                        if (!areEqual)
+                        {
+                            return false;
+                        }
+
+                        matched++;
+                    }
                 }
-                else if (!startsWithAsterix && endsWithAsterix)
-                {
-                    pattern = pattern.Substring(0, pattern.Length - 1);
-                    return matchExpression.StartsWith(pattern);
-                }
+
+                return (matched == matchExpression.Length);
             }
 
-            if (pattern.Length > 2)
-            {
-                if (startsWithAsterix && endsWithAsterix)
-                {
-                    pattern = pattern.Substring(1, pattern.Length - 2);
-                }
-            }
+            return matchExpression.Contains(pattern, comparisonType);
+        }
 
-            return matchExpression.Contains(pattern);
+        public static bool Like(this string matchExpression, string pattern)
+        {
+            return Like(matchExpression, pattern, StringComparison.OrdinalIgnoreCase);
         }
     }
 }
