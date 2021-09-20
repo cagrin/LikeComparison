@@ -10,6 +10,13 @@ namespace Blazorise.DataGrid.Template.Extensions
 
             if (pattern.Contains(wildcard))
             {
+                string newPattern = pattern.Replace(wildcard+wildcard, wildcard);
+                while (newPattern != pattern)
+                {
+                    pattern = newPattern;
+                    newPattern = pattern.Replace(wildcard+wildcard, wildcard);
+                }
+
                 int matched = 0;
                 for (int i = 0; i < pattern.Length; )
                 {

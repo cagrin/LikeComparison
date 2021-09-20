@@ -17,7 +17,7 @@ namespace Blazorise.DataGrid.Template.Tests.Extensions
         {
             var cases = GenerateTestCases();
 
-            Assert.AreEqual(cases.Count(), 62436);
+            Assert.AreEqual(cases.Count(), 363363);
 
             Parallel.ForEach(cases, c =>
             {
@@ -69,7 +69,7 @@ namespace Blazorise.DataGrid.Template.Tests.Extensions
                 }
             }
 
-            var patterns = combi.Where(x => x.Contains("%")).Where(x => !x.Contains("%%")).Where(x => x.Length < 5).ToArray();
+            var patterns = combi.Where(x => x.Contains("%")).ToArray();
             var matchExpressions = combi.Where(x => !x.Contains("%")).ToArray();
 
             foreach (var pattern in patterns)
