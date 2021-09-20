@@ -2,10 +2,11 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Blazorise.DataGrid.Template.Extensions;
 using System;
 
+[assembly: Parallelize(Workers = 8, Scope = ExecutionScope.MethodLevel)]
 namespace Blazorise.DataGrid.Template.Tests.Extensions
 {
     [TestClass]
-    public class StringExtensionsTests
+    public class StringLikeTests
     {
         [DataTestMethod]
         [DataRow("abcdef", null)]

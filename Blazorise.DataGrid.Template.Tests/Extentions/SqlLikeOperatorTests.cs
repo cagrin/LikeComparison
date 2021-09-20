@@ -10,19 +10,28 @@ using System.Linq;
 namespace Blazorise.DataGrid.Template.Tests.Extensions
 {
     [TestClass]
-    public class LikeSqlOperatorTests
+    public class SqlLikeOperatorTests
     {
-        [DataTestMethod]
-        [DynamicData(nameof(GetData), DynamicDataSourceType.Method)]
-        public void LikeSql(string matchExpression, string pattern)
+        [TestMethod]
+        public void SqlLikeOperator()
         {
-            var expected = LikeSqlOperator(matchExpression, pattern);
-            var actual = StringLike.LikeSql(matchExpression, pattern);
+            var cases = GenerateTestCases();
 
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(cases.Count(), 62436);
+
+            Parallel.ForEach(cases, c =>
+            {
+                string matchExpression = c[0].ToString();
+                string pattern = c[1].ToString();
+
+                var expected = SqlLikeOperator(matchExpression, pattern);
+                var actual = StringLike.SqlLikeOperator(matchExpression, pattern);
+
+                Assert.AreEqual(actual, expected);
+            });
         }
 
-        private bool LikeSqlOperator(string matchExpression, string pattern)
+        private bool SqlLikeOperator(string matchExpression, string pattern)
         {
             const string _connectionString = "Data Source=localhost;Initial Catalog=master;User Id=sa;Password=StrongP@ssw0rd!";
             const string _query = "SELECT CASE WHEN EXISTS(SELECT 1 FROM (SELECT @matchExpression AS matchExpression) Query WHERE Query.matchExpression LIKE @pattern) THEN 1 ELSE 0 END";
@@ -34,16 +43,10 @@ namespace Blazorise.DataGrid.Template.Tests.Extensions
             }
         }
 
-        public static IEnumerable<object[]> GetData()
-        {
-            return GenerateTestCases();
-        }
-
         private static IEnumerable<object[]> GenerateTestCases()
         {
             var chars = new List<string>() { "a", "A", "B", "%" };
             var combi = new List<string>();
-            var cases = new List<object[]>();
 
             foreach(var c1 in chars)
             {
@@ -73,11 +76,9 @@ namespace Blazorise.DataGrid.Template.Tests.Extensions
             {
                 foreach (var matchExpression in matchExpressions)
                 {
-                    cases.Add(new object[]{ matchExpression, pattern });
+                    yield return new object[]{ matchExpression, pattern };
                 }
             }
-
-            return cases;
         }
     }
 }

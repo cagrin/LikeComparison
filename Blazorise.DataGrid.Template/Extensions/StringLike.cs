@@ -81,7 +81,7 @@ namespace Blazorise.DataGrid.Template.Extensions
             return Like(matchExpression, pattern, StringComparison.OrdinalIgnoreCase, "*");
         }
 
-        public static bool LikeSql(this string matchExpression, string pattern)
+        public static bool SqlLikeOperator(this string matchExpression, string pattern)
         {
             return Like(matchExpression, pattern, StringComparison.OrdinalIgnoreCase, "%");
         }
