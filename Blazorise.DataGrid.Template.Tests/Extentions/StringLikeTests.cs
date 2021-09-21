@@ -21,6 +21,7 @@ namespace Blazorise.DataGrid.Template.Tests.Extensions
         [DataRow("", "*")]
         [DataRow("abcdef", "")]
         [DataRow("abcdef", "*")]
+        [DataRow("abcdef", "**")]
         [DataRow("abcdef", "abc")]
         [DataRow("abcdef", "a*")]
         [DataRow("abcdef", "*f")]
@@ -34,7 +35,6 @@ namespace Blazorise.DataGrid.Template.Tests.Extensions
         }
 
         [DataTestMethod]
-        [DataRow("abcdef", "**")]
         [DataRow("abcdef", "*a")]
         [DataRow("abcdef", "**z")]
         public void StringLikeAreNotMatched(string matchExression, string pattern)

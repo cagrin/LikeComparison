@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
+using System.Collections.Concurrent;
 
 namespace Blazorise.DataGrid.Template.Tests.Extensions
 {
@@ -16,29 +17,32 @@ namespace Blazorise.DataGrid.Template.Tests.Extensions
         public void SqlLikeOperator()
         {
             var cases = GenerateTestCases();
+            int count = cases.Count();
+            Assert.AreEqual(count, 363363);
 
-            Assert.AreEqual(cases.Count(), 363363);
-
-            Parallel.ForEach(cases, c =>
+            Parallel.ForEach(Partitioner.Create(0, count), async (range) =>
             {
-                string matchExpression = c[0].ToString();
-                string pattern = c[1].ToString();
+                for (int i = range.Item1; i < range.Item2; i++)
+                {
+                    var c = cases.ElementAt(i);
+                    string matchExpression = c[0].ToString();
+                    string pattern = c[1].ToString();
 
-                var expected = SqlLikeOperator(matchExpression, pattern);
-                var actual = StringLike.SqlLikeOperator(matchExpression, pattern);
-
-                Assert.AreEqual(actual, expected);
+                    var expected = await SqlLikeOperatorAsync(matchExpression, pattern);
+                    var actual = StringLike.SqlLikeOperator(matchExpression, pattern);
+                    Assert.AreEqual(actual, expected);
+                }
             });
         }
 
-        private bool SqlLikeOperator(string matchExpression, string pattern)
+        private async Task<bool> SqlLikeOperatorAsync(string matchExpression, string pattern)
         {
             const string _connectionString = "Data Source=localhost;Initial Catalog=master;User Id=sa;Password=StrongP@ssw0rd!";
             const string _query = "SELECT CASE WHEN EXISTS(SELECT 1 FROM (SELECT @matchExpression AS matchExpression) Query WHERE Query.matchExpression LIKE @pattern) THEN 1 ELSE 0 END";
 
             using(var connection = new SqlConnection(_connectionString))
             {
-                var result = connection.ExecuteScalar<bool>(_query, new { matchExpression = matchExpression, pattern = pattern});
+                var result = await connection.ExecuteScalarAsync<bool>(_query, new { matchExpression = matchExpression, pattern = pattern});
                 return result;
             }
         }
