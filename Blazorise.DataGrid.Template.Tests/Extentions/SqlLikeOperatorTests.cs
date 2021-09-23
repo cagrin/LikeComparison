@@ -18,27 +18,26 @@ namespace Blazorise.DataGrid.Template.Tests.Extensions
 
             Assert.AreEqual(cases.Count(), 79860);
 
-            Parallel.ForEach(cases, c =>
+            Parallel.ForEachAsync(cases, new ParallelOptions() { MaxDegreeOfParallelism = 100 }, async (c, t) =>
             {
                 string matchExpression = c[0].ToString();
                 string pattern = c[1].ToString();
 
-                var expected = SqlLikeOperator(matchExpression, pattern);
+                var expected = await SqlLikeOperatorAsync(matchExpression, pattern).ConfigureAwait(false);
                 var actual = StringLike.SqlLikeOperator(matchExpression, pattern);
 
                 Assert.AreEqual(actual, expected);
-            });
+            }).Wait();
         }
 
-        private bool SqlLikeOperator(string matchExpression, string pattern)
+        private async Task<bool> SqlLikeOperatorAsync(string matchExpression, string pattern)
         {
             const string _connectionString = "Data Source=localhost;Initial Catalog=master;User Id=sa;Password=StrongP@ssw0rd!";
             const string _query = "SELECT CASE WHEN EXISTS(SELECT 1 FROM (SELECT @matchExpression AS matchExpression) Query WHERE Query.matchExpression LIKE @pattern) THEN 1 ELSE 0 END";
 
             using(var connection = new SqlConnection(_connectionString))
             {
-                var result = connection.ExecuteScalar<bool>(_query, new { matchExpression = matchExpression, pattern = pattern});
-                return result;
+                return await connection.ExecuteScalarAsync<bool>(_query, new { matchExpression = matchExpression, pattern = pattern}).ConfigureAwait(false);
             }
         }
 
