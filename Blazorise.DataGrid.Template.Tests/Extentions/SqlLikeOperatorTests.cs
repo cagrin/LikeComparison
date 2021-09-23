@@ -1,7 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Blazorise.DataGrid.Template.Extensions;
 using Dapper;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
