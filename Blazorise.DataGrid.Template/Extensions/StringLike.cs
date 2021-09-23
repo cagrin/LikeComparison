@@ -4,11 +4,11 @@ namespace Blazorise.DataGrid.Template.Extensions
 {
     public static class StringLike
     {
-        public static bool Like(this string matchExpression, string pattern, StringComparison comparisonType, string wildcard)
+        public static bool Like(this string matchExpression, string pattern, StringComparison comparisonType, string wildcard, string single)
         {
             if (pattern == null) throw new ArgumentNullException("Value cannot be null. (Parameter 'pattern')");
 
-            if (pattern.Contains(wildcard))
+            if (pattern.Contains(wildcard) || pattern.Contains(single))
             {
                 string newPattern = pattern.Replace(wildcard+wildcard, wildcard);
                 while (newPattern != pattern)
@@ -42,7 +42,7 @@ namespace Blazorise.DataGrid.Template.Extensions
                                 {
                                     string subExpression = matchExpression.Substring(j + 1);
                                     string subPattern = pattern.Substring(i - 1);
-                                    bool inception = subExpression.Like(subPattern, comparisonType, wildcard);
+                                    bool inception = subExpression.Like(subPattern, comparisonType, wildcard, single);
                                     if (inception)
                                     {
                                         return true;
@@ -57,6 +57,10 @@ namespace Blazorise.DataGrid.Template.Extensions
                             matched = matchExpression.Length;
                             break;
                         }
+                    }
+                    else if (c == single)
+                    {
+                        matched++;
                     }
                     else
                     {
@@ -85,12 +89,12 @@ namespace Blazorise.DataGrid.Template.Extensions
 
         public static bool Like(this string matchExpression, string pattern)
         {
-            return Like(matchExpression, pattern, StringComparison.OrdinalIgnoreCase, "*");
+            return Like(matchExpression, pattern, StringComparison.OrdinalIgnoreCase, "*", "?");
         }
 
         public static bool SqlLikeOperator(this string matchExpression, string pattern)
         {
-            return Like(matchExpression, pattern, StringComparison.OrdinalIgnoreCase, "%");
+            return Like(matchExpression, pattern, StringComparison.OrdinalIgnoreCase, "%", "_");
         }
     }
 }

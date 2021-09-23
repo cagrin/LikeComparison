@@ -58,16 +58,11 @@ namespace Blazorise.DataGrid.Template.Tests.Extensions
         [DataRow("ab*", "abc", true)]
         [DataRow("ab*", "cab", false)]
         [DataRow("ab*", "aab", false)]
+        [DataRow("a?a", "aaa", true)]
+        [DataRow("a?a", "a3a", true)]
+        [DataRow("a?a", "aBa", true)]
+        [DataRow("a?a", "aBBBa", false)]
         public void MicrosoftAccessTests(string pattern, string matchExpression, bool expected)
-        {
-            bool actual = matchExpression.Like(pattern);
-            Assert.AreEqual(actual, expected);
-        }
-
-        [DataTestMethod]
-        [DataRow("*1.*.2021", "21.09.2021", true)]
-        [DataRow("*1.*.2021", "22.09.2021", false)]
-        public void SpecialTests(string pattern, string matchExpression, bool expected)
         {
             bool actual = matchExpression.Like(pattern);
             Assert.AreEqual(actual, expected);
