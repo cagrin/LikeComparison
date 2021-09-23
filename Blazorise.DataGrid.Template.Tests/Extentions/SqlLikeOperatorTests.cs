@@ -11,12 +11,15 @@ namespace Blazorise.DataGrid.Template.Tests.Extensions
     [TestClass]
     public class SqlLikeOperatorTests
     {
-        [TestMethod]
-        public void SqlLikeOperator()
+        [DataTestMethod]
+        [DataRow("aAB%", 80080)]
+        [DataRow("aB_%", 16002)]
+        public void SqlLikeOperator(string letters, int combinations)
         {
-            var cases = GenerateTestCases();
+            string[] chars = letters.ToCharArray().Select(x => x.ToString()).ToArray();
+            var cases = GenerateTestCases(chars);
 
-            Assert.AreEqual(cases.Count(), 79860);
+            Assert.AreEqual(combinations, cases.Count());
 
             Parallel.ForEachAsync(cases, new ParallelOptions() { MaxDegreeOfParallelism = 100 }, async (c, t) =>
             {
@@ -26,7 +29,7 @@ namespace Blazorise.DataGrid.Template.Tests.Extensions
                 var expected = await SqlLikeOperatorAsync(matchExpression, pattern).ConfigureAwait(false);
                 var actual = StringLike.SqlLikeOperator(matchExpression, pattern);
 
-                Assert.AreEqual(actual, expected);
+                Assert.AreEqual(expected, actual, $"Query:'{matchExpression}' LIKE '{pattern}'");
             }).Wait();
         }
 
@@ -41,11 +44,11 @@ namespace Blazorise.DataGrid.Template.Tests.Extensions
             }
         }
 
-        private static IEnumerable<object[]> GenerateTestCases()
+        private static IEnumerable<object[]> GenerateTestCases(string[] chars)
         {
-            var chars = new List<string>() { "a", "A", "B", "%" };
             var combi = new List<string>();
 
+            combi.Add(string.Empty);
             foreach(var c1 in chars)
             {
                 combi.Add(c1);
@@ -67,8 +70,8 @@ namespace Blazorise.DataGrid.Template.Tests.Extensions
                 }
             }
 
-            var patterns = combi.Where(x => x.Contains("%")).Where(x => x.Length < 5).ToArray();
-            var matchExpressions = combi.Where(x => !x.Contains("%")).ToArray();
+            var patterns = combi.Where(x => x.Contains("%") || x.Contains("_")).Where(x => !x.Contains("%_")).Where(x => x.Length < 5).ToArray();
+            var matchExpressions = combi.Where(x => !x.Contains("%") && !x.Contains("_")).ToArray();
 
             foreach (var pattern in patterns)
             {
