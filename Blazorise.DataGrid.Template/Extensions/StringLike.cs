@@ -1,4 +1,6 @@
 using System;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Blazorise.DataGrid.Template.Extensions
 {
@@ -8,80 +10,62 @@ namespace Blazorise.DataGrid.Template.Extensions
         {
             if (pattern == null) throw new ArgumentNullException("Value cannot be null. (Parameter 'pattern')");
 
-            if (pattern.Contains(wildcard) || pattern.Contains(single))
+            if (pattern.Contains(wildcard) || pattern.Contains(single) || pattern.Contains("[") || pattern.Contains("]") || pattern.Contains("^"))
             {
-                string newPattern = pattern.Replace(wildcard+wildcard, wildcard);
-                while (newPattern != pattern)
-                {
-                    pattern = newPattern;
-                    newPattern = pattern.Replace(wildcard+wildcard, wildcard);
-                }
+                string[] letters = pattern.ToCharArray().Select(x => x.ToString()).ToArray();
 
-                int matched = 0;
-                for (int i = 0; i < pattern.Length; )
+                string regexExpression = "^";
+                bool insideMatchSingleCharacter = false;
+                foreach(string letter in letters)
                 {
-                    if (matched > matchExpression.Length)
+                    if (letter == "[" && insideMatchSingleCharacter)
                     {
-                        return false;
+                        continue;
                     }
 
-                    string c = pattern[i++].ToString();
-                    if (c == wildcard)
+                    if (letter == "[" && !insideMatchSingleCharacter)
                     {
-                        if (i < pattern.Length)
-                        {
-                            string next = pattern[i].ToString();
-                            int j = matchExpression.IndexOf(next, matched, comparisonType);
-                            if (j < 0)
-                            {
-                                return false;
-                            }
-                            else
-                            {
-                                if(matchExpression.Length > j)
-                                {
-                                    string subExpression = matchExpression.Substring(j + 1);
-                                    string subPattern = pattern.Substring(i - 1);
-                                    bool inception = subExpression.Like(subPattern, comparisonType, wildcard, single);
-                                    if (inception)
-                                    {
-                                        return true;
-                                    }
-                                }
-                            }
-
-                            matched = j;
-                        }
-                        else
-                        {
-                            matched = matchExpression.Length;
-                            break;
-                        }
+                        insideMatchSingleCharacter = true;
+                        regexExpression = regexExpression + "[";
                     }
-                    else if (c == single)
+                    else if (letter == "]" && insideMatchSingleCharacter)
                     {
-                        matched++;
+                        insideMatchSingleCharacter = false;
+
+                        if(regexExpression.EndsWith("["))
+                        {
+                            regexExpression = regexExpression.Substring(0, regexExpression.Length - 1) + "\\[";
+                            continue;
+                        }
+                        regexExpression = regexExpression + "]";
+                    }
+                    else if (letter == "^" && insideMatchSingleCharacter)
+                    {
+                        regexExpression = regexExpression + "^";
+                    }
+                    else if (letter == wildcard)
+                    {
+                        regexExpression = regexExpression + ".*";
+                    }
+                    else if (letter == single)
+                    {
+                        regexExpression = regexExpression + ".";
                     }
                     else
                     {
-                        if (matched >= matchExpression.Length)
-                        {
-                            return false;
-                        }
-
-                        string m = matchExpression[matched].ToString();
-                        bool areEqual = m.Equals(c, comparisonType);
-
-                        if (!areEqual)
-                        {
-                            return false;
-                        }
-
-                        matched++;
+                        regexExpression = regexExpression + Regex.Escape(letter);
                     }
                 }
 
-                return (matched == matchExpression.Length);
+                if (insideMatchSingleCharacter)
+                {
+                    return false;
+                }
+
+                regexExpression = regexExpression + "$";
+
+                var regex = new Regex(regexExpression, RegexOptions.IgnoreCase);
+                return regex.IsMatch(matchExpression);
             }
 
             return matchExpression.Contains(pattern, comparisonType);

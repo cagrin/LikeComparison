@@ -13,7 +13,10 @@ namespace Blazorise.DataGrid.Template.Tests.Extensions
     {
         [DataTestMethod]
         [DataRow("aAB%", 80080)]
-        [DataRow("aB_%", 16002)]
+        [DataRow("/\\_%", 19530)]
+        [DataRow("*._%", 19530)]
+        [DataRow("#?_%", 19530)]
+        [DataRow("ab[]", 19530)]
         public void SqlLikeOperator(string letters, int combinations)
         {
             string[] chars = letters.ToCharArray().Select(x => x.ToString()).ToArray();
@@ -36,11 +39,11 @@ namespace Blazorise.DataGrid.Template.Tests.Extensions
         private async Task<bool> SqlLikeOperatorAsync(string matchExpression, string pattern)
         {
             const string _connectionString = "Data Source=localhost;Initial Catalog=master;User Id=sa;Password=StrongP@ssw0rd!";
-            const string _query = "SELECT CASE WHEN EXISTS(SELECT 1 FROM (SELECT @matchExpression AS matchExpression) Query WHERE Query.matchExpression LIKE @pattern) THEN 1 ELSE 0 END";
+            string query = "SELECT CASE WHEN '" + matchExpression + "' LIKE '" + pattern + "' THEN 1 ELSE 0 END";
 
             using(var connection = new SqlConnection(_connectionString))
             {
-                return await connection.ExecuteScalarAsync<bool>(_query, new { matchExpression = matchExpression, pattern = pattern}).ConfigureAwait(false);
+                return await connection.ExecuteScalarAsync<bool>(query).ConfigureAwait(false);
             }
         }
 
@@ -70,8 +73,8 @@ namespace Blazorise.DataGrid.Template.Tests.Extensions
                 }
             }
 
-            var patterns = combi.Where(x => x.Contains("%") || x.Contains("_")).Where(x => !x.Contains("%_")).Where(x => x.Length < 5).ToArray();
-            var matchExpressions = combi.Where(x => !x.Contains("%") && !x.Contains("_")).ToArray();
+            var patterns = combi.Where(x => x.Contains("%") || x.Contains("_") || x.Contains("[") || x.Contains("]")).Where(x => x.Length < 5).ToArray();
+            var matchExpressions = combi.Where(x => !x.Contains("%") && !x.Contains("_") && !x.Contains("[") && !x.Contains("]")).ToArray();
 
             foreach (var pattern in patterns)
             {
