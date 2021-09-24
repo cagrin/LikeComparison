@@ -16,7 +16,7 @@ namespace Blazorise.DataGrid.Template.Tests.Extensions
         [DataRow("/\\_%", 19530)]
         [DataRow("*._%", 19530)]
         [DataRow("#?_%", 19530)]
-        [DataRow("ab[]", 19530)]
+        [DataRow("ab[^]%", 96012)]
         public void SqlLikeOperator(string letters, int combinations)
         {
             string[] chars = letters.ToCharArray().Select(x => x.ToString()).ToArray();
@@ -73,8 +73,8 @@ namespace Blazorise.DataGrid.Template.Tests.Extensions
                 }
             }
 
-            var patterns = combi.Where(x => x.Contains("%") || x.Contains("_") || x.Contains("[") || x.Contains("]")).Where(x => x.Length < 5).ToArray();
-            var matchExpressions = combi.Where(x => !x.Contains("%") && !x.Contains("_") && !x.Contains("[") && !x.Contains("]")).ToArray();
+            var patterns = combi.Where(x => x.Contains("%") || x.Contains("_") || x.Contains("[") || x.Contains("]") || x.Contains("^")).Where(x => x.Length < 5).ToArray();
+            var matchExpressions = combi.Where(x => !x.Contains("%") && !x.Contains("_") && !x.Contains("[") && !x.Contains("]") && !x.Contains("^")).ToArray();
 
             foreach (var pattern in patterns)
             {

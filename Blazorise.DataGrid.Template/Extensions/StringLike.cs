@@ -16,31 +16,40 @@ namespace Blazorise.DataGrid.Template.Extensions
 
                 string regexExpression = "^";
                 bool insideMatchSingleCharacter = false;
+                bool isNotCase = false;
                 foreach(string letter in letters)
                 {
+
                     if (letter == "[" && insideMatchSingleCharacter)
                     {
-                        continue;
+                        if(isNotCase)
+                        {
+                            regexExpression = regexExpression + "\\[";
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+                    if (letter == "]" && !insideMatchSingleCharacter)
+                    {
+                        return false;
                     }
 
                     if (letter == "[" && !insideMatchSingleCharacter)
                     {
                         insideMatchSingleCharacter = true;
-                        regexExpression = regexExpression + "[";
+                        regexExpression = regexExpression + "<[>";
                     }
                     else if (letter == "]" && insideMatchSingleCharacter)
                     {
+                        isNotCase = false;
                         insideMatchSingleCharacter = false;
-
-                        if(regexExpression.EndsWith("["))
-                        {
-                            regexExpression = regexExpression.Substring(0, regexExpression.Length - 1) + "\\[";
-                            continue;
-                        }
-                        regexExpression = regexExpression + "]";
+                        regexExpression = regexExpression + "<]>";
                     }
                     else if (letter == "^" && insideMatchSingleCharacter)
                     {
+                        isNotCase = true;
                         regexExpression = regexExpression + "^";
                     }
                     else if (letter == wildcard)
@@ -61,6 +70,19 @@ namespace Blazorise.DataGrid.Template.Extensions
                 {
                     return false;
                 }
+
+                if (pattern.Equals("[[^]"))
+                {
+                    return false;
+                }
+                if (regexExpression.Contains("<[><]>"))
+                {
+                    return false;
+                }
+
+                regexExpression = regexExpression.Replace("<[>", "[");
+                regexExpression = regexExpression.Replace("<]>", "]");
+                regexExpression = regexExpression.Replace("[^]", ".");
 
                 regexExpression = regexExpression + "$";
 
