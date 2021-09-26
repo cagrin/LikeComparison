@@ -12,15 +12,14 @@ namespace Blazorise.DataGrid.Template.Tests.Extensions
     public class SqlLikeOperatorTests
     {
         [DataTestMethod]
-        [DataRow("aAB%", 80080)]
-        [DataRow("/\\_%", 19530)]
-        [DataRow("*._%", 19530)]
-        [DataRow("#?_%", 19530)]
-        [DataRow("ab[^]%", 96012)]
-        public void SqlLikeOperator(string letters, int combinations)
+        [DataRow("aAB", "%", 26620)]
+        [DataRow("/\\", "_%", 9610)]
+        [DataRow("*.", "_%", 9610)]
+        [DataRow("#?", "_%", 9610)]
+        [DataRow("ab", "[^]%", 47244)]
+        public void SqlLikeOperator(string expressionLetters, string patternLetters, int combinations)
         {
-            string[] chars = letters.ToCharArray().Select(x => x.ToString()).ToArray();
-            var cases = GenerateTestCases(chars);
+            var cases = GenerateTestCases(expressionLetters, patternLetters);
 
             Assert.AreEqual(combinations, cases.Count());
 
@@ -47,8 +46,23 @@ namespace Blazorise.DataGrid.Template.Tests.Extensions
             }
         }
 
-        private static IEnumerable<object[]> GenerateTestCases(string[] chars)
+        private static IEnumerable<object[]> GenerateTestCases(string expressionChars, string patternChars)
         {
+            var matchExpressions = Combinations(expressionChars).ToArray();
+            var patterns = Combinations(expressionChars + patternChars).Where(x => patternChars.Any(y => x.Contains(y))).ToArray();
+
+            foreach (var matchExpression in matchExpressions)
+            {
+                foreach (var pattern in patterns)
+                {
+                    yield return new object[]{ matchExpression, pattern };
+                }
+            }
+        }
+
+        private static string[] Combinations(string letters)
+        {
+            string[] chars = letters.ToCharArray().Select(x => x.ToString()).ToArray();
             var combi = new List<string>();
 
             combi.Add(string.Empty);
@@ -64,25 +78,12 @@ namespace Blazorise.DataGrid.Template.Tests.Extensions
                         foreach(var c4 in chars)
                         {
                             combi.Add(c1+c2+c3+c4);
-                            foreach(var c5 in chars)
-                            {
-                                combi.Add(c1+c2+c3+c4+c5);
-                            }
                         }
                     }
                 }
             }
 
-            var patterns = combi.Where(x => x.Contains("%") || x.Contains("_") || x.Contains("[") || x.Contains("]") || x.Contains("^")).Where(x => x.Length < 5).ToArray();
-            var matchExpressions = combi.Where(x => !x.Contains("%") && !x.Contains("_") && !x.Contains("[") && !x.Contains("]") && !x.Contains("^")).ToArray();
-
-            foreach (var pattern in patterns)
-            {
-                foreach (var matchExpression in matchExpressions)
-                {
-                    yield return new object[]{ matchExpression, pattern };
-                }
-            }
+            return combi.ToArray();
         }
     }
 }
