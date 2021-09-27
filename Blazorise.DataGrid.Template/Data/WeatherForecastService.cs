@@ -29,10 +29,10 @@ namespace Blazorise.DataGrid.Template.Data
                 var search = column.SearchValue?.ToString();
                 query = (column.Field) switch
                 {
-                    nameof(WeatherForecast.Date) => query.Where(f => f.Date.ToShortDateString().Like(search)),
-                    nameof(WeatherForecast.TemperatureC) => query.Where(f => f.TemperatureC.ToString().Like(search)),
-                    nameof(WeatherForecast.TemperatureF) => query.Where(f => f.TemperatureF.ToString().Like(search)),
-                    nameof(WeatherForecast.Summary) => query.Where(f => f.Summary.Like(search)),
+                    nameof(WeatherForecast.Date) => query.Where(f => f.Date.ToShortDateString().VbLike(search)),
+                    nameof(WeatherForecast.TemperatureC) => query.Where(f => f.TemperatureC.ToString().VbLike(search)),
+                    nameof(WeatherForecast.TemperatureF) => query.Where(f => f.TemperatureF.ToString().VbLike(search)),
+                    nameof(WeatherForecast.Summary) => query.Where(f => f.Summary.VbLike(search)),
                     _ => query
                 };
             }

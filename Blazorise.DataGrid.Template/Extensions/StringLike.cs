@@ -1,6 +1,8 @@
 using System;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Microsoft.VisualBasic.CompilerServices;
+using Microsoft.VisualBasic;
 
 namespace Blazorise.DataGrid.Template.Extensions
 {
@@ -8,10 +10,17 @@ namespace Blazorise.DataGrid.Template.Extensions
         https://github.com/dotnet/vblang/blob/main/spec/expressions.md#like-operator
         https://github.com/dotnet/docs/blob/main/docs/visual-basic/language-reference/operators/like-operator.md
         https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualbasic.compilerservices.operators.likestring?view=netframework-4.8
+        https://docs.microsoft.com/en-us/office/vba/language/reference/user-interface-help/like-operator
+        https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualbasic.compilerservices.likeoperator.likestring?view=net-5.0
     */
     public static class StringLike
     {
-        public static bool Like(this string matchExpression, string pattern, StringComparison comparisonType, string wildcard, string single, string invert, string digits)
+        public static bool VbLike(this string matchExpression, string pattern)
+        {
+            return LikeOperator.LikeString(matchExpression, pattern, CompareMethod.Text);
+        }
+
+        private static bool Like(this string matchExpression, string pattern, StringComparison comparisonType, string wildcard, string single, string invert, string digits)
         {
             if (pattern == null) throw new ArgumentNullException("Value cannot be null. (Parameter 'pattern')");
 
