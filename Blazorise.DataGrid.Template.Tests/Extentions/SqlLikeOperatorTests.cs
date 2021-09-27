@@ -5,6 +5,7 @@ using Microsoft.Data.SqlClient;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace Blazorise.DataGrid.Template.Tests.Extensions
 {
@@ -16,6 +17,9 @@ namespace Blazorise.DataGrid.Template.Tests.Extensions
         [DataRow("/\\", "_%", 9610)]
         [DataRow("*.", "_%", 9610)]
         [DataRow("#?", "_%", 9610)]
+        [DataRow("ab", "[^]%", 47244)]
+        [DataRow("[]", "[^]%", 48174)]
+        [DataRow("^!", "[^]%", 48050)]
         [DataRow("ab", "[^]%", 47244)]
         public void SqlLikeOperator(string expressionLetters, string patternLetters, int combinations)
         {
@@ -29,9 +33,19 @@ namespace Blazorise.DataGrid.Template.Tests.Extensions
                 string pattern = c[1].ToString();
 
                 var expected = await SqlLikeOperatorAsync(matchExpression, pattern).ConfigureAwait(false);
-                var actual = StringLike.SqlLikeOperator(matchExpression, pattern);
+                var regex = StringLike.SqlLikeRegex(pattern) ?? "<Null>";
+                var message = $"Query:'{matchExpression}' LIKE '{pattern}'. Regex:{regex}";
 
-                Assert.AreEqual(expected, actual, $"Query:'{matchExpression}' LIKE '{pattern}'");
+                try
+                {
+                    var actual = StringLike.SqlLikeOperator(matchExpression, pattern);
+                    Assert.AreEqual(expected, actual, message);
+                }
+                catch (Exception ex)
+                {
+                    Assert.IsTrue(false, message + $". Exception:{ex.Message}.");
+                }
+
             }).Wait();
         }
 

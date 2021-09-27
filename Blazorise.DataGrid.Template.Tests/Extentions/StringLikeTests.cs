@@ -19,10 +19,8 @@ namespace Blazorise.DataGrid.Template.Tests.Extensions
         [DataTestMethod]
         [DataRow("", "")]
         [DataRow("", "*")]
-        [DataRow("abcdef", "")]
         [DataRow("abcdef", "*")]
         [DataRow("abcdef", "**")]
-        [DataRow("abcdef", "abc")]
         [DataRow("abcdef", "a*")]
         [DataRow("abcdef", "*f")]
         [DataRow("abcdef", "*cd*")]
@@ -35,6 +33,8 @@ namespace Blazorise.DataGrid.Template.Tests.Extensions
         }
 
         [DataTestMethod]
+        [DataRow("abcdef", "")]
+        [DataRow("abcdef", "abc")]
         [DataRow("abcdef", "*a")]
         [DataRow("abcdef", "**z")]
         public void StringLikeAreNotMatched(string matchExression, string pattern)
@@ -54,6 +54,8 @@ namespace Blazorise.DataGrid.Template.Tests.Extensions
         [DataRow("*ab*", "Xab", true)]
         [DataRow("*ab*", "aZb", false)]
         [DataRow("*ab*", "bac", false)]
+        [DataRow("a[*]a", "a*a", true)]
+        [DataRow("a[*]a", "aaa", false)]
         [DataRow("ab*", "abcdefg", true)]
         [DataRow("ab*", "abc", true)]
         [DataRow("ab*", "cab", false)]
@@ -62,7 +64,52 @@ namespace Blazorise.DataGrid.Template.Tests.Extensions
         [DataRow("a?a", "a3a", true)]
         [DataRow("a?a", "aBa", true)]
         [DataRow("a?a", "aBBBa", false)]
+        [DataRow("a#a", "a0a", true)]
+        [DataRow("a#a", "a1a", true)]
+        [DataRow("a#a", "a2a", true)]
+        [DataRow("a#a", "aaa", false)]
+        [DataRow("a#a", "a10a", false)]
+        [DataRow("[a-z]", "f", true)]
+        [DataRow("[a-z]", "p", true)]
+        [DataRow("[a-z]", "j", true)]
+        [DataRow("[a-z]", "2", false)]
+        [DataRow("[a-z]", "&", false)]
+        [DataRow("[!a-z]", "9", true)]
+        [DataRow("[!a-z]", "&", true)]
+        [DataRow("[!a-z]", "%", true)]
+        [DataRow("[!a-z]", "b", false)]
+        [DataRow("[!a-z]", "a", false)]
+        [DataRow("[!0-9]", "A", true)]
+        [DataRow("[!0-9]", "a", true)]
+        [DataRow("[!0-9]", "&", true)]
+        [DataRow("[!0-9]", "~", true)]
+        [DataRow("[!0-9]", "0", false)]
+        [DataRow("[!0-9]", "1", false)]
+        [DataRow("[!0-9]", "9", false)]
+        [DataRow("a[!b-m]#", "An9", true)]
+        [DataRow("a[!b-m]#", "az0", true)]
+        [DataRow("a[!b-m]#", "a99", true)]
+        [DataRow("a[!b-m]#", "abc", false)]
+        [DataRow("a[!b-m]#", "aj0", false)]
         public void MicrosoftAccessTests(string pattern, string matchExpression, bool expected)
+        {
+            bool actual = matchExpression.Like(pattern);
+            Assert.AreEqual(actual, expected);
+        }
+
+        [DataTestMethod]
+        //https://docs.microsoft.com/en-us/dotnet/visual-basic/language-reference/operators/like-operator
+        [DataRow("F", "F", true)]
+        [DataRow("f", "F", true)] // Option Compare Text (true) vs Binary (false)
+        [DataRow("FFF", "F", false)]
+        [DataRow("a*a", "aBBBa", true)]
+        [DataRow("[A-Z]", "F", true)]
+        [DataRow("[!A-Z]", "F", false)]
+        [DataRow("a#a", "a2a", true)]
+        [DataRow("a[L-P]#[!c-e]", "aM5b", true)]
+        [DataRow("B?T*", "BAT123khg", true)]
+        [DataRow("B?T*", "CAT123khg", false)]
+        public void VisualBasicTests(string pattern, string matchExpression, bool expected)
         {
             bool actual = matchExpression.Like(pattern);
             Assert.AreEqual(actual, expected);
