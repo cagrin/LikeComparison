@@ -118,7 +118,7 @@ namespace Blazorise.DataGrid.Template.Tests.Extensions
         }
 
         [TestMethod]
-        public void VisualBasicCoreTests(string pattern, string matchExpression, bool expected)
+        public void VisualBasicCoreTests()
         {
             Assert.IsTrue(LikeOperator.LikeString("-1d", "-#*", CompareMethod.Binary), "1");
             Assert.IsTrue(LikeOperator.LikeString("1", "#", CompareMethod.Binary), "2");

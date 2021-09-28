@@ -20,31 +20,32 @@ namespace Blazorise.DataGrid.Template.Extensions
             return LikeOperator.LikeString(matchExpression, pattern, CompareMethod.Text);
         }
 
-        private static bool Like(this string matchExpression, string pattern, StringComparison comparisonType, string wildcard, string single, string invert, string digits)
+        public static bool Like(this string matchExpression, string pattern, LikeOptions likeOptions)
         {
-            if (pattern == null) throw new ArgumentNullException("Value cannot be null. (Parameter 'pattern')");
-
-            if (pattern.Contains(wildcard) || pattern.Contains(single) || pattern.Contains("[") || pattern.Contains("]") || pattern.Contains("^") || pattern.Contains(digits))
-            {
-                string regexExpression = SqlLikeRegex(pattern, wildcard, single, invert, digits);
-
-                return SqlLikeParse(matchExpression, regexExpression);
-            }
-
-            return matchExpression.Equals(pattern, comparisonType);
+            return Like(matchExpression, pattern, likeOptions.StringComparison, likeOptions.Wildcard, likeOptions.Single, likeOptions.Invert, likeOptions.Digits);
         }
 
         public static bool Like(this string matchExpression, string pattern)
         {
-            return Like(matchExpression, pattern, StringComparison.OrdinalIgnoreCase, "*", "?", "!", "#");
+            return Like(matchExpression, pattern, new LikeOptions(PatternStyle.VisualBasic));
         }
 
         public static bool SqlLikeOperator(this string matchExpression, string pattern)
         {
-            return Like(matchExpression, pattern, StringComparison.OrdinalIgnoreCase, "%", "_", "^", "[0-9]");
+            return Like(matchExpression, pattern, new LikeOptions(PatternStyle.TransactSql));
         }
 
-        public static string SqlLikeRegex(string pattern, string wildcard = "%", string single = "_", string invert = "^", string digits = "#")
+        public static string SqlLikeRegex(string pattern)
+        {
+            return SqlLikeRegex(pattern, new LikeOptions(PatternStyle.TransactSql));
+        }
+
+        public static string SqlLikeRegex(string pattern, LikeOptions likeOptions)
+        {
+            return SqlLikeRegex(pattern, likeOptions.Wildcard, likeOptions.Single, likeOptions.Invert, likeOptions.Digits);
+        }
+
+        private static string SqlLikeRegex(string pattern, string wildcard, string single, string invert, string digits)
         {
             string[] letters = pattern.ToCharArray().Select(x => x.ToString()).ToArray();
 
@@ -143,6 +144,20 @@ namespace Blazorise.DataGrid.Template.Extensions
                     throw ex;
                 }
             }
+        }
+
+        private static bool Like(this string matchExpression, string pattern, StringComparison comparisonType, string wildcard, string single, string invert, string digits)
+        {
+            if (pattern == null) throw new ArgumentNullException("Value cannot be null. (Parameter 'pattern')");
+
+            if (pattern.Contains(wildcard) || pattern.Contains(single) || pattern.Contains("[") || pattern.Contains("]") || pattern.Contains("^") || pattern.Contains(digits))
+            {
+                string regexExpression = SqlLikeRegex(pattern, wildcard, single, invert, digits);
+
+                return SqlLikeParse(matchExpression, regexExpression);
+            }
+
+            return matchExpression.Equals(pattern, comparisonType);
         }
     }
 }
