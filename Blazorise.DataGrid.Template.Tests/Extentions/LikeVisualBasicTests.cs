@@ -8,14 +8,14 @@ using Microsoft.VisualBasic;
 namespace Blazorise.DataGrid.Template.Tests.Extensions
 {
     [TestClass]
-    public class StringLikeTests
+    public class LikeVisualBasicTests
     {
         [DataTestMethod]
         [DataRow("abcdef", null)]
         [ExpectedException(typeof(ArgumentNullException), "Value cannot be null. (Parameter 'pattern')")]
-        public void StringLikeThrowArgumentNullException(string matchExression, string pattern)
+        public void LikeThrowArgumentNullException(string matchExression, string pattern)
         {
-            matchExression.Like(pattern);
+            matchExression.Like(pattern, new LikeOptions(PatternStyle.VisualBasic));
         }
 
         [DataTestMethod]
@@ -28,9 +28,9 @@ namespace Blazorise.DataGrid.Template.Tests.Extensions
         [DataRow("abcdef", "*cd*")]
         [DataRow("abcdef", "a*f")]
         [DataRow("abcdef", "A*F")]
-        public void StringLikeAreMatched(string matchExression, string pattern)
+        public void LikeAreMatched(string matchExression, string pattern)
         {
-            bool actual = matchExression.Like(pattern);
+            bool actual = matchExression.Like(pattern, new LikeOptions(PatternStyle.VisualBasic));
             Assert.IsTrue(actual);
         }
 
@@ -39,9 +39,9 @@ namespace Blazorise.DataGrid.Template.Tests.Extensions
         [DataRow("abcdef", "abc")]
         [DataRow("abcdef", "*a")]
         [DataRow("abcdef", "**z")]
-        public void StringLikeAreNotMatched(string matchExression, string pattern)
+        public void LikeAreNotMatched(string matchExression, string pattern)
         {
-            bool actual = matchExression.Like(pattern);
+            bool actual = matchExression.Like(pattern, new LikeOptions(PatternStyle.VisualBasic));
             Assert.IsFalse(actual);
         }
 
@@ -95,7 +95,7 @@ namespace Blazorise.DataGrid.Template.Tests.Extensions
         [DataRow("a[!b-m]#", "aj0", false)]
         public void MicrosoftAccessTests(string pattern, string matchExpression, bool expected)
         {
-            bool actual = matchExpression.Like(pattern);
+            bool actual = matchExpression.Like(pattern, new LikeOptions(PatternStyle.VisualBasic));
             Assert.AreEqual(actual, expected);
         }
 
@@ -113,7 +113,7 @@ namespace Blazorise.DataGrid.Template.Tests.Extensions
         [DataRow("B?T*", "CAT123khg", false)]
         public void VisualBasicTests(string pattern, string matchExpression, bool expected)
         {
-            bool actual = matchExpression.Like(pattern);
+            bool actual = matchExpression.Like(pattern, new LikeOptions(PatternStyle.VisualBasic));
             Assert.AreEqual(actual, expected);
         }
 

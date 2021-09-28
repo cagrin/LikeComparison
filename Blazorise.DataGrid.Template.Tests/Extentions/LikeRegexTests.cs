@@ -4,29 +4,29 @@ using Blazorise.DataGrid.Template.Extensions;
 namespace Blazorise.DataGrid.Template.Tests.Extensions
 {
     [TestClass]
-    public class SqlLikeRegexTests
+    public class LikeRegexTests
     {
         [DataTestMethod]
-        [DataRow("[[^]", "^[\\[\\^]$")]
+        [DataRow("[[!]", "^[\\[\\!]$")]
         [DataRow("aaa]", "^aaa\\]$")]
         [DataRow("a[aa", "Null")]
         [DataRow("a[]a", "Null")]
-        [DataRow("a[^]a", "^a.a$")]
+        [DataRow("a[!]a", "^a.a$")]
         [DataRow("[a-z]", "^[a-z]$")]
-        [DataRow("[^0-9]", "^[^0-9]$")]
-        [DataRow("a[^b-m]_", "^a[^b-m].$")]
+        [DataRow("[!0-9]", "^[^0-9]$")]
+        [DataRow("a[!b-m]?", "^a[^b-m].$")]
         [DataRow("a[-]", "^a[-]$")]
         [DataRow("a[-]b", "^a[-]b$")]
         [DataRow("a[-b]c", "^a[-b]c$")]
         [DataRow("a[b-]c", "^a[b-]c$")]
-        [DataRow("a[^b-]c", "^a[^b-]c$")]
-        [DataRow("a[b-^]c", "^a[b-\\^]c$")]
+        [DataRow("a[!b-]c", "^a[^b-]c$")]
+        [DataRow("a[b-!]c", "^a[b-\\!]c$")]
         [DataRow("aa-", "^aa-$")]
         [DataRow("a#a", "^a[0-9]a$")]
-        [DataRow("a[!b-m]#", "^a[!b-m][0-9]$")]
-        public void SqlLikeRegexSpecials(string pattern, string excepted)
+        [DataRow("a[!b-m]#", "^a[^b-m][0-9]$")]
+        public void LikeRegexSpecials(string pattern, string excepted)
         {
-            var actual = StringLike.SqlLikeRegex(pattern) ?? "Null";
+            var actual = LikeString.LikeRegex(pattern, new LikeOptions(PatternStyle.VisualBasic)) ?? "Null";
             Assert.AreEqual(excepted, actual);
         }
 
@@ -42,9 +42,9 @@ namespace Blazorise.DataGrid.Template.Tests.Extensions
         [DataRow("[z-a]", "a", false)]
         [DataRow("aa-", "aa-", true)]
         [DataRow("aa-", "aaa-", false)]
-        public void SqlLikeOperatorSpecials(string pattern, string matchExpression, bool expected)
+        public void LikeTransactSqlSpecials(string pattern, string matchExpression, bool expected)
         {
-            bool actual = matchExpression.SqlLikeOperator(pattern);
+            bool actual = matchExpression.Like(pattern, new LikeOptions(PatternStyle.TransactSql));
             Assert.AreEqual(actual, expected);
         }
     }

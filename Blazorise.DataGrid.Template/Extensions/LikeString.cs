@@ -13,39 +13,19 @@ namespace Blazorise.DataGrid.Template.Extensions
         https://docs.microsoft.com/en-us/office/vba/language/reference/user-interface-help/like-operator
         https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualbasic.compilerservices.likeoperator.likestring?view=net-5.0
     */
-    public static class StringLike
+    public static class LikeString
     {
-        public static bool VbLike(this string matchExpression, string pattern)
-        {
-            return LikeOperator.LikeString(matchExpression, pattern, CompareMethod.Text);
-        }
-
         public static bool Like(this string matchExpression, string pattern, LikeOptions likeOptions)
         {
             return Like(matchExpression, pattern, likeOptions.StringComparison, likeOptions.Wildcard, likeOptions.Single, likeOptions.Invert, likeOptions.Digits);
         }
 
-        public static bool Like(this string matchExpression, string pattern)
+        public static string LikeRegex(string pattern, LikeOptions likeOptions)
         {
-            return Like(matchExpression, pattern, new LikeOptions(PatternStyle.VisualBasic));
+            return LikeRegex(pattern, likeOptions.Wildcard, likeOptions.Single, likeOptions.Invert, likeOptions.Digits);
         }
 
-        public static bool SqlLikeOperator(this string matchExpression, string pattern)
-        {
-            return Like(matchExpression, pattern, new LikeOptions(PatternStyle.TransactSql));
-        }
-
-        public static string SqlLikeRegex(string pattern)
-        {
-            return SqlLikeRegex(pattern, new LikeOptions(PatternStyle.TransactSql));
-        }
-
-        public static string SqlLikeRegex(string pattern, LikeOptions likeOptions)
-        {
-            return SqlLikeRegex(pattern, likeOptions.Wildcard, likeOptions.Single, likeOptions.Invert, likeOptions.Digits);
-        }
-
-        private static string SqlLikeRegex(string pattern, string wildcard, string single, string invert, string digits)
+        private static string LikeRegex(string pattern, string wildcard, string single, string invert, string digits)
         {
             string[] letters = pattern.ToCharArray().Select(x => x.ToString()).ToArray();
 
@@ -81,7 +61,7 @@ namespace Blazorise.DataGrid.Template.Extensions
                     }
                     else
                     {
-                        lastLetter = "\\^";
+                        lastLetter = "\\" + letter;
                     }
                 }
                 else if (letter == wildcard)
@@ -121,7 +101,7 @@ namespace Blazorise.DataGrid.Template.Extensions
             return regexExpression + "$";
         }
 
-        private static bool SqlLikeParse(string matchExpression, string regexExpression)
+        private static bool LikeParse(string matchExpression, string regexExpression)
         {
             if (regexExpression == null)
             {
@@ -152,9 +132,9 @@ namespace Blazorise.DataGrid.Template.Extensions
 
             if (pattern.Contains(wildcard) || pattern.Contains(single) || pattern.Contains("[") || pattern.Contains("]") || pattern.Contains("^") || pattern.Contains(digits))
             {
-                string regexExpression = SqlLikeRegex(pattern, wildcard, single, invert, digits);
+                string regexExpression = LikeRegex(pattern, wildcard, single, invert, digits);
 
-                return SqlLikeParse(matchExpression, regexExpression);
+                return LikeParse(matchExpression, regexExpression);
             }
 
             return matchExpression.Equals(pattern, comparisonType);

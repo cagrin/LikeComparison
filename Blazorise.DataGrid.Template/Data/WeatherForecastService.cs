@@ -22,6 +22,7 @@ namespace Blazorise.DataGrid.Template.Data
             }
 
             var query = _forecasts;
+            var likeOptions = new LikeOptions(PatternStyle.VisualBasic);
 
             var filteredColumns = e.Columns.Where(f => !string.IsNullOrEmpty(f.SearchValue?.ToString())).ToArray();
             foreach (var column in filteredColumns)
@@ -29,10 +30,10 @@ namespace Blazorise.DataGrid.Template.Data
                 var search = column.SearchValue?.ToString();
                 query = (column.Field) switch
                 {
-                    nameof(WeatherForecast.Date) => query.Where(f => f.Date.ToShortDateString().VbLike(search)),
-                    nameof(WeatherForecast.TemperatureC) => query.Where(f => f.TemperatureC.ToString().VbLike(search)),
-                    nameof(WeatherForecast.TemperatureF) => query.Where(f => f.TemperatureF.ToString().VbLike(search)),
-                    nameof(WeatherForecast.Summary) => query.Where(f => f.Summary.VbLike(search)),
+                    nameof(WeatherForecast.Date) => query.Where(f => f.Date.ToShortDateString().Like(search, likeOptions)),
+                    nameof(WeatherForecast.TemperatureC) => query.Where(f => f.TemperatureC.ToString().Like(search, likeOptions)),
+                    nameof(WeatherForecast.TemperatureF) => query.Where(f => f.TemperatureF.ToString().Like(search, likeOptions)),
+                    nameof(WeatherForecast.Summary) => query.Where(f => f.Summary.Like(search, likeOptions)),
                     _ => query
                 };
             }
