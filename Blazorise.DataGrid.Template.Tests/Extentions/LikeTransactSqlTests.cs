@@ -50,10 +50,11 @@ namespace Blazorise.DataGrid.Template.Tests.Extensions
 
         private async Task<bool> LikeTransactSqlOperatorAsync(string matchExpression, string pattern)
         {
-            const string _connectionString = "Data Source=localhost;Initial Catalog=master;User Id=sa;Password=StrongP@ssw0rd!";
+            // docker run -e 'ACCEPT_EULA=1' -e 'MSSQL_SA_PASSWORD=StrongP@ssw0rd!' -p 1433:1433 --name azuresqledge -d mcr.microsoft.com/azure-sql-edge
+            string connectionString = "Data Source=localhost;Initial Catalog=master;User Id=sa;Password=StrongP@ssw0rd!";
             string query = "SELECT CASE WHEN '" + matchExpression + "' LIKE '" + pattern + "' THEN 1 ELSE 0 END";
 
-            using(var connection = new SqlConnection(_connectionString))
+            using(var connection = new SqlConnection(connectionString))
             {
                 return await connection.ExecuteScalarAsync<bool>(query).ConfigureAwait(false);
             }

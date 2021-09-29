@@ -43,10 +43,11 @@ namespace Blazorise.DataGrid.Template.Tests.Extensions
 
         private async Task<bool> LikePostgresOperatorAsync(string matchExpression, string pattern)
         {
-            const string _connectionString = "User ID=postgres;Password=StrongP@ssw0rd!;Host=localhost;Port=5432;";
+            // docker run -e POSTGRES_PASSWORD=StrongP@ssw0rd! -p 5432:5432 --name postgres -d postgres
+            string connectionString = "User ID=postgres;Password=StrongP@ssw0rd!;Host=localhost;Port=5432;";
             string query = "SELECT CASE WHEN '" + matchExpression + "' ILIKE '" + pattern + "' THEN 1 ELSE 0 END";
 
-            using(var connection = new NpgsqlConnection(_connectionString))
+            using(var connection = new NpgsqlConnection(connectionString))
             {
                 return await connection.ExecuteScalarAsync<bool>(query).ConfigureAwait(false);
             }
