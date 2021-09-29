@@ -1,15 +1,15 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Blazorise.DataGrid.Template.Extensions;
 using Dapper;
-using Microsoft.Data.SqlClient;
 using System.Threading.Tasks;
 using System.Linq;
 using System;
+using Npgsql;
 
 namespace Blazorise.DataGrid.Template.Tests.Extensions
 {
     [TestClass]
-    public class LikeTransactSqlTests
+    public class LikePostgresTests
     {
         [DataTestMethod]
         [DataRow("aAB", "%", 26620)]
@@ -20,18 +20,18 @@ namespace Blazorise.DataGrid.Template.Tests.Extensions
         [DataRow("[]", "[^]%", 48174)]
         [DataRow("^!", "[^]%", 48050)]
         [DataRow("ab", "[^]%", 47244)]
-        public void LikeTransactSqlComparision(string expressionLetters, string patternLetters, int combinations)
+        public void LikePostgresComparision(string expressionLetters, string patternLetters, int combinations)
         {
             var cases = LikeTestCase.Generate(expressionLetters, patternLetters);
 
             Assert.AreEqual(combinations, cases.Count());
 
-            Parallel.ForEachAsync(cases, new ParallelOptions() { MaxDegreeOfParallelism = 100 }, async (c, t) =>
+            Parallel.ForEachAsync(cases, new ParallelOptions() { MaxDegreeOfParallelism = 8 }, async (c, t) =>
             {
                 string matchExpression = c[0].ToString();
                 string pattern = c[1].ToString();
 
-                var expected = await LikeTransactSqlOperatorAsync(matchExpression, pattern).ConfigureAwait(false);
+                var expected = await LikePostgresOperatorAsync(matchExpression, pattern).ConfigureAwait(false);
                 var regex = LikeString.LikeRegex(pattern, new LikeOptions(PatternStyle.TransactSql)) ?? "<Null>";
                 var message = $"Query:'{matchExpression}' LIKE '{pattern}'. Regex:{regex}";
 
@@ -48,12 +48,12 @@ namespace Blazorise.DataGrid.Template.Tests.Extensions
             }).Wait();
         }
 
-        private async Task<bool> LikeTransactSqlOperatorAsync(string matchExpression, string pattern)
+        private async Task<bool> LikePostgresOperatorAsync(string matchExpression, string pattern)
         {
-            const string _connectionString = "Data Source=localhost;Initial Catalog=master;User Id=sa;Password=StrongP@ssw0rd!";
+            const string _connectionString = "User ID=postgres;Password=mysecretpassword;Host=localhost;Port=5432;";
             string query = "SELECT CASE WHEN '" + matchExpression + "' LIKE '" + pattern + "' THEN 1 ELSE 0 END";
 
-            using(var connection = new SqlConnection(_connectionString))
+            using(var connection = new NpgsqlConnection(_connectionString))
             {
                 return await connection.ExecuteScalarAsync<bool>(query).ConfigureAwait(false);
             }
