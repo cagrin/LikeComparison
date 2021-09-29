@@ -12,28 +12,21 @@ namespace Blazorise.DataGrid.Template.Tests.Extensions
     public class LikePostgresTests
     {
         [DataTestMethod]
-        [DataRow("aAB", "%", 26620)]
-        [DataRow("/\\", "_%", 9610)]
-        [DataRow("*.", "_%", 9610)]
-        [DataRow("#?", "_%", 9610)]
-        [DataRow("ab", "[^]%", 47244)]
-        [DataRow("[]", "[^]%", 48174)]
-        [DataRow("^!", "[^]%", 48050)]
-        [DataRow("ab", "[^]%", 47244)]
+        [DataRow("aAB", "_%", 79860)]
         public void LikePostgresComparision(string expressionLetters, string patternLetters, int combinations)
         {
             var cases = LikeTestCase.Generate(expressionLetters, patternLetters);
 
             Assert.AreEqual(combinations, cases.Count());
 
-            Parallel.ForEachAsync(cases, new ParallelOptions() { MaxDegreeOfParallelism = 8 }, async (c, t) =>
+            Parallel.ForEachAsync(cases, new ParallelOptions() { MaxDegreeOfParallelism = 80 }, async (c, t) =>
             {
                 string matchExpression = c[0].ToString();
                 string pattern = c[1].ToString();
 
                 var expected = await LikePostgresOperatorAsync(matchExpression, pattern).ConfigureAwait(false);
                 var regex = LikeString.LikeRegex(pattern, new LikeOptions(PatternStyle.TransactSql)) ?? "<Null>";
-                var message = $"Query:'{matchExpression}' LIKE '{pattern}'. Regex:{regex}";
+                var message = $"Query:'{matchExpression}' ILIKE '{pattern}'. Regex:{regex}";
 
                 try
                 {
@@ -50,8 +43,8 @@ namespace Blazorise.DataGrid.Template.Tests.Extensions
 
         private async Task<bool> LikePostgresOperatorAsync(string matchExpression, string pattern)
         {
-            const string _connectionString = "User ID=postgres;Password=mysecretpassword;Host=localhost;Port=5432;";
-            string query = "SELECT CASE WHEN '" + matchExpression + "' LIKE '" + pattern + "' THEN 1 ELSE 0 END";
+            const string _connectionString = "User ID=postgres;Password=StrongP@ssw0rd!;Host=localhost;Port=5432;";
+            string query = "SELECT CASE WHEN '" + matchExpression + "' ILIKE '" + pattern + "' THEN 1 ELSE 0 END";
 
             using(var connection = new NpgsqlConnection(_connectionString))
             {
