@@ -5,7 +5,7 @@ namespace LikeComparison.Tests
 {
     public class LikeTestCase
     {
-        public static IEnumerable<object[]> Generate(string expressionChars, string patternChars)
+        public static IEnumerable<string[]> Generate(string expressionChars, string patternChars)
         {
             var matchExpressions = Combinations(expressionChars).ToArray();
             var patterns = Combinations(expressionChars + patternChars).Where(x => patternChars.Any(y => x.Contains(y))).ToArray();
@@ -14,7 +14,7 @@ namespace LikeComparison.Tests
             {
                 foreach (var pattern in patterns)
                 {
-                    yield return new object[]{ matchExpression, pattern };
+                    yield return new string[]{ matchExpression, pattern };
                 }
             }
         }

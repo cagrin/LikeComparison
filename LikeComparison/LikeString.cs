@@ -18,12 +18,12 @@ namespace LikeComparison
             return Like(matchExpression, pattern, likeOptions.StringComparison, likeOptions.Wildcard, likeOptions.Single, likeOptions.Invert, likeOptions.Digits);
         }
 
-        public static string LikeRegex(string pattern, LikeOptions likeOptions)
+        public static string? LikeRegex(string pattern, LikeOptions likeOptions)
         {
             return LikeRegex(pattern, likeOptions.Wildcard, likeOptions.Single, likeOptions.Invert, likeOptions.Digits);
         }
 
-        private static string LikeRegex(string pattern, string wildcard, string single, string invert, string digits)
+        private static string? LikeRegex(string pattern, string wildcard, string single, string invert, string digits)
         {
             string[] letters = pattern.ToCharArray().Select(x => x.ToString()).ToArray();
 
@@ -130,9 +130,16 @@ namespace LikeComparison
 
             if (pattern.Contains(wildcard) || pattern.Contains(single) || pattern.Contains("[") || pattern.Contains("]") || pattern.Contains("^") || pattern.Contains(digits))
             {
-                string regexExpression = LikeRegex(pattern, wildcard, single, invert, digits);
+                string? regexExpression = LikeRegex(pattern, wildcard, single, invert, digits);
 
-                return LikeParse(matchExpression, regexExpression);
+                if (regexExpression != null)
+                {
+                    return LikeParse(matchExpression, regexExpression);
+                }
+                else
+                {
+                    return false;
+                }
             }
 
             return matchExpression.Equals(pattern, comparisonType);
