@@ -2,9 +2,11 @@
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
 		<IsPackable>false</IsPackable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
 	</PropertyGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\Blazorise.DataGrid.Template\Blazorise.DataGrid.Template.csproj"/>
+		<ProjectReference Include="..\LikeComparison\LikeComparison.csproj"/>
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0"/>

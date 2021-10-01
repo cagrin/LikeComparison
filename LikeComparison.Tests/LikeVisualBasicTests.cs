@@ -1,11 +1,11 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Blazorise.DataGrid.Template.Extensions;
+using LikeComparison;
 using System;
 using Microsoft.VisualBasic.CompilerServices;
 using Microsoft.VisualBasic;
 
 [assembly: Parallelize(Workers = 8, Scope = ExecutionScope.MethodLevel)]
-namespace Blazorise.DataGrid.Template.Tests.Extensions
+namespace LikeComparison.Tests
 {
     [TestClass]
     public class LikeVisualBasicTests

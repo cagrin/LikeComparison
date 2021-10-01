@@ -1,10 +1,8 @@
 using System;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Microsoft.VisualBasic.CompilerServices;
-using Microsoft.VisualBasic;
 
-namespace Blazorise.DataGrid.Template.Extensions
+namespace LikeComparison
 {
     /*
         https://github.com/dotnet/vblang/blob/main/spec/expressions.md#like-operator

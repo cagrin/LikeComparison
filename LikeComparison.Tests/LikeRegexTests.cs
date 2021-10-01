@@ -1,7 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Blazorise.DataGrid.Template.Extensions;
+using LikeComparison;
 
-namespace Blazorise.DataGrid.Template.Tests.Extensions
+namespace LikeComparison.Tests
 {
     [TestClass]
     public class LikeRegexTests

@@ -1,12 +1,12 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Blazorise.DataGrid.Template.Extensions;
+using LikeComparison;
 using Dapper;
 using System.Threading.Tasks;
 using System.Linq;
 using System;
 using Npgsql;
 
-namespace Blazorise.DataGrid.Template.Tests.Extensions
+namespace LikeComparison.Tests
 {
     [TestClass]
     public class LikePostgresTests

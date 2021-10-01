@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Blazorise.DataGrid.Template.Tests.Extensions
+namespace LikeComparison.Tests
 {
     public class LikeTestCase
     {

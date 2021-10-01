@@ -1,6 +1,6 @@
 using System;
 
-namespace Blazorise.DataGrid.Template.Extensions
+namespace LikeComparison
 {
     public class LikeOptions
     {
