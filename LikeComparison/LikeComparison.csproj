@@ -4,7 +4,16 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <PackageId>LikeComparison</PackageId>
-    <Version>1.0.0</Version>
+    <Version>1.0.0-alpha</Version>
     <Authors>Krzysztof Strugiński</Authors>
+    <Description>LikeComparison is a library that allows you to compare a string expression to a pattern in an "SQL LIKE" expression. It supports many LIKE operator syntax: Visual Basic, Transact-SQL, PostgreSQL.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All"/>
+  </ItemGroup>
 </Project>
