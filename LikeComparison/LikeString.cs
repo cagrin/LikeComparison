@@ -111,7 +111,11 @@ namespace LikeComparison
                 var regex = new Regex(regexExpression, RegexOptions.IgnoreCase);
                 return regex.IsMatch(matchExpression);
             }
+#if NETSTANDARD2_1
+            catch (Exception ex)
+#else
             catch (RegexParseException ex)
+#endif
             {
                 if (ex.Message.Contains("range in reverse order"))
                 {
