@@ -11,6 +11,8 @@ namespace LikeComparison.Tests
     [TestClass]
     public class LikePostgresTests
     {
+        private readonly LikeOptions _options = new LikeOptions() { PatternStyle = PatternStyle.TransactSql };
+
         [DataTestMethod]
         [DataRow("aAB", "_%", 79860)]
         public void LikePostgresComparision(string expressionLetters, string patternLetters, int combinations)
@@ -25,12 +27,12 @@ namespace LikeComparison.Tests
                 string pattern = c[1].ToString();
 
                 var expected = await LikePostgresOperatorAsync(matchExpression, pattern).ConfigureAwait(false);
-                var regex = LikeString.LikeRegex(pattern, new LikeOptions(PatternStyle.TransactSql)) ?? "<Null>";
+                var regex = LikeString.LikeRegex(pattern, _options) ?? "<Null>";
                 var message = $"Query:'{matchExpression}' ILIKE '{pattern}'. Regex:{regex}";
 
                 try
                 {
-                    var actual = LikeString.Like(matchExpression, pattern, new LikeOptions(PatternStyle.TransactSql));
+                    var actual = LikeString.Like(matchExpression, pattern, _options);
                     Assert.AreEqual(expected, actual, message);
                 }
                 catch (Exception ex)

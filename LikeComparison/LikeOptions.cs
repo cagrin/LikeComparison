@@ -4,15 +4,13 @@ namespace LikeComparison
 {
     public class LikeOptions
     {
-        public LikeOptions(PatternStyle patternStyle = PatternStyle.TransactSql, StringComparison stringComparison = StringComparison.OrdinalIgnoreCase)
+        public LikeOptions()
         {
-            PatternStyle = patternStyle;
-            StringComparison = stringComparison;
         }
 
-        public PatternStyle PatternStyle { get; set; }
+        public PatternStyle PatternStyle { get; init; } = PatternStyle.VisualBasic;
 
-        public StringComparison StringComparison { get; set; }
+        public StringComparison StringComparison { get; init; } = StringComparison.OrdinalIgnoreCase;
 
         public string Wildcard { get => PatternStyle == PatternStyle.VisualBasic ? "*": "%"; }
 

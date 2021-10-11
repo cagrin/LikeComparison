@@ -11,6 +11,8 @@ namespace LikeComparison.Tests
     [TestClass]
     public class LikeTransactSqlTests
     {
+        private readonly LikeOptions _options = new LikeOptions() { PatternStyle = PatternStyle.TransactSql };
+
         [DataTestMethod]
         [DataRow("aAB", "%", 26620)]
         [DataRow("/\\", "_%", 9610)]
@@ -32,12 +34,12 @@ namespace LikeComparison.Tests
                 string pattern = c[1].ToString();
 
                 var expected = await LikeTransactSqlOperatorAsync(matchExpression, pattern).ConfigureAwait(false);
-                var regex = LikeString.LikeRegex(pattern, new LikeOptions(PatternStyle.TransactSql)) ?? "<Null>";
+                var regex = LikeString.LikeRegex(pattern, _options) ?? "<Null>";
                 var message = $"Query:'{matchExpression}' LIKE '{pattern}'. Regex:{regex}";
 
                 try
                 {
-                    var actual = LikeString.Like(matchExpression, pattern, new LikeOptions(PatternStyle.TransactSql));
+                    var actual = LikeString.Like(matchExpression, pattern, _options);
                     Assert.AreEqual(expected, actual, message);
                 }
                 catch (Exception ex)

@@ -6,6 +6,8 @@ namespace LikeComparison.Tests
     [TestClass]
     public class LikeRegexTests
     {
+        private readonly LikeOptions _options = new LikeOptions() { PatternStyle = PatternStyle.VisualBasic };
+
         [DataTestMethod]
         [DataRow("[[!]", "^[\\[\\!]$")]
         [DataRow("aaa]", "^aaa\\]$")]
@@ -26,7 +28,7 @@ namespace LikeComparison.Tests
         [DataRow("a[!b-m]#", "^a[^b-m][0-9]$")]
         public void LikeRegexSpecials(string pattern, string excepted)
         {
-            var actual = LikeString.LikeRegex(pattern, new LikeOptions(PatternStyle.VisualBasic)) ?? "Null";
+            var actual = LikeString.LikeRegex(pattern, _options) ?? "Null";
             Assert.AreEqual(excepted, actual);
         }
 
@@ -44,7 +46,7 @@ namespace LikeComparison.Tests
         [DataRow("aa-", "aaa-", false)]
         public void LikeTransactSqlSpecials(string pattern, string matchExpression, bool expected)
         {
-            bool actual = matchExpression.Like(pattern, new LikeOptions(PatternStyle.TransactSql));
+            bool actual = matchExpression.Like(pattern, _options);
             Assert.AreEqual(actual, expected);
         }
     }

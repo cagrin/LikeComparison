@@ -10,12 +10,14 @@ namespace LikeComparison.Tests
     [TestClass]
     public class LikeVisualBasicTests
     {
+        private readonly LikeOptions _options = new LikeOptions() { PatternStyle = PatternStyle.VisualBasic };
+
         [DataTestMethod]
         [DataRow("abcdef", null)]
         [ExpectedException(typeof(ArgumentNullException), "Value cannot be null. (Parameter 'pattern')")]
         public void LikeThrowArgumentNullException(string matchExression, string pattern)
         {
-            matchExression.Like(pattern, new LikeOptions(PatternStyle.VisualBasic));
+            matchExression.Like(pattern, _options);
         }
 
         [DataTestMethod]
@@ -30,7 +32,7 @@ namespace LikeComparison.Tests
         [DataRow("abcdef", "A*F")]
         public void LikeAreMatched(string matchExression, string pattern)
         {
-            bool actual = matchExression.Like(pattern, new LikeOptions(PatternStyle.VisualBasic));
+            bool actual = matchExression.Like(pattern, _options);
             Assert.IsTrue(actual);
         }
 
@@ -41,7 +43,7 @@ namespace LikeComparison.Tests
         [DataRow("abcdef", "**z")]
         public void LikeAreNotMatched(string matchExression, string pattern)
         {
-            bool actual = matchExression.Like(pattern, new LikeOptions(PatternStyle.VisualBasic));
+            bool actual = matchExression.Like(pattern, _options);
             Assert.IsFalse(actual);
         }
 
@@ -95,7 +97,7 @@ namespace LikeComparison.Tests
         [DataRow("a[!b-m]#", "aj0", false)]
         public void MicrosoftAccessTests(string pattern, string matchExpression, bool expected)
         {
-            bool actual = matchExpression.Like(pattern, new LikeOptions(PatternStyle.VisualBasic));
+            bool actual = matchExpression.Like(pattern, _options);
             Assert.AreEqual(actual, expected);
         }
 
@@ -113,7 +115,7 @@ namespace LikeComparison.Tests
         [DataRow("B?T*", "CAT123khg", false)]
         public void VisualBasicTests(string pattern, string matchExpression, bool expected)
         {
-            bool actual = matchExpression.Like(pattern, new LikeOptions(PatternStyle.VisualBasic));
+            bool actual = matchExpression.Like(pattern, _options);
             Assert.AreEqual(actual, expected);
         }
 
