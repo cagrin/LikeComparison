@@ -111,7 +111,7 @@ namespace LikeComparison
                 var regex = new Regex(regexExpression, RegexOptions.IgnoreCase);
                 return regex.IsMatch(matchExpression);
             }
-#if NETSTANDARD2_1
+#if NETSTANDARD2_1 || NETCOREAPP3_1_OR_GREATER
             catch (Exception ex)
 #else
             catch (RegexParseException ex)
@@ -123,7 +123,7 @@ namespace LikeComparison
                 }
                 else
                 {
-                    throw ex;
+                    throw new Exception(ex.Message);
                 }
             }
         }

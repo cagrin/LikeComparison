@@ -8,9 +8,9 @@ namespace LikeComparison
         {
         }
 
-        public PatternStyle PatternStyle { get; init; } = PatternStyle.VisualBasic;
+        public PatternStyle PatternStyle { get; set; } = PatternStyle.VisualBasic;
 
-        public StringComparison StringComparison { get; init; } = StringComparison.OrdinalIgnoreCase;
+        public StringComparison StringComparison { get; set; } = StringComparison.OrdinalIgnoreCase;
 
         public string Wildcard { get => PatternStyle == PatternStyle.VisualBasic ? "*": "%"; }
 
