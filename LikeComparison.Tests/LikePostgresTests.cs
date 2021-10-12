@@ -1,9 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using LikeComparison;
+using LikeComparison.Postgres;
 using Dapper;
-using System.Threading.Tasks;
-using System.Linq;
-using System;
 using Npgsql;
 
 namespace LikeComparison.Tests
@@ -11,8 +8,6 @@ namespace LikeComparison.Tests
     [TestClass]
     public class LikePostgresTests
     {
-        private readonly LikeOptions _options = new LikeOptions() { PatternStyle = PatternStyle.TransactSql };
-
         [DataTestMethod]
         [DataRow("aAB", "_%", 79860)]
         public void LikePostgresComparision(string expressionLetters, string patternLetters, int combinations)
@@ -27,12 +22,12 @@ namespace LikeComparison.Tests
                 string pattern = c[1].ToString();
 
                 var expected = await LikePostgresOperatorAsync(matchExpression, pattern).ConfigureAwait(false);
-                var regex = LikeString.LikeRegex(pattern, _options) ?? "<Null>";
+                var regex = LikePostgres.LikeRegex(pattern) ?? "<Null>";
                 var message = $"Query:'{matchExpression}' ILIKE '{pattern}'. Regex:{regex}";
 
                 try
                 {
-                    var actual = LikeString.Like(matchExpression, pattern, _options);
+                    var actual = matchExpression.Like(pattern);
                     Assert.AreEqual(expected, actual, message);
                 }
                 catch (Exception ex)

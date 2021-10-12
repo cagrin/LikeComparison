@@ -1,18 +1,13 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using LikeComparison;
+using LikeComparison.TransactSql;
 using Dapper;
 using Microsoft.Data.SqlClient;
-using System.Threading.Tasks;
-using System.Linq;
-using System;
 
 namespace LikeComparison.Tests
 {
     [TestClass]
     public class LikeTransactSqlTests
     {
-        private readonly LikeOptions _options = new LikeOptions() { PatternStyle = PatternStyle.TransactSql };
-
         [DataTestMethod]
         [DataRow("aAB", "%", 26620)]
         [DataRow("/\\", "_%", 9610)]
@@ -34,12 +29,12 @@ namespace LikeComparison.Tests
                 string pattern = c[1].ToString();
 
                 var expected = await LikeTransactSqlOperatorAsync(matchExpression, pattern).ConfigureAwait(false);
-                var regex = LikeString.LikeRegex(pattern, _options) ?? "<Null>";
+                var regex = LikeTransactSql.LikeRegex(pattern) ?? "<Null>";
                 var message = $"Query:'{matchExpression}' LIKE '{pattern}'. Regex:{regex}";
 
                 try
                 {
-                    var actual = LikeString.Like(matchExpression, pattern, _options);
+                    var actual = matchExpression.Like(pattern);
                     Assert.AreEqual(expected, actual, message);
                 }
                 catch (Exception ex)

@@ -1,13 +1,11 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using LikeComparison;
+using LikeComparison.VisualBasic;
 
 namespace LikeComparison.Tests
 {
     [TestClass]
     public class LikeRegexTests
     {
-        private readonly LikeOptions _options = new LikeOptions() { PatternStyle = PatternStyle.VisualBasic };
-
         [DataTestMethod]
         [DataRow("[[!]", "^[\\[\\!]$")]
         [DataRow("aaa]", "^aaa\\]$")]
@@ -28,7 +26,7 @@ namespace LikeComparison.Tests
         [DataRow("a[!b-m]#", "^a[^b-m][0-9]$")]
         public void LikeRegexSpecials(string pattern, string excepted)
         {
-            var actual = LikeString.LikeRegex(pattern, _options) ?? "Null";
+            var actual = LikeVisualBasic.LikeRegex(pattern) ?? "Null";
             Assert.AreEqual(excepted, actual);
         }
 
@@ -44,9 +42,9 @@ namespace LikeComparison.Tests
         [DataRow("[z-a]", "a", false)]
         [DataRow("aa-", "aa-", true)]
         [DataRow("aa-", "aaa-", false)]
-        public void LikeTransactSqlSpecials(string pattern, string matchExpression, bool expected)
+        public void LikeVisualBasicSpecials(string pattern, string matchExpression, bool expected)
         {
-            bool actual = matchExpression.Like(pattern, _options);
+            bool actual = matchExpression.Like(pattern);
             Assert.AreEqual(actual, expected);
         }
     }

@@ -11,14 +11,14 @@ namespace LikeComparison
         https://docs.microsoft.com/en-us/office/vba/language/reference/user-interface-help/like-operator
         https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualbasic.compilerservices.likeoperator.likestring?view=net-5.0
     */
-    public static class LikeString
+    internal static class LikeString
     {
-        public static bool Like(this string matchExpression, string pattern, LikeOptions likeOptions)
+        internal static bool Like(string matchExpression, string pattern, LikeOptions likeOptions)
         {
             return Like(matchExpression, pattern, likeOptions.StringComparison, likeOptions.Wildcard, likeOptions.Single, likeOptions.Invert, likeOptions.Digits);
         }
 
-        public static string? LikeRegex(string pattern, LikeOptions likeOptions)
+        internal static string? LikeRegex(string pattern, LikeOptions likeOptions)
         {
             return LikeRegex(pattern, likeOptions.Wildcard, likeOptions.Single, likeOptions.Invert, likeOptions.Digits);
         }
