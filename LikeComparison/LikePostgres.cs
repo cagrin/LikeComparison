@@ -2,7 +2,7 @@ using System;
 
 namespace LikeComparison.Postgres
 {
-    // https://docs.microsoft.com/en-us/sql/t-sql/language-elements/like-transact-sql
+    // https://www.postgresql.org/docs/current/functions-matching.html
     public static class LikePostgres
     {
         private static LikeOptions _likeOptions = new LikeOptions() { PatternStyle = PatternStyle.TransactSql };

@@ -6,25 +6,55 @@ It supports many LIKE operator syntax:
 - Transact-SQL,
 - PostgreSQL.
 
+Currently there are only ***case-insensitive*** comparison supported.
+
 ## Using Like method
 
 You can simply use extension method on `String` class:
-
+```cs
+using LikeComparison.VisualBasic;
+```
 ```cs
 string matchExpression = "abcdef";
-string pattern = "[az]_%[^qz]ef";
+string pattern = "a*";
 
-bool isMatched = matchExpression.Like(pattern, new LikeOptions());
+bool isMatched = matchExpression.Like(pattern);
 ```
+or
 
-`LikeOptions` currently available are:
 ```cs
-enum PatternStyle
-{
-    VisualBasic = 0,
-    TransactSql = 1
-}
+using LikeComparison.TransactSql;
 ```
 ```cs
-StringComparison.OrdinalIgnoreCase
+string matchExpression = "abcdef";
+string pattern = "a%";
+
+bool isMatched = matchExpression.Like(pattern);
 ```
+or
+
+```cs
+using LikeComparison.Postgres;
+```
+```cs
+string matchExpression = "abcdef";
+string pattern = "a%";
+
+bool isMatched = matchExpression.ILike(pattern);
+```
+## Supported syntax
+### Visual Basic
+
+https://docs.microsoft.com/en-us/office/vba/language/reference/user-interface-help/like-operator
+
+```* ? [ ] ^```
+###  Transact-SQL
+
+https://docs.microsoft.com/en-us/sql/t-sql/language-elements/like-transact-sql
+
+```% _ [ ] !```
+###  PostgreSQL
+
+https://www.postgresql.org/docs/current/functions-matching.html
+
+```% _```
