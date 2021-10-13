@@ -4,13 +4,6 @@ using System.Text.RegularExpressions;
 
 namespace LikeComparison
 {
-    /*
-        https://github.com/dotnet/vblang/blob/main/spec/expressions.md#like-operator
-        https://github.com/dotnet/docs/blob/main/docs/visual-basic/language-reference/operators/like-operator.md
-        https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualbasic.compilerservices.operators.likestring?view=netframework-4.8
-        https://docs.microsoft.com/en-us/office/vba/language/reference/user-interface-help/like-operator
-        https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualbasic.compilerservices.likeoperator.likestring?view=net-5.0
-    */
     internal static class LikeString
     {
         internal static bool Like(string matchExpression, string pattern, LikeOptions likeOptions)

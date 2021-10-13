@@ -3,7 +3,7 @@
     <TargetFrameworks>net6.0;net5.0;netstandard2.1;netcoreapp3.1</TargetFrameworks>
     <Nullable>enable</Nullable>
     <PackageId>LikeComparison</PackageId>
-    <Version>1.0.0-beta4</Version>
+    <Version>1.0.0-beta5</Version>
     <Authors>Krzysztof Strugiński</Authors>
     <Description>LikeComparison is a library that allows you to compare a string expression to a pattern in an "SQL LIKE" expression. It supports many LIKE operator syntax: Visual Basic, Transact-SQL, PostgreSQL.</Description>
     <PackageLicenseFile>License</PackageLicenseFile>

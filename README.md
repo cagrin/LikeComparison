@@ -34,7 +34,7 @@ bool isMatched = matchExpression.Like(pattern);
 or
 
 ```cs
-using LikeComparison.Postgres;
+using LikeComparison.PostgreSql;
 ```
 ```cs
 string matchExpression = "abcdef";
@@ -47,7 +47,7 @@ bool isMatched = matchExpression.ILike(pattern);
 
 https://docs.microsoft.com/en-us/office/vba/language/reference/user-interface-help/like-operator
 
-```* ? [ ] ^```
+```* ? [ ] ^ #```
 ###  Transact-SQL
 
 https://docs.microsoft.com/en-us/sql/t-sql/language-elements/like-transact-sql

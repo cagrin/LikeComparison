@@ -1,16 +1,16 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using LikeComparison.Postgres;
+using LikeComparison.PostgreSql;
 using Dapper;
 using Npgsql;
 
 namespace LikeComparison.Tests
 {
     [TestClass]
-    public class LikePostgresTests
+    public class LikePostgreSqlTests
     {
         [DataTestMethod]
         [DataRow("aAB", "_%", 79860)]
-        public void LikePostgresComparision(string expressionLetters, string patternLetters, int combinations)
+        public void LikePostgreSqlComparision(string expressionLetters, string patternLetters, int combinations)
         {
             var cases = LikeTestCase.Generate(expressionLetters, patternLetters);
 
@@ -21,8 +21,8 @@ namespace LikeComparison.Tests
                 string matchExpression = c[0].ToString();
                 string pattern = c[1].ToString();
 
-                var expected = await LikePostgresOperatorAsync(matchExpression, pattern).ConfigureAwait(false);
-                var regex = LikePostgres.LikeRegex(pattern) ?? "<Null>";
+                var expected = await LikePostgreSqlOperatorAsync(matchExpression, pattern).ConfigureAwait(false);
+                var regex = LikePostgreSql.LikeRegex(pattern) ?? "<Null>";
                 var message = $"Query:'{matchExpression}' ILIKE '{pattern}'. Regex:{regex}";
 
                 try
@@ -38,7 +38,7 @@ namespace LikeComparison.Tests
             }).Wait();
         }
 
-        private async Task<bool> LikePostgresOperatorAsync(string matchExpression, string pattern)
+        private async Task<bool> LikePostgreSqlOperatorAsync(string matchExpression, string pattern)
         {
             // docker run -e POSTGRES_PASSWORD=StrongP@ssw0rd! -p 5432:5432 --name postgres -d postgres
             string connectionString = "User ID=postgres;Password=StrongP@ssw0rd!;Host=localhost;Port=5432;";

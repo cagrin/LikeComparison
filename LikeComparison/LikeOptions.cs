@@ -2,7 +2,7 @@ using System;
 
 namespace LikeComparison
 {
-    public class LikeOptions
+    internal class LikeOptions
     {
         public LikeOptions()
         {
@@ -21,7 +21,7 @@ namespace LikeComparison
         public string Digits { get => PatternStyle == PatternStyle.VisualBasic ? "#": "[0-9]"; }
     }
 
-    public enum PatternStyle
+    internal enum PatternStyle
     {
         VisualBasic = 0,
 
