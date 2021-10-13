@@ -27,7 +27,7 @@ namespace LikeComparison.Tests
 
                 try
                 {
-                    var actual = matchExpression.Like(pattern);
+                    var actual = matchExpression.ILike(pattern);
                     Assert.AreEqual(expected, actual, message);
                 }
                 catch (Exception ex)
