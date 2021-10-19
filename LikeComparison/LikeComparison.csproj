@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net6.0;net5.0;netstandard2.1;netcoreapp3.1</TargetFrameworks>
+    <TargetFrameworks>net6.0;net5.0;netstandard2.1;netcoreapp3.1;net48</TargetFrameworks>
     <Nullable>enable</Nullable>
     <PackageId>LikeComparison</PackageId>
-    <Version>1.0.0-beta6</Version>
+    <Version>1.0.1</Version>
     <Authors>Krzysztof Strugiński</Authors>
     <Description>LikeComparison is a library that allows you to compare a string expression to a pattern in an "SQL LIKE" expression. It supports many LIKE operator syntax: Visual Basic, Transact-SQL, PostgreSQL.</Description>
     <PackageLicenseFile>License</PackageLicenseFile>
@@ -12,6 +12,9 @@
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net48' ">
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All"/>

@@ -104,10 +104,10 @@ namespace LikeComparison
                 var regex = new Regex(regexExpression, RegexOptions.IgnoreCase);
                 return regex.IsMatch(matchExpression);
             }
-#if NETSTANDARD2_1 || NETCOREAPP3_1_OR_GREATER
-            catch (Exception ex)
-#else
+#if NET5_0_OR_GREATER
             catch (RegexParseException ex)
+#else
+            catch (Exception ex)
 #endif
             {
                 if (ex.Message.Contains("range in reverse order"))
