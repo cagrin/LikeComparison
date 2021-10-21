@@ -8,6 +8,16 @@ namespace LikeComparison.Tests
     [TestClass]
     public class LikeTransactSqlTests
     {
+        const string _containerName = "azuresqledge";
+        const string _password = "StrongP@ssw0rd!";
+
+        [ClassInitialize]
+        public static void StartLikeTransactSqlTests(TestContext context)
+        {
+            DockerContainers.StartSqlServerDocker(_containerName, _password).Wait();
+            Thread.Sleep(2000);
+        }
+
         [DataTestMethod]
         [DataRow("aAB", "%", 26620)]
         [DataRow("/\\", "_%", 9610)]
@@ -48,7 +58,7 @@ namespace LikeComparison.Tests
         private async Task<bool> LikeTransactSqlOperatorAsync(string matchExpression, string pattern)
         {
             // docker run -e 'ACCEPT_EULA=1' -e 'MSSQL_SA_PASSWORD=StrongP@ssw0rd!' -p 1433:1433 --name azuresqledge -d mcr.microsoft.com/azure-sql-edge
-            string connectionString = "Data Source=localhost;Initial Catalog=master;User Id=sa;Password=StrongP@ssw0rd!";
+            string connectionString = $"Data Source=localhost,1433;Initial Catalog=master;User Id=sa;Password={_password}";
             string query = "SELECT CASE WHEN '" + matchExpression + "' LIKE '" + pattern + "' THEN 1 ELSE 0 END";
 
             using(var connection = new SqlConnection(connectionString))
