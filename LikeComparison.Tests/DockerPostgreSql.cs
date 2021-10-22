@@ -1,11 +1,32 @@
 using Docker.DotNet;
 using Docker.DotNet.Models;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace LikeComparison.Tests
 {
-    public static class DockerContainers
+    /*
+        // docker run -e POSTGRES_PASSWORD=StrongP@ssw0rd! -p 5432:5432 --name postgres -d postgres
+    */
+    public static class DockerPostgreSql
     {
-        public static async Task StartPostgreSqlDocker(string containerName, string password)
+        const string _containerName = "postgres";
+        const string _password = "StrongP@ssw0rd!";
+
+        public static string ConnectionString
+        {
+            get
+            {
+                return $"User ID=postgres;Password={_password};Host=localhost;Port=5432;";
+            }
+        }
+
+        public static void InitContainer(TestContext context)
+        {
+            DockerPostgreSql.RunContainer(_containerName, _password).Wait();
+            Thread.Sleep(2000);
+        }
+
+        private static async Task RunContainer(string containerName, string password)
         {
             using var configuration = new DockerClientConfiguration();
             using var client = configuration.CreateClient();
