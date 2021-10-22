@@ -2,16 +2,37 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using LikeComparison.PostgreSql;
 using Dapper;
 using Npgsql;
+using DotNet.Testcontainers.Containers.Builders;
+using DotNet.Testcontainers.Containers.Configurations.Databases;
+using DotNet.Testcontainers.Containers.Modules.Databases;
 
 namespace LikeComparison.Tests
 {
     [TestClass]
     public class LikePostgreSqlTests
     {
+        private static PostgreSqlTestcontainer? _testcontainer;
+
         [ClassInitialize]
-        public static void InitLikePostgreSqlTests(TestContext context)
+        public static void ClassInitialize(TestContext context)
         {
-            DockerPostgreSql.InitContainer(context);
+            // docker run -e POSTGRES_PASSWORD=StrongP@ssw0rd! -p 5432:5432 --name postgres -d postgres
+            var testcontainersBuilder = new TestcontainersBuilder<PostgreSqlTestcontainer>()
+                .WithDatabase(new PostgreSqlTestcontainerConfiguration("postgres")
+                {
+                    Database = "master",
+                    Username = "sa",
+                    Password = "StrongP@ssw0rd!"
+                });
+
+            _testcontainer = testcontainersBuilder.Build();
+            _testcontainer.StartAsync().Wait();
+        }
+
+        [ClassCleanup]
+        public static void ClassCleanup()
+        {
+            _testcontainer?.DisposeAsync().AsTask().Wait();
         }
 
         [DataTestMethod]
@@ -48,7 +69,7 @@ namespace LikeComparison.Tests
         {
             string query = "SELECT CASE WHEN '" + matchExpression + "' ILIKE '" + pattern + "' THEN 1 ELSE 0 END";
 
-            using(var connection = new NpgsqlConnection(DockerPostgreSql.ConnectionString))
+            using(var connection = new NpgsqlConnection(_testcontainer?.ConnectionString))
             {
                 return await connection.ExecuteScalarAsync<bool>(query).ConfigureAwait(false);
             }
