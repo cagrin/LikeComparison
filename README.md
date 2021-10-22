@@ -1,3 +1,6 @@
+[![NuGet](https://img.shields.io/nuget/v/LikeComparison)](https://www.nuget.org/packages/LikeComparison)
+![Nuget](https://img.shields.io/nuget/dt/LikeComparison)
+
 # LikeComparison
 LikeComparison is a library that allows you to compare a string expression to a pattern in an "SQL LIKE" expression.
 
