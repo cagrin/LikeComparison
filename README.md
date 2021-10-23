@@ -1,6 +1,6 @@
 [![NuGet](https://img.shields.io/nuget/v/LikeComparison)](https://www.nuget.org/packages/LikeComparison)
 ![Nuget](https://img.shields.io/nuget/dt/LikeComparison)
-[![Coverage Status](https://coveralls.io/repos/github/cagrin/LikeComparison/badge.svg?branch=refs/tags/1.0.2)](https://coveralls.io/github/cagrin/LikeComparison?branch=refs/tags/1.0.2)
+[![Coverage Status](https://coveralls.io/repos/github/cagrin/LikeComparison/badge.svg)](https://coveralls.io/github/cagrin/LikeComparison)
 
 # LikeComparison
 LikeComparison is a library that allows you to compare a string expression to a pattern in an "SQL LIKE" expression.
