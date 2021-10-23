@@ -20,8 +20,8 @@ namespace LikeComparison.Tests
             var testcontainersBuilder = new TestcontainersBuilder<PostgreSqlTestcontainer>()
                 .WithDatabase(new PostgreSqlTestcontainerConfiguration("postgres")
                 {
-                    Database = "master",
-                    Username = "sa",
+                    Database = "postgres",
+                    Username = "postgres",
                     Password = "StrongP@ssw0rd!"
                 });
 

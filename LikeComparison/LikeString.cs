@@ -94,31 +94,22 @@ namespace LikeComparison
 
         private static bool LikeParse(string matchExpression, string regexExpression)
         {
-            if (regexExpression == null)
-            {
-                return false;
-            }
-
             try
             {
                 var regex = new Regex(regexExpression, RegexOptions.IgnoreCase);
                 return regex.IsMatch(matchExpression);
             }
 #if NET5_0_OR_GREATER
-            catch (RegexParseException ex)
-#else
-            catch (Exception ex)
-#endif
+            catch (RegexParseException)
             {
-                if (ex.Message.Contains("range in reverse order"))
-                {
-                    return false;
-                }
-                else
-                {
-                    throw new Exception(ex.Message);
-                }
+                return false;
             }
+#else
+            catch (Exception)
+            {
+                throw;
+            }
+#endif
         }
 
         private static bool Like(this string matchExpression, string pattern, StringComparison comparisonType, string wildcard, string single, string invert, string digits)

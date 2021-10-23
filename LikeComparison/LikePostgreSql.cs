@@ -12,11 +12,6 @@ namespace LikeComparison.PostgreSql
             return LikeString.Like(matchExpression, pattern, _likeOptions);
         }
 
-        public static bool Like(this string matchExpression, string pattern)
-        {
-            throw new NotImplementedException("PostgreSql.Like is not implemented yet.");
-        }
-
         public static string? LikeRegex(string pattern)
         {
             return LikeString.LikeRegex(pattern, _likeOptions);

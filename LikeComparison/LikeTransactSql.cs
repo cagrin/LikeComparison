@@ -12,11 +12,6 @@ namespace LikeComparison.TransactSql
             return LikeString.Like(matchExpression, pattern, _likeOptions);
         }
 
-        public static bool LikeEscape(this string matchExpression, string pattern, string escapeCharacter)
-        {
-            throw new NotImplementedException("TransactSql.LikeEscape is not implemented yet.");
-        }
-
         public static string? LikeRegex(string pattern)
         {
             return LikeString.LikeRegex(pattern, _likeOptions);
