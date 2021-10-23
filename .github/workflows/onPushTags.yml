@@ -1,0 +1,24 @@
+name: Run unit tests and coveralls.io
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@master
+        with:
+          dotnet-version: '6.0'
+          include-prerelease: true
+      - name: Run unit tests
+        run: dotnet test LikeComparison.Tests/LikeComparison.Tests.csproj -c Release /p:ContinuousIntegrationBuild=true /p:CollectCoverage=true /p:CoverletOutputFormat=lcov
+      - name: Run coveralls.io
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: ./LikeComparison.Tests/coverage.net6.0.info
