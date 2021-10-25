@@ -114,9 +114,9 @@ namespace LikeComparison
 
         private static bool Like(this string matchExpression, string pattern, StringComparison comparisonType, string wildcard, string single, string invert, string digits)
         {
-            if (pattern == null) throw new ArgumentNullException("Value cannot be null. (Parameter 'pattern')");
+            if (pattern == null) throw new ArgumentNullException(nameof(pattern), "Value cannot be null.");
 
-            if (pattern.Contains(wildcard) || pattern.Contains(single) || pattern.Contains("[") || pattern.Contains("]") || pattern.Contains("^") || pattern.Contains(digits))
+            if (pattern.Contains(wildcard) || pattern.Contains(single) || pattern.Contains('[') || pattern.Contains(']') || pattern.Contains('^') || pattern.Contains(digits))
             {
                 string? regexExpression = LikeRegex(pattern, wildcard, single, invert, digits);
 

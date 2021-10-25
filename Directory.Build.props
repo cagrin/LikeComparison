@@ -1,6 +1,6 @@
 <Project>
     <PropertyGroup>
         <Nullable>enable</Nullable>
-        <AnalysisMode>Default</AnalysisMode>
+        <AnalysisMode>Minimum</AnalysisMode>
     </PropertyGroup>
 </Project>

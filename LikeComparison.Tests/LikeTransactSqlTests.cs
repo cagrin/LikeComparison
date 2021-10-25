@@ -80,7 +80,7 @@ namespace LikeComparison.Tests
             }).Wait();
         }
 
-        private async Task<bool> LikeTransactSqlOperatorAsync(string matchExpression, string pattern)
+        private static async Task<bool> LikeTransactSqlOperatorAsync(string matchExpression, string pattern)
         {
             string query = "SELECT CASE WHEN '" + matchExpression + "' LIKE '" + pattern + "' THEN 1 ELSE 0 END";
 

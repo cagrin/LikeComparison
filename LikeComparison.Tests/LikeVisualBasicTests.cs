@@ -11,10 +11,10 @@ namespace LikeComparison.Tests
     {
         [DataTestMethod]
         [DataRow("abcdef", null)]
-        [ExpectedException(typeof(ArgumentNullException), "Value cannot be null. (Parameter 'pattern')")]
-        public void LikeThrowArgumentNullException(string matchExression, string pattern)
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void LikeThrowArgumentNullException(string matchExpression, string pattern)
         {
-            matchExression.Like(pattern);
+            matchExpression.Like(pattern);
         }
 
         [DataTestMethod]
@@ -27,9 +27,9 @@ namespace LikeComparison.Tests
         [DataRow("abcdef", "*cd*")]
         [DataRow("abcdef", "a*f")]
         [DataRow("abcdef", "A*F")]
-        public void LikeAreMatched(string matchExression, string pattern)
+        public void LikeAreMatched(string matchExpression, string pattern)
         {
-            bool actual = matchExression.Like(pattern);
+            bool actual = matchExpression.Like(pattern);
             Assert.IsTrue(actual);
         }
 
@@ -38,9 +38,9 @@ namespace LikeComparison.Tests
         [DataRow("abcdef", "abc")]
         [DataRow("abcdef", "*a")]
         [DataRow("abcdef", "**z")]
-        public void LikeAreNotMatched(string matchExression, string pattern)
+        public void LikeAreNotMatched(string matchExpression, string pattern)
         {
-            bool actual = matchExression.Like(pattern);
+            bool actual = matchExpression.Like(pattern);
             Assert.IsFalse(actual);
         }
 

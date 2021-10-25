@@ -65,7 +65,7 @@ namespace LikeComparison.Tests
             }).Wait();
         }
 
-        private async Task<bool> LikePostgreSqlOperatorAsync(string matchExpression, string pattern)
+        private static async Task<bool> LikePostgreSqlOperatorAsync(string matchExpression, string pattern)
         {
             string query = "SELECT CASE WHEN '" + matchExpression + "' ILIKE '" + pattern + "' THEN 1 ELSE 0 END";
 
