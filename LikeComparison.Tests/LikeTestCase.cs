@@ -3,12 +3,16 @@ using System.Linq;
 
 namespace LikeComparison.Tests
 {
-    public class LikeTestCase
+    public static class LikeTestCase
     {
+        private const StringComparison ignoreCase = StringComparison.OrdinalIgnoreCase;
+
         public static IEnumerable<string[]> Generate(string expressionChars, string patternChars)
         {
+            if (expressionChars == null) throw new ArgumentNullException(nameof(expressionChars));
+
             var matchExpressions = Combinations(expressionChars).ToArray();
-            var patterns = Combinations(expressionChars + patternChars).Where(x => patternChars.Any(y => x.Contains(y))).ToArray();
+            var patterns = Combinations(expressionChars + patternChars).Where(x => patternChars.Any(y => x.Contains(y, ignoreCase))).ToArray();
 
             foreach (var matchExpression in matchExpressions)
             {

@@ -1,6 +1,11 @@
 <Project>
     <PropertyGroup>
         <Nullable>enable</Nullable>
-        <AnalysisMode>Minimum</AnalysisMode>
+        <AnalysisMode>All</AnalysisMode>
     </PropertyGroup>
+    <ItemGroup>
+        <AssemblyAttribute Include="CLSCompliantAttribute">
+            <_Parameter1>false</_Parameter1>
+        </AssemblyAttribute>
+    </ItemGroup>
 </Project>
