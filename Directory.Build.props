@@ -1,0 +1,6 @@
+<Project>
+    <PropertyGroup>
+        <Nullable>enable</Nullable>
+        <AnalysisMode>Default</AnalysisMode>
+    </PropertyGroup>
+</Project>
