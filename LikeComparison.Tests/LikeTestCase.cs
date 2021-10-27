@@ -18,7 +18,7 @@ namespace LikeComparison.Tests
             {
                 foreach (var pattern in patterns)
                 {
-                    yield return new string[]{ matchExpression, pattern };
+                    yield return new string[] { matchExpression, pattern };
                 }
             }
         }
