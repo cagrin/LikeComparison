@@ -17,7 +17,7 @@
         <Rule Id="SA1009"  Action="Warning" />          <!-- Closing parenthesis should be spaced correctly -->
         <Rule Id="SA1010"  Action="Warning" />          <!-- Opening square brackets should be spaced correctly -->
         <Rule Id="SA1011"  Action="Warning" />          <!-- Closing square brackets should be spaced correctly -->
-        <Rule Id="SA1012"  Action="None" />          <!-- Opening braces should be spaced correctly -->
+        <Rule Id="SA1012"  Action="Warning" />          <!-- Opening braces should be spaced correctly -->
         <Rule Id="SA1013"  Action="Warning" />          <!-- Closing braces should be spaced correctly -->
         <Rule Id="SA1014"  Action="Warning" />          <!-- Opening generic brackets should be spaced correctly -->
         <Rule Id="SA1015"  Action="Warning" />          <!-- Closing generic brackets should be spaced correctly -->
@@ -29,11 +29,11 @@
         <Rule Id="SA1021"  Action="Warning" />          <!-- Negative signs should be spaced correctly -->
         <Rule Id="SA1022"  Action="Warning" />          <!-- Positive signs should be spaced correctly -->
         <Rule Id="SA1023"  Action="Warning" />          <!-- Dereference and access of symbols should be spaced correctly -->
-        <Rule Id="SA1024"  Action="None" />          <!-- Colons should be spaced correctly -->
+        <Rule Id="SA1024"  Action="Warning" />          <!-- Colons should be spaced correctly -->
         <Rule Id="SA1025"  Action="Warning" />          <!-- Code should not contain multiple whitespace in a row -->
         <Rule Id="SA1026"  Action="Warning" />          <!-- Code should not contain space after new or stackalloc keyword in implicitly typed array allocation -->
         <Rule Id="SA1027"  Action="Warning" />          <!-- Use tabs correctly -->
-        <Rule Id="SA1028"  Action="None" />          <!-- Code should not contain trailing whitespace -->
+        <Rule Id="SA1028"  Action="Warning" />          <!-- Code should not contain trailing whitespace -->
     </Rules>
 
     <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers.ReadabilityRules">
