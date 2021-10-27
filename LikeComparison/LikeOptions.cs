@@ -12,13 +12,13 @@ namespace LikeComparison
 
         public StringComparison StringComparison { get; set; } = StringComparison.OrdinalIgnoreCase;
 
-        public string Wildcard { get => PatternStyle == PatternStyle.VisualBasic ? "*": "%"; }
+        public string Wildcard { get => PatternStyle == PatternStyle.VisualBasic ? "*" : "%"; }
 
-        public string Single { get => PatternStyle == PatternStyle.VisualBasic ? "?": "_"; }
+        public string Single { get => PatternStyle == PatternStyle.VisualBasic ? "?" : "_"; }
 
-        public string Invert { get => PatternStyle == PatternStyle.VisualBasic ? "!": "^"; }
+        public string Invert { get => PatternStyle == PatternStyle.VisualBasic ? "!" : "^"; }
 
-        public string Digits { get => PatternStyle == PatternStyle.VisualBasic ? "#": "[0-9]"; }
+        public string Digits { get => PatternStyle == PatternStyle.VisualBasic ? "#" : "[0-9]"; }
     }
 
     internal enum PatternStyle

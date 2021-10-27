@@ -34,13 +34,13 @@ namespace LikeComparison.Tests
                 combi.Add(c1);
                 foreach (var c2 in chars)
                 {
-                    combi.Add(c1+c2);
+                    combi.Add(c1 + c2);
                     foreach (var c3 in chars)
                     {
-                        combi.Add(c1+c2+c3);
+                        combi.Add(c1 + c2 + c3);
                         foreach (var c4 in chars)
                         {
-                            combi.Add(c1+c2+c3+c4);
+                            combi.Add(c1 + c2 + c3 + c4);
                         }
                     }
                 }
