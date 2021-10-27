@@ -85,7 +85,7 @@ namespace LikeComparison.Tests
         {
             string query = "SELECT CASE WHEN '" + matchExpression + "' LIKE '" + pattern + "' THEN 1 ELSE 0 END";
 
-            using(var connection = new SqlConnection(_testcontainer?.ConnectionString))
+            using (var connection = new SqlConnection(_testcontainer?.ConnectionString))
             {
                 return await connection.ExecuteScalarAsync<bool>(query).ConfigureAwait(false);
             }

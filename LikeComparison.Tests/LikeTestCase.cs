@@ -29,16 +29,16 @@ namespace LikeComparison.Tests
             var combi = new List<string>();
 
             combi.Add(string.Empty);
-            foreach(var c1 in chars)
+            foreach (var c1 in chars)
             {
                 combi.Add(c1);
-                foreach(var c2 in chars)
+                foreach (var c2 in chars)
                 {
                     combi.Add(c1+c2);
-                    foreach(var c3 in chars)
+                    foreach (var c3 in chars)
                     {
                         combi.Add(c1+c2+c3);
-                        foreach(var c4 in chars)
+                        foreach (var c4 in chars)
                         {
                             combi.Add(c1+c2+c3+c4);
                         }

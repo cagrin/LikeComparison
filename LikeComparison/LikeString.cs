@@ -7,7 +7,7 @@ namespace LikeComparison
     internal static class LikeString
     {
         private const StringComparison ignoreCase = StringComparison.OrdinalIgnoreCase;
-        
+
         internal static bool Like(string matchExpression, string pattern, LikeOptions likeOptions)
         {
             return Like(matchExpression, pattern, likeOptions.StringComparison, likeOptions.Wildcard, likeOptions.Single, likeOptions.Invert, likeOptions.Digits);
@@ -26,7 +26,7 @@ namespace LikeComparison
 
             bool insideMatchSingleCharacter = false;
             string lastLetter = string.Empty;
-            foreach(string letter in letters)
+            foreach (string letter in letters)
             {
                 if (letter == "[" && insideMatchSingleCharacter)
                 {
@@ -48,7 +48,7 @@ namespace LikeComparison
                 }
                 else if (letter == invert && insideMatchSingleCharacter)
                 {
-                    if(lastLetter == "<[>")
+                    if (lastLetter == "<[>")
                     {
                         lastLetter = "^";
                     }
