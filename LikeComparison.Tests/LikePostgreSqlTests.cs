@@ -61,7 +61,6 @@ namespace LikeComparison.Tests
                     Assert.IsTrue(false, message + $". Exception:{ex.Message}.");
                     throw;
                 }
-
             }).Wait();
         }
 
