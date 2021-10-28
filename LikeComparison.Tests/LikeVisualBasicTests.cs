@@ -43,8 +43,7 @@ namespace LikeComparison.Tests
             Assert.IsFalse(actual);
         }
 
-        [DataTestMethod]
-        // https://support.microsoft.com/en-us/office/like-operator-b2f7ef03-9085-4ffb-9829-eef18358e931
+        [DataTestMethod] // https://support.microsoft.com/en-us/office/like-operator-b2f7ef03-9085-4ffb-9829-eef18358e931
         [DataRow("a*a", "aa", true)]
         [DataRow("a*a", "aBa", true)]
         [DataRow("a*a", "aBBBa", true)]
@@ -97,8 +96,7 @@ namespace LikeComparison.Tests
             Assert.AreEqual(actual, expected);
         }
 
-        [DataTestMethod]
-        // https://docs.microsoft.com/en-us/dotnet/visual-basic/language-reference/operators/like-operator
+        [DataTestMethod] // https://docs.microsoft.com/en-us/dotnet/visual-basic/language-reference/operators/like-operator
         [DataRow("F", "F", true)]
         [DataRow("f", "F", true)] // Option Compare Text (true) vs Binary (false)
         [DataRow("FFF", "F", false)]
