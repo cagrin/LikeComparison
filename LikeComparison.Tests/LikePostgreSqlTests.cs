@@ -10,7 +10,7 @@ namespace LikeComparison.Tests
     [TestClass]
     public class LikePostgreSqlTests
     {
-        private static PostgreSqlTestcontainer? _testcontainer;
+        private static PostgreSqlTestcontainer? testcontainer;
 
         [ClassInitialize]
         public static void ClassInitialize(TestContext context)
@@ -24,14 +24,14 @@ namespace LikeComparison.Tests
                     Password = "StrongP@ssw0rd!"
                 });
 
-            _testcontainer = testcontainersBuilder.Build();
-            _testcontainer.StartAsync().Wait();
+            testcontainer = testcontainersBuilder.Build();
+            testcontainer.StartAsync().Wait();
         }
 
         [ClassCleanup]
         public static void ClassCleanup()
         {
-            _testcontainer?.DisposeAsync().AsTask().Wait();
+            testcontainer?.DisposeAsync().AsTask().Wait();
         }
 
         [DataTestMethod]
@@ -69,7 +69,7 @@ namespace LikeComparison.Tests
         {
             string query = "SELECT CASE WHEN '" + matchExpression + "' ILIKE '" + pattern + "' THEN 1 ELSE 0 END";
 
-            using (var connection = new NpgsqlConnection(_testcontainer?.ConnectionString))
+            using (var connection = new NpgsqlConnection(testcontainer?.ConnectionString))
             {
                 return await connection.ExecuteScalarAsync<bool>(query).ConfigureAwait(false);
             }

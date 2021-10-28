@@ -6,7 +6,10 @@ namespace LikeComparison.Tests
 
         public static IEnumerable<string[]> Generate(string expressionChars, string patternChars)
         {
-            if (expressionChars == null) throw new ArgumentNullException(nameof(expressionChars));
+            if (expressionChars == null)
+            {
+                throw new ArgumentNullException(nameof(expressionChars));
+            }
 
             var matchExpressions = Combinations(expressionChars).ToArray();
             var patterns = Combinations(expressionChars + patternChars).Where(x => patternChars.Any(y => x.Contains(y, IgnoreCase))).ToArray();

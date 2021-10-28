@@ -116,7 +116,10 @@ namespace LikeComparison
 
         private static bool Like(this string matchExpression, string pattern, StringComparison comparisonType, string wildcard, string single, string invert, string digits)
         {
-            if (pattern == null) throw new ArgumentNullException(nameof(pattern), "Value cannot be null.");
+            if (pattern == null)
+            {
+                throw new ArgumentNullException(nameof(pattern), "Value cannot be null.");
+            }
 
             if (pattern.Contains(wildcard, IgnoreCase) || pattern.Contains(single, IgnoreCase) || pattern.Contains('[', IgnoreCase) || pattern.Contains(']', IgnoreCase) || pattern.Contains('^', IgnoreCase) || pattern.Contains(digits, IgnoreCase))
             {
