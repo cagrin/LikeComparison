@@ -2,8 +2,8 @@
 namespace LikeComparison.Tests
 {
     using LikeComparison.VisualBasic;
-    using Microsoft.VisualBasic.CompilerServices;
     using Microsoft.VisualBasic;
+    using Microsoft.VisualBasic.CompilerServices;
 
     [TestClass]
     public class LikeVisualBasicTests

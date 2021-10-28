@@ -1,7 +1,7 @@
 namespace LikeComparison
 {
     using System;
-    
+
     internal enum PatternStyle
     {
         VisualBasic = 0,

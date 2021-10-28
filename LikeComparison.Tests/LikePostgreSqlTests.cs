@@ -1,11 +1,11 @@
 namespace LikeComparison.Tests
 {
-    using LikeComparison.PostgreSql;
     using Dapper;
-    using Npgsql;
     using DotNet.Testcontainers.Containers.Builders;
     using DotNet.Testcontainers.Containers.Configurations.Databases;
     using DotNet.Testcontainers.Containers.Modules.Databases;
+    using LikeComparison.PostgreSql;
+    using Npgsql;
 
     [TestClass]
     public class LikePostgreSqlTests

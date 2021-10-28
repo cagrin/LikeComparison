@@ -1,12 +1,12 @@
 namespace LikeComparison.Tests
 {
-    using LikeComparison.TransactSql;
     using Dapper;
-    using Microsoft.Data.SqlClient;
     using DotNet.Testcontainers.Containers.Builders;
     using DotNet.Testcontainers.Containers.Configurations.Databases;
     using DotNet.Testcontainers.Containers.Modules.Databases;
     using DotNet.Testcontainers.Containers.WaitStrategies;
+    using LikeComparison.TransactSql;
+    using Microsoft.Data.SqlClient;
 
     [TestClass]
     public class LikeTransactSqlTests
