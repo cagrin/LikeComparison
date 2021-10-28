@@ -2,6 +2,13 @@ using System;
 
 namespace LikeComparison
 {
+    internal enum PatternStyle
+    {
+        VisualBasic = 0,
+
+        TransactSql = 1
+    }
+
     internal class LikeOptions
     {
         public LikeOptions()
@@ -19,12 +26,5 @@ namespace LikeComparison
         public string Invert { get => this.PatternStyle == PatternStyle.VisualBasic ? "!" : "^"; }
 
         public string Digits { get => this.PatternStyle == PatternStyle.VisualBasic ? "#" : "[0-9]"; }
-    }
-
-    internal enum PatternStyle
-    {
-        VisualBasic = 0,
-
-        TransactSql = 1
     }
 }
