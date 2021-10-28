@@ -1,4 +1,5 @@
 [assembly: Parallelize(Workers = 8, Scope = ExecutionScope.MethodLevel)]
+
 namespace LikeComparison.Tests
 {
     using LikeComparison.VisualBasic;
