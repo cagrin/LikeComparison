@@ -4,16 +4,16 @@ namespace LikeComparison.VisualBasic
     // https://docs.microsoft.com/en-us/office/vba/language/reference/user-interface-help/like-operator
     public static class LikeVisualBasic
     {
-        private static LikeOptions _likeOptions = new LikeOptions() { PatternStyle = PatternStyle.VisualBasic };
+        private static readonly LikeOptions LikeOptions = new LikeOptions() { PatternStyle = PatternStyle.VisualBasic };
 
         public static bool Like(this string matchExpression, string pattern)
         {
-            return LikeString.Like(matchExpression, pattern, _likeOptions);
+            return LikeString.Like(matchExpression, pattern, LikeOptions);
         }
 
         public static string? LikeRegex(string pattern)
         {
-            return LikeString.LikeRegex(pattern, _likeOptions);
+            return LikeString.LikeRegex(pattern, LikeOptions);
         }
     }
 }
