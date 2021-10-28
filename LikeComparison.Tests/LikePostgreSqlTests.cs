@@ -1,13 +1,12 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using LikeComparison.PostgreSql;
-using Dapper;
-using Npgsql;
-using DotNet.Testcontainers.Containers.Builders;
-using DotNet.Testcontainers.Containers.Configurations.Databases;
-using DotNet.Testcontainers.Containers.Modules.Databases;
-
 namespace LikeComparison.Tests
 {
+    using LikeComparison.PostgreSql;
+    using Dapper;
+    using Npgsql;
+    using DotNet.Testcontainers.Containers.Builders;
+    using DotNet.Testcontainers.Containers.Configurations.Databases;
+    using DotNet.Testcontainers.Containers.Modules.Databases;
+
     [TestClass]
     public class LikePostgreSqlTests
     {

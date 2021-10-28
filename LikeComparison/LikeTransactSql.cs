@@ -1,5 +1,3 @@
-using System;
-
 namespace LikeComparison.TransactSql
 {
     // https://docs.microsoft.com/en-us/sql/t-sql/language-elements/like-transact-sql

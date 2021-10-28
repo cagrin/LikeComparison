@@ -5,6 +5,9 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 	</PropertyGroup>
 	<ItemGroup>
+		<Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
+	</ItemGroup>
+	<ItemGroup>
 		<ProjectReference Include="..\LikeComparison\LikeComparison.csproj"/>
 	</ItemGroup>
 	<ItemGroup>

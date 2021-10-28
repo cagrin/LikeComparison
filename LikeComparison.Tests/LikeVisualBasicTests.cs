@@ -1,11 +1,10 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using LikeComparison.VisualBasic;
-using Microsoft.VisualBasic.CompilerServices;
-using Microsoft.VisualBasic;
-
 [assembly: Parallelize(Workers = 8, Scope = ExecutionScope.MethodLevel)]
 namespace LikeComparison.Tests
 {
+    using LikeComparison.VisualBasic;
+    using Microsoft.VisualBasic.CompilerServices;
+    using Microsoft.VisualBasic;
+
     [TestClass]
     public class LikeVisualBasicTests
     {

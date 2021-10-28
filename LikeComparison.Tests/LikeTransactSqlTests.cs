@@ -1,14 +1,13 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using LikeComparison.TransactSql;
-using Dapper;
-using Microsoft.Data.SqlClient;
-using DotNet.Testcontainers.Containers.Builders;
-using DotNet.Testcontainers.Containers.Configurations.Databases;
-using DotNet.Testcontainers.Containers.Modules.Databases;
-using DotNet.Testcontainers.Containers.WaitStrategies;
-
 namespace LikeComparison.Tests
 {
+    using LikeComparison.TransactSql;
+    using Dapper;
+    using Microsoft.Data.SqlClient;
+    using DotNet.Testcontainers.Containers.Builders;
+    using DotNet.Testcontainers.Containers.Configurations.Databases;
+    using DotNet.Testcontainers.Containers.Modules.Databases;
+    using DotNet.Testcontainers.Containers.WaitStrategies;
+
     [TestClass]
     public class LikeTransactSqlTests
     {

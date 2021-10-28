@@ -1,5 +1,3 @@
-using System;
-
 namespace LikeComparison.VisualBasic
 {
     // https://support.microsoft.com/en-us/office/like-operator-b2f7ef03-9085-4ffb-9829-eef18358e931

@@ -1,9 +1,9 @@
-using System;
-using System.Linq;
-using System.Text.RegularExpressions;
-
 namespace LikeComparison
 {
+    using System;
+    using System.Linq;
+    using System.Text.RegularExpressions;
+
     internal static class LikeString
     {
         private const StringComparison ignoreCase = StringComparison.OrdinalIgnoreCase;

@@ -1,5 +1,3 @@
-using System;
-
 namespace LikeComparison.PostgreSql
 {
     // https://www.postgresql.org/docs/current/functions-matching.html

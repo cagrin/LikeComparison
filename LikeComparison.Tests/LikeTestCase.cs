@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
-
 namespace LikeComparison.Tests
 {
     public static class LikeTestCase
