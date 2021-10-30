@@ -26,9 +26,8 @@ namespace LikeComparison.Tests
         private static string[] Combinations(string letters)
         {
             string[] chars = letters.ToCharArray().Select(x => x.ToString()).ToArray();
-            var combi = new List<string>();
+            var combi = new List<string>() { string.Empty };
 
-            combi.Add(string.Empty);
             foreach (var c1 in chars)
             {
                 combi.Add(c1);
