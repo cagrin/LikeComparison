@@ -74,7 +74,7 @@ namespace LikeComparison
                     lastLetter = Regex.Escape(letter);
                 }
 
-                regexExpression = regexExpression + lastLetter;
+                regexExpression += lastLetter;
             }
 
             if (insideMatchSingleCharacter)
