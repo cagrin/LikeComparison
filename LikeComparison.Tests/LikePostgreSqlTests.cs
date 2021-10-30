@@ -68,10 +68,9 @@ namespace LikeComparison.Tests
         {
             string query = "SELECT CASE WHEN '" + matchExpression + "' ILIKE '" + pattern + "' THEN 1 ELSE 0 END";
 
-            using (var connection = new NpgsqlConnection(testcontainer?.ConnectionString))
-            {
-                return await connection.ExecuteScalarAsync<bool>(query).ConfigureAwait(false);
-            }
+            using var connection = new NpgsqlConnection(testcontainer?.ConnectionString);
+
+            return await connection.ExecuteScalarAsync<bool>(query).ConfigureAwait(false);
         }
     }
 }
