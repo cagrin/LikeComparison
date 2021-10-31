@@ -16,22 +16,20 @@ namespace LikeComparison.Tests
         [ClassInitialize]
         public static void ClassInitialize(TestContext context)
         {
-            // docker run -e 'ACCEPT_EULA=1' -e 'MSSQL_SA_PASSWORD=StrongP@ssw0rd!' -p 1433:1433 --name azuresqledge -d mcr.microsoft.com/azure-sql-edge
-#if DEBUG
+            // docker run -e 'ACCEPT_EULA=1' -e 'MSSQL_SA_PASSWORD=StrongP@ssw0rd!' -p 1433:1433 -d mcr.microsoft.com/mssql/server:2019-latest
             var testcontainersBuilder = new TestcontainersBuilder<MsSqlTestcontainer>()
-                .WithDatabase(new MsSqlTestcontainerConfiguration("mcr.microsoft.com/azure-sql-edge")
+                .WithDatabase(new MsSqlTestcontainerConfiguration()
                 {
                     Password = "StrongP@ssw0rd!"
+#if DEBUG
                 })
+                .WithImage("mcr.microsoft.com/azure-sql-edge")
                 .WithPortBinding(1433)
                 .WithWaitStrategy(Wait.ForUnixContainer().UntilPortIsAvailable(1433));
 #else
-            var testcontainersBuilder = new TestcontainersBuilder<MsSqlTestcontainer>()
-                .WithDatabase(new MsSqlTestcontainerConfiguration("mcr.microsoft.com/mssql/server:2019-latest")
-                {
-                    Password = "StrongP@ssw0rd!"
                 });
 #endif
+
             testcontainer = testcontainersBuilder.Build();
             testcontainer.StartAsync().Wait();
         }

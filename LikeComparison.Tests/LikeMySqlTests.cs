@@ -5,26 +5,26 @@ namespace LikeComparison.Tests
     using DotNet.Testcontainers.Containers.Configurations.Databases;
     using DotNet.Testcontainers.Containers.Modules.Databases;
     using LikeComparison.PostgreSql;
-    using Npgsql;
+    using MySqlConnector;
 
     [TestClass]
-    public class LikePostgreSqlTests
+    public class LikeMySqlTests
     {
-        private static PostgreSqlTestcontainer? testcontainer;
+        private static MySqlTestcontainer? testcontainer;
 
         [ClassInitialize]
         public static void ClassInitialize(TestContext context)
         {
-            // docker run -e POSTGRES_PASSWORD=StrongP@ssw0rd! -p 5432:5432 -d postgres
-            var testcontainersBuilder = new TestcontainersBuilder<PostgreSqlTestcontainer>()
-                .WithDatabase(new PostgreSqlTestcontainerConfiguration()
+            // docker run -e MYSQL_ROOT_PASSWORD=StrongP@ssw0rd! -p 3306:3306 -d mysql/mysql-server
+            var testcontainersBuilder = new TestcontainersBuilder<MySqlTestcontainer>()
+                .WithDatabase(new MySqlTestcontainerConfiguration()
                 {
-                    Database = "postgres",
-                    Username = "postgres",
+                    Database = "mysql",
+                    Username = "mysql",
                     Password = "StrongP@ssw0rd!"
 #if DEBUG
                 })
-                .WithImage("postgres");
+                .WithImage("mariadb");
 #else
                 });
 #endif
@@ -71,9 +71,9 @@ namespace LikeComparison.Tests
 
         private static async Task<bool> LikePostgreSqlOperatorAsync(string matchExpression, string pattern)
         {
-            string query = "SELECT CASE WHEN '" + matchExpression + "' ILIKE '" + pattern + "' THEN 1 ELSE 0 END";
+            string query = "SELECT CASE WHEN '" + matchExpression + "' LIKE '" + pattern + "' THEN 1 ELSE 0 END";
 
-            using var connection = new NpgsqlConnection(testcontainer?.ConnectionString);
+            using var connection = new MySqlConnection(testcontainer?.ConnectionString);
 
             return await connection.ExecuteScalarAsync<bool>(query).ConfigureAwait(false);
         }
