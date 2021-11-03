@@ -1,9 +1,9 @@
-name: Run unit tests and coveralls.io
+name: Unit tests, coveralls.io, nuget.org
 
 on:
   push:
     tags:
-      - '*'
+      - "[0-9]+.[0-9]+.[0-9]+*"
 
 jobs:
   build:
@@ -16,9 +16,15 @@ jobs:
           dotnet-version: '6.0'
           include-prerelease: true
       - name: Run unit tests
-        run: dotnet test LikeComparison.Tests/LikeComparison.Tests.csproj -c Release /p:ContinuousIntegrationBuild=true /p:CollectCoverage=true /p:CoverletOutputFormat=lcov
+        run: dotnet test LikeComparison.Tests/LikeComparison.Tests.csproj --configuration Release /p:CollectCoverage=true /p:CoverletOutputFormat=lcov
       - name: Run coveralls.io
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path-to-lcov: ./LikeComparison.Tests/coverage.info
+      - name: Get version from tag
+        run: echo "VERSION=${GITHUB_REF/refs\/tags\/}" >> $GITHUB_ENV
+      - name: Pack
+        run: dotnet pack LikeComparison --configuration Release /p:Version=${VERSION} /p:ContinuousIntegrationBuild=true --output .
+      - name: NuGet push
+        run: dotnet nuget push LikeComparison.${VERSION}.nupkg --api-key ${{ secrets.NUGET_APIKEY }} --source https://api.nuget.org/v3/index.json
