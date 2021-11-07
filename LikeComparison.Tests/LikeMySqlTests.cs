@@ -41,7 +41,7 @@ namespace LikeComparison.Tests
 
         [DataTestMethod]
         [DataRow("aAB", "_%", 79860)]
-        public void LikePostgreSqlComparision(string expressionLetters, string patternLetters, int combinations)
+        public void LikeMySqlComparision(string expressionLetters, string patternLetters, int combinations)
         {
             var cases = LikeTestCase.Generate(expressionLetters, patternLetters);
 
@@ -52,7 +52,7 @@ namespace LikeComparison.Tests
                 string matchExpression = c[0].ToString();
                 string pattern = c[1].ToString();
 
-                var expected = await LikePostgreSqlOperatorAsync(matchExpression, pattern).ConfigureAwait(false);
+                var expected = await LikeMySqlOperatorAsync(matchExpression, pattern).ConfigureAwait(false);
                 var regex = LikePostgreSql.LikeRegex(pattern) ?? "<Null>";
                 var message = $"Query:'{matchExpression}' ILIKE '{pattern}'. Regex:{regex}";
 
@@ -69,7 +69,7 @@ namespace LikeComparison.Tests
             }).Wait();
         }
 
-        private static async Task<bool> LikePostgreSqlOperatorAsync(string matchExpression, string pattern)
+        private static async Task<bool> LikeMySqlOperatorAsync(string matchExpression, string pattern)
         {
             string query = "SELECT CASE WHEN '" + matchExpression + "' LIKE '" + pattern + "' THEN 1 ELSE 0 END";
 
