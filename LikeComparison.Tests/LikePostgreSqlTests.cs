@@ -47,7 +47,7 @@ namespace LikeComparison.Tests
 
             Assert.AreEqual(combinations, cases.Count());
 
-            Parallel.ForEachAsync(cases, new ParallelOptions() { MaxDegreeOfParallelism = 80 }, async (c, t) =>
+            Parallel.ForEachAsync(cases, new ParallelOptions() { MaxDegreeOfParallelism = 50 }, async (c, t) =>
             {
                 string matchExpression = c[0].ToString();
                 string pattern = c[1].ToString();
