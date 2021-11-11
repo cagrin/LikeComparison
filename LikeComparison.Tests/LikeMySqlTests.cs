@@ -21,7 +21,7 @@ namespace LikeComparison.Tests
                 {
                     Database = "mysql",
                     Username = "mysql",
-                    Password = "StrongP@ssw0rd!"
+                    Password = "StrongP@ssw0rd!",
 #if DEBUG
                 })
                 .WithImage("mariadb");

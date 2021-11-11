@@ -6,7 +6,7 @@ namespace LikeComparison
     {
         VisualBasic = 0,
 
-        TransactSql = 1
+        TransactSql = 1,
     }
 
     internal class LikeOptions

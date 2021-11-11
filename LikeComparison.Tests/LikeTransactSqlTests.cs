@@ -20,7 +20,7 @@ namespace LikeComparison.Tests
             var testcontainersBuilder = new TestcontainersBuilder<MsSqlTestcontainer>()
                 .WithDatabase(new MsSqlTestcontainerConfiguration()
                 {
-                    Password = "StrongP@ssw0rd!"
+                    Password = "StrongP@ssw0rd!",
 #if DEBUG
                 })
                 .WithImage("mcr.microsoft.com/azure-sql-edge")

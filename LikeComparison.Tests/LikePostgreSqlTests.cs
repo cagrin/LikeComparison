@@ -21,7 +21,7 @@ namespace LikeComparison.Tests
                 {
                     Database = "postgres",
                     Username = "postgres",
-                    Password = "StrongP@ssw0rd!"
+                    Password = "StrongP@ssw0rd!",
 #if DEBUG
                 })
                 .WithImage("postgres");
