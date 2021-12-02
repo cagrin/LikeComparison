@@ -22,11 +22,11 @@ namespace LikeComparison.Tests
                     Database = "mysql",
                     Username = "mysql",
                     Password = "StrongP@ssw0rd!",
-#if DEBUG
                 })
+#if DEBUG
                 .WithImage("mariadb");
 #else
-                });
+                .WithImage("mysql");
 #endif
 
             testcontainer = testcontainersBuilder.Build();

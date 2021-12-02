@@ -22,12 +22,8 @@ namespace LikeComparison.Tests
                     Database = "postgres",
                     Username = "postgres",
                     Password = "StrongP@ssw0rd!",
-#if DEBUG
                 })
                 .WithImage("postgres");
-#else
-                });
-#endif
 
             testcontainer = testcontainersBuilder.Build();
             testcontainer.StartAsync().Wait();
