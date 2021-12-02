@@ -21,13 +21,13 @@ namespace LikeComparison.Tests
                 .WithDatabase(new MsSqlTestcontainerConfiguration()
                 {
                     Password = "StrongP@ssw0rd!",
-#if DEBUG
                 })
+#if DEBUG
                 .WithImage("mcr.microsoft.com/azure-sql-edge")
                 .WithPortBinding(1433)
                 .WithWaitStrategy(Wait.ForUnixContainer().UntilPortIsAvailable(1433));
 #else
-                });
+                .WithImage("mcr.microsoft.com/mssql/server:2019-latest");
 #endif
 
             testcontainer = testcontainersBuilder.Build();
