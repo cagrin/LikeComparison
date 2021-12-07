@@ -2,6 +2,13 @@ namespace LikeComparison
 {
     using System;
 
+    internal enum CaseSensitivity
+    {
+        CaseInsensitive = 0,
+
+        CaseSensitive = 1,
+    }
+
     internal enum PatternStyle
     {
         VisualBasic = 0,
@@ -15,9 +22,11 @@ namespace LikeComparison
         {
         }
 
+        public CaseSensitivity CaseSensitivity { get; set; } = CaseSensitivity.CaseInsensitive;
+
         public PatternStyle PatternStyle { get; set; } = PatternStyle.VisualBasic;
 
-        public StringComparison StringComparison { get; set; } = StringComparison.OrdinalIgnoreCase;
+        public StringComparison StringComparison { get => this.CaseSensitivity == CaseSensitivity.CaseInsensitive ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal; }
 
         public string Wildcard { get => this.PatternStyle == PatternStyle.VisualBasic ? "*" : "%"; }
 
