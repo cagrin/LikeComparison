@@ -10,7 +10,6 @@ It supports many LIKE operator syntax:
 - Transact-SQL,
 - PostgreSQL.
 
-Currently there are only ***case-insensitive*** comparison supported.
 
 ## Using Like method
 
@@ -44,7 +43,11 @@ using LikeComparison.PostgreSql;
 string matchExpression = "abcdef";
 string pattern = "a%";
 
+// case-insensitive
 bool isMatched = matchExpression.ILike(pattern);
+
+// or case-sensitive
+bool isMatched = matchExpression.Like(pattern);
 ```
 ## Supported syntax
 ### Visual Basic
