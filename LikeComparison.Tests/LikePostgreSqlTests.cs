@@ -36,8 +36,9 @@ namespace LikeComparison.Tests
         }
 
         [DataTestMethod]
-        [DataRow("aAB", "_%", 79860)]
-        public void LikePostgreSqlComparision(string expressionLetters, string patternLetters, int combinations)
+        [DataRow("aAB", "_%", 79860, "ILIKE")]
+        [DataRow("aAB", "_%", 79860, "LIKE")]
+        public void LikePostgreSqlComparision(string expressionLetters, string patternLetters, int combinations, string likeOperator)
         {
             var cases = LikeTestCase.Generate(expressionLetters, patternLetters);
 
@@ -48,13 +49,13 @@ namespace LikeComparison.Tests
                 string matchExpression = c[0].ToString();
                 string pattern = c[1].ToString();
 
-                var expected = await LikePostgreSqlOperatorAsync(matchExpression, pattern).ConfigureAwait(false);
-                var regex = LikePostgreSql.LikeRegex(pattern) ?? "<Null>";
-                var message = $"Query:'{matchExpression}' ILIKE '{pattern}'. Regex:{regex}";
+                var expected = await LikePostgreSqlOperatorAsync(matchExpression, pattern, likeOperator).ConfigureAwait(false);
+                var regex = (likeOperator == "ILIKE" ? LikePostgreSql.ILikeRegex(pattern) : LikePostgreSql.LikeRegex(pattern)) ?? "<Null>";
+                var message = $"Query:'{matchExpression}' {likeOperator} '{pattern}'. Regex:{regex}";
 
                 try
                 {
-                    var actual = matchExpression.ILike(pattern);
+                    var actual = likeOperator == "ILIKE" ? matchExpression.ILike(pattern) : matchExpression.Like(pattern);
                     Assert.AreEqual(expected, actual, message);
                 }
                 catch (Exception ex)
@@ -65,9 +66,9 @@ namespace LikeComparison.Tests
             }).Wait();
         }
 
-        private static async Task<bool> LikePostgreSqlOperatorAsync(string matchExpression, string pattern)
+        private static async Task<bool> LikePostgreSqlOperatorAsync(string matchExpression, string pattern, string likeOperator)
         {
-            string query = "SELECT CASE WHEN '" + matchExpression + "' ILIKE '" + pattern + "' THEN 1 ELSE 0 END";
+            string query = "SELECT CASE WHEN '" + matchExpression + $"' {likeOperator} '" + pattern + "' THEN 1 ELSE 0 END";
 
             using var connection = new NpgsqlConnection(testcontainer?.ConnectionString);
 

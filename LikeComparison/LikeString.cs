@@ -6,8 +6,6 @@ namespace LikeComparison
 
     internal static class LikeString
     {
-        private const StringComparison IgnoreCase = StringComparison.OrdinalIgnoreCase;
-
         internal static bool Like(string matchExpression, string pattern, LikeOptions likeOptions)
         {
             return Like(matchExpression, pattern, likeOptions.StringComparison, likeOptions.Wildcard, likeOptions.Single, likeOptions.Invert, likeOptions.Digits);
@@ -15,10 +13,10 @@ namespace LikeComparison
 
         internal static string? LikeRegex(string pattern, LikeOptions likeOptions)
         {
-            return LikeRegex(pattern, likeOptions.Wildcard, likeOptions.Single, likeOptions.Invert, likeOptions.Digits);
+            return LikeRegex(pattern, likeOptions.StringComparison, likeOptions.Wildcard, likeOptions.Single, likeOptions.Invert, likeOptions.Digits);
         }
 
-        private static string? LikeRegex(string pattern, string wildcard, string single, string invert, string digits)
+        private static string? LikeRegex(string pattern, StringComparison comparisonType, string wildcard, string single, string invert, string digits)
         {
             string[] letters = pattern.ToCharArray().Select(x => x.ToString()).ToArray();
 
@@ -82,23 +80,24 @@ namespace LikeComparison
                 return null;
             }
 
-            if (regexExpression.Contains("<[><]>", IgnoreCase))
+            if (regexExpression.Contains("<[><]>", comparisonType))
             {
                 return null;
             }
 
-            regexExpression = regexExpression.Replace("<[>", "[", IgnoreCase);
-            regexExpression = regexExpression.Replace("<]>", "]", IgnoreCase);
-            regexExpression = regexExpression.Replace("[^]", ".", IgnoreCase);
+            regexExpression = regexExpression.Replace("<[>", "[", comparisonType);
+            regexExpression = regexExpression.Replace("<]>", "]", comparisonType);
+            regexExpression = regexExpression.Replace("[^]", ".", comparisonType);
 
             return regexExpression + "$";
         }
 
-        private static bool LikeParse(string matchExpression, string regexExpression)
+        private static bool LikeParse(string matchExpression, string regexExpression, StringComparison comparisonType)
         {
             try
             {
-                var regex = new Regex(regexExpression, RegexOptions.IgnoreCase);
+                var options = comparisonType == StringComparison.OrdinalIgnoreCase ? RegexOptions.IgnoreCase : 0;
+                var regex = new Regex(regexExpression, options);
                 return regex.IsMatch(matchExpression);
             }
 #if NET5_0_OR_GREATER
@@ -121,13 +120,13 @@ namespace LikeComparison
                 throw new ArgumentNullException(nameof(pattern), "Value cannot be null.");
             }
 
-            if (pattern.Contains(wildcard, IgnoreCase) || pattern.Contains(single, IgnoreCase) || pattern.Contains('[', IgnoreCase) || pattern.Contains(']', IgnoreCase) || pattern.Contains('^', IgnoreCase) || pattern.Contains(digits, IgnoreCase))
+            if (pattern.Contains(wildcard, comparisonType) || pattern.Contains(single, comparisonType) || pattern.Contains('[', comparisonType) || pattern.Contains(']', comparisonType) || pattern.Contains('^', comparisonType) || pattern.Contains(digits, comparisonType))
             {
-                string? regexExpression = LikeRegex(pattern, wildcard, single, invert, digits);
+                string? regexExpression = LikeRegex(pattern, comparisonType, wildcard, single, invert, digits);
 
                 if (regexExpression != null)
                 {
-                    return LikeParse(matchExpression, regexExpression);
+                    return LikeParse(matchExpression, regexExpression, comparisonType);
                 }
                 else
                 {
