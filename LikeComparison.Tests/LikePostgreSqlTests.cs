@@ -49,21 +49,26 @@ namespace LikeComparison.Tests
                 string matchExpression = c[0].ToString();
                 string pattern = c[1].ToString();
 
-                var expected = await LikePostgreSqlOperatorAsync(matchExpression, pattern, likeOperator).ConfigureAwait(false);
-                var regex = (likeOperator == "ILIKE" ? LikePostgreSql.ILikeRegex(pattern) : LikePostgreSql.LikeRegex(pattern)) ?? "<Null>";
-                var message = $"Query:'{matchExpression}' {likeOperator} '{pattern}'. Regex:{regex}";
-
-                try
-                {
-                    var actual = likeOperator == "ILIKE" ? matchExpression.ILike(pattern) : matchExpression.Like(pattern);
-                    Assert.AreEqual(expected, actual, message);
-                }
-                catch (Exception ex)
-                {
-                    Assert.IsTrue(false, message + $". Exception:{ex.Message}.");
-                    throw;
-                }
+                await LikePostgreSqlAssert(matchExpression, pattern, likeOperator).ConfigureAwait(false);
             }).Wait();
+        }
+
+        private static async Task LikePostgreSqlAssert(string matchExpression, string pattern, string likeOperator)
+        {
+            var expected = await LikePostgreSqlOperatorAsync(matchExpression, pattern, likeOperator).ConfigureAwait(false);
+            var regex = (likeOperator == "ILIKE" ? LikePostgreSql.ILikeRegex(pattern) : LikePostgreSql.LikeRegex(pattern)) ?? "<Null>";
+            var message = $"Query:'{matchExpression}' {likeOperator} '{pattern}'. Regex:{regex}";
+
+            try
+            {
+                var actual = likeOperator == "ILIKE" ? matchExpression.ILike(pattern) : matchExpression.Like(pattern);
+                Assert.AreEqual(expected, actual, message);
+            }
+            catch (Exception ex)
+            {
+                Assert.IsTrue(false, message + $". Exception:{ex.Message}.");
+                throw;
+            }
         }
 
         private static async Task<bool> LikePostgreSqlOperatorAsync(string matchExpression, string pattern, string likeOperator)

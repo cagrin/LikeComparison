@@ -52,21 +52,26 @@ namespace LikeComparison.Tests
                 string matchExpression = c[0].ToString();
                 string pattern = c[1].ToString();
 
-                var expected = await LikeMySqlOperatorAsync(matchExpression, pattern).ConfigureAwait(false);
-                var regex = LikePostgreSql.LikeRegex(pattern) ?? "<Null>";
-                var message = $"Query:'{matchExpression}' ILIKE '{pattern}'. Regex:{regex}";
-
-                try
-                {
-                    var actual = matchExpression.ILike(pattern);
-                    Assert.AreEqual(expected, actual, message);
-                }
-                catch (Exception ex)
-                {
-                    Assert.IsTrue(false, message + $". Exception:{ex.Message}.");
-                    throw;
-                }
+                await LikeMySqlAssert(matchExpression, pattern).ConfigureAwait(false);
             }).Wait();
+        }
+
+        private static async Task LikeMySqlAssert(string matchExpression, string pattern)
+        {
+            var expected = await LikeMySqlOperatorAsync(matchExpression, pattern).ConfigureAwait(false);
+            var regex = LikePostgreSql.LikeRegex(pattern) ?? "<Null>";
+            var message = $"Query:'{matchExpression}' ILIKE '{pattern}'. Regex:{regex}";
+
+            try
+            {
+                var actual = matchExpression.ILike(pattern);
+                Assert.AreEqual(expected, actual, message);
+            }
+            catch (Exception ex)
+            {
+                Assert.IsTrue(false, message + $". Exception:{ex.Message}.");
+                throw;
+            }
         }
 
         private static async Task<bool> LikeMySqlOperatorAsync(string matchExpression, string pattern)
