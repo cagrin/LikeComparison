@@ -55,11 +55,11 @@ namespace LikeComparison
                         lastLetter = "\\" + letter;
                     }
                 }
-                else if (letter == wildcard)
+                else if (letter == wildcard && !insideMatchSingleCharacter)
                 {
                     lastLetter = ".*";
                 }
-                else if (letter == single)
+                else if (letter == single && !insideMatchSingleCharacter)
                 {
                     lastLetter = ".";
                 }

@@ -41,9 +41,9 @@ namespace LikeComparison.Tests
         }
 
         [DataTestMethod] // https://docs.microsoft.com/en-us/sql/t-sql/language-elements/like-transact-sql?view=sql-server-ver15
-        /* [DataRow("5[%]", "5%", true)] */
+        [DataRow("5[%]", "5%", true)]
         [DataRow("5[%]", "5", false)]
-        /* [DataRow("[_]n", "_n", true)] */
+        [DataRow("[_]n", "_n", true)]
         [DataRow("[_]n", "n", false)]
         [DataRow("[a-cdf]", "-", false)]
         [DataRow("[a-cdf]", "a", true)]
@@ -61,8 +61,8 @@ namespace LikeComparison.Tests
         [DataRow("[-acdf]", "f", true)]
         [DataRow("[[]", "[", true)]
         [DataRow("]", "]", true)]
-        /* [DataRow("abc[_]d%", "abc_d", true)] */
-        /* [DataRow("abc[_]d%", "abc_de", true)] */
+        [DataRow("abc[_]d%", "abc_d", true)]
+        [DataRow("abc[_]d%", "abc_de", true)]
         [DataRow("abc[def]", "abcd", true)]
         [DataRow("abc[def]", "abce", true)]
         [DataRow("abc[def]", "abcf", true)]
