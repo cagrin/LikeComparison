@@ -6,6 +6,14 @@ namespace LikeComparison.Tests
     public class LikeRegexTests
     {
         [DataTestMethod]
+        [DataRow(null)]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void LikeRegexThrowArgumentNullException(string pattern)
+        {
+            LikeVisualBasic.LikeRegex(pattern);
+        }
+
+        [DataTestMethod]
         [DataRow("[[!]", "^[\\[\\!]$")]
         [DataRow("aaa]", "^aaa\\]$")]
         [DataRow("a[aa", "Null")]

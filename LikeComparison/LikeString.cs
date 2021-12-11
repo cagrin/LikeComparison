@@ -18,6 +18,11 @@ namespace LikeComparison
 
         private static string? LikeRegex(string pattern, StringComparison comparisonType, string wildcard, string single, string invert, string digits)
         {
+            if (pattern == null)
+            {
+                throw new ArgumentNullException(nameof(pattern), "Value cannot be null.");
+            }
+
             string[] letters = pattern.ToCharArray().Select(x => x.ToString()).ToArray();
 
             string regexExpression = "^";
