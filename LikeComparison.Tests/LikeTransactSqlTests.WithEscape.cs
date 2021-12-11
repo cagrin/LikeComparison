@@ -1,43 +1,25 @@
 namespace LikeComparison.Tests
 {
     using Dapper;
-    using DotNet.Testcontainers.Containers.Builders;
-    using DotNet.Testcontainers.Containers.Configurations.Databases;
-    using DotNet.Testcontainers.Containers.Modules.Databases;
-    using DotNet.Testcontainers.Containers.WaitStrategies;
     using LikeComparison.TransactSql;
     using Microsoft.Data.SqlClient;
 
-    [TestClass]
-    public class LikeTransactSqlWithEscapeTests
+    public partial class LikeTransactSqlTests
     {
-        private static MsSqlTestcontainer? testcontainer;
-
-        [ClassInitialize]
-        public static void ClassInitialize(TestContext context)
+        [DataTestMethod]
+        [DataRow("a%", null)]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void LikeTransactSqlRegexWithEscapeThrowArgumentNullException(string pattern, string escape)
         {
-            // docker run -e 'ACCEPT_EULA=1' -e 'MSSQL_SA_PASSWORD=StrongP@ssw0rd!' -p 1433:1433 -d mcr.microsoft.com/mssql/server:2019-latest
-            var testcontainersBuilder = new TestcontainersBuilder<MsSqlTestcontainer>()
-                .WithDatabase(new MsSqlTestcontainerConfiguration()
-                {
-                    Password = "StrongP@ssw0rd!",
-                })
-#if DEBUG
-                .WithImage("mcr.microsoft.com/azure-sql-edge")
-                .WithPortBinding(1433)
-                .WithWaitStrategy(Wait.ForUnixContainer().UntilPortIsAvailable(1433));
-#else
-                .WithImage("mcr.microsoft.com/mssql/server:2019-latest");
-#endif
-
-            testcontainer = testcontainersBuilder.Build();
-            testcontainer.StartAsync().Wait();
+            LikeTransactSql.LikeRegex(pattern, escape);
         }
 
-        [ClassCleanup]
-        public static void ClassCleanup()
+        [DataTestMethod]
+        [DataRow("abcdef", "a%", null)]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void LikeTransactSqlWithEscapeThrowArgumentNullException(string matchExpression, string pattern, string escape)
         {
-            testcontainer?.DisposeAsync().AsTask().Wait();
+            matchExpression.Like(pattern, escape);
         }
 
         [DataTestMethod]
@@ -69,12 +51,12 @@ namespace LikeComparison.Tests
         private static async Task<bool> LikeTransactSqlWithEscapeAssert(string matchExpression, string pattern, string escape)
         {
             var expected = await LikeTransactSqlOperatorWithEscapeAsync(matchExpression, pattern, escape).ConfigureAwait(false);
-            var regex = LikeTransactSql.LikeRegex(pattern) ?? "<Null>";
+            var regex = LikeTransactSql.LikeRegex(pattern, escape) ?? "<Null>";
             var message = $"Query:'{matchExpression}' LIKE '{pattern}' ESCAPE '{escape}'. Regex:{regex}";
 
             try
             {
-                var actual = matchExpression.Like(pattern);
+                var actual = matchExpression.Like(pattern, escape);
                 Assert.AreEqual(expected, actual, message);
                 return actual;
             }

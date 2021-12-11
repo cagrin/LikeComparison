@@ -9,7 +9,7 @@ namespace LikeComparison.Tests
     using Microsoft.Data.SqlClient;
 
     [TestClass]
-    public class LikeTransactSqlTests
+    public partial class LikeTransactSqlTests
     {
         private static MsSqlTestcontainer? testcontainer;
 
