@@ -24,6 +24,9 @@ namespace LikeComparison.Tests
 
         [DataTestMethod]
         [DataRow("abcdef", "a%", "\\", true)]
+        [DataRow("abcdef", "a%", "a", false)]
+        [DataRow("abcdef", "EaEbEc%", "E", true)]
+        [DataRow("abcdef", "%\\e_", "\\", true)]
         public async Task LikeTransactSqlWithEscapeSpecials(string matchExpression, string pattern, string escape, bool expected)
         {
             bool actual = await LikeTransactSqlWithEscapeAssert(matchExpression, pattern, escape).ConfigureAwait(false);

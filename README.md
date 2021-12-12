@@ -32,7 +32,11 @@ using LikeComparison.TransactSql;
 string matchExpression = "abcdef";
 string pattern = "a%";
 
+// common use
 bool isMatched = matchExpression.Like(pattern);
+
+// or with escape character
+bool isMatched = matchExpression.Like(pattern, escapeCharacter: "/");
 ```
 or
 

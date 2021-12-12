@@ -8,15 +8,25 @@ namespace LikeComparison
     {
         internal static bool Like(string matchExpression, string pattern, LikeOptions likeOptions)
         {
-            return Like(matchExpression, pattern, likeOptions.StringComparison, likeOptions.Wildcard, likeOptions.Single, likeOptions.Invert, likeOptions.Digits);
+            return Like(matchExpression, pattern, escape: string.Empty, likeOptions.StringComparison, likeOptions.Wildcard, likeOptions.Single, likeOptions.Invert, likeOptions.Digits);
+        }
+
+        internal static bool Like(string matchExpression, string pattern, string escape, LikeOptions likeOptions)
+        {
+            return Like(matchExpression, pattern, escape, likeOptions.StringComparison, likeOptions.Wildcard, likeOptions.Single, likeOptions.Invert, likeOptions.Digits);
         }
 
         internal static string? LikeRegex(string pattern, LikeOptions likeOptions)
         {
-            return LikeRegex(pattern, likeOptions.StringComparison, likeOptions.Wildcard, likeOptions.Single, likeOptions.Invert, likeOptions.Digits);
+            return LikeRegex(pattern, escape: string.Empty, likeOptions);
         }
 
-        private static string? LikeRegex(string pattern, StringComparison comparisonType, string wildcard, string single, string invert, string digits)
+        internal static string? LikeRegex(string pattern, string escape, LikeOptions likeOptions)
+        {
+            return LikeRegex(pattern, escape, likeOptions.StringComparison, likeOptions.Wildcard, likeOptions.Single, likeOptions.Invert, likeOptions.Digits);
+        }
+
+        private static string? LikeRegex(string pattern, string escape, StringComparison comparisonType, string wildcard, string single, string invert, string digits)
         {
             if (pattern == null)
             {
@@ -31,6 +41,12 @@ namespace LikeComparison
             string lastLetter = string.Empty;
             foreach (string letter in letters)
             {
+                if (letter == escape && !insideMatchSingleCharacter)
+                {
+                    lastLetter = escape;
+                    continue;
+                }
+
                 if (letter == "[" && insideMatchSingleCharacter)
                 {
                     lastLetter = "\\[";
@@ -48,6 +64,10 @@ namespace LikeComparison
                 {
                     insideMatchSingleCharacter = false;
                     lastLetter = "<]>";
+                }
+                else if (lastLetter == escape && !insideMatchSingleCharacter)
+                {
+                    lastLetter = Regex.Escape(letter);
                 }
                 else if (letter == invert && insideMatchSingleCharacter)
                 {
@@ -118,7 +138,7 @@ namespace LikeComparison
 #endif
         }
 
-        private static bool Like(this string matchExpression, string pattern, StringComparison comparisonType, string wildcard, string single, string invert, string digits)
+        private static bool Like(this string matchExpression, string pattern, string escape, StringComparison comparisonType, string wildcard, string single, string invert, string digits)
         {
             if (pattern == null)
             {
@@ -127,7 +147,7 @@ namespace LikeComparison
 
             if (pattern.Contains(wildcard, comparisonType) || pattern.Contains(single, comparisonType) || pattern.Contains('[', comparisonType) || pattern.Contains(']', comparisonType) || pattern.Contains('^', comparisonType) || pattern.Contains(digits, comparisonType))
             {
-                string? regexExpression = LikeRegex(pattern, comparisonType, wildcard, single, invert, digits);
+                string? regexExpression = LikeRegex(pattern, escape, comparisonType, wildcard, single, invert, digits);
 
                 if (regexExpression != null)
                 {
