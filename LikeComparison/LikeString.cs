@@ -42,60 +42,70 @@ namespace LikeComparison
             string lastLetter = string.Empty;
             foreach (string letter in letters)
             {
-                if (escaped && letter == escape && !insideMatchSingleCharacter)
+                if (!insideMatchSingleCharacter)
                 {
-                    lastLetter = escape;
-                    continue;
-                }
-
-                if (escaped && lastLetter == escape && !insideMatchSingleCharacter)
-                {
-                    lastLetter = Regex.Escape(letter);
-                }
-                else if (letter == "[" && insideMatchSingleCharacter)
-                {
-                    lastLetter = "\\[";
-                }
-                else if (letter == "]" && !insideMatchSingleCharacter)
-                {
-                    lastLetter = "\\]";
-                }
-                else if (letter == "[" && !insideMatchSingleCharacter)
-                {
-                    insideMatchSingleCharacter = true;
-                    lastLetter = "<[>";
-                }
-                else if (letter == "]" && insideMatchSingleCharacter)
-                {
-                    insideMatchSingleCharacter = false;
-                    lastLetter = "<]>";
-                }
-                else if (letter == invert && insideMatchSingleCharacter)
-                {
-                    if (lastLetter == "<[>")
+                    if (escaped && letter == escape)
                     {
-                        lastLetter = "^";
+                        lastLetter = escape;
+                        continue;
+                    }
+
+                    if (escaped && lastLetter == escape)
+                    {
+                        lastLetter = Regex.Escape(letter);
+                    }
+                    else if (letter == "]")
+                    {
+                        lastLetter = "\\]";
+                    }
+                    else if (letter == "[")
+                    {
+                        insideMatchSingleCharacter = true;
+                        lastLetter = "<[>";
+                    }
+                    else if (letter == wildcard)
+                    {
+                        lastLetter = ".*";
+                    }
+                    else if (letter == single)
+                    {
+                        lastLetter = ".";
+                    }
+                    else if (letter == digits)
+                    {
+                        lastLetter = "<[>0-9<]>";
                     }
                     else
                     {
-                        lastLetter = "\\" + letter;
+                        lastLetter = Regex.Escape(letter);
                     }
-                }
-                else if (letter == wildcard && !insideMatchSingleCharacter)
-                {
-                    lastLetter = ".*";
-                }
-                else if (letter == single && !insideMatchSingleCharacter)
-                {
-                    lastLetter = ".";
-                }
-                else if (letter == digits && !insideMatchSingleCharacter)
-                {
-                    lastLetter = "<[>0-9<]>";
                 }
                 else
                 {
-                    lastLetter = Regex.Escape(letter);
+                    if (letter == "[")
+                    {
+                        lastLetter = "\\[";
+                    }
+                    else if (letter == "]")
+                    {
+                        insideMatchSingleCharacter = false;
+                        lastLetter = "<]>";
+                    }
+                    else if (letter == invert)
+                    {
+                        if (lastLetter == "<[>")
+                        {
+                            lastLetter = "^";
+                        }
+                        else
+                        {
+                            lastLetter = "\\" + letter;
+                        }
+                    }
+                    else
+                    {
+                        lastLetter = Regex.Escape(letter);
+                    }
                 }
 
                 regexExpression += lastLetter;
