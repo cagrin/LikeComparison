@@ -8,21 +8,45 @@ namespace LikeComparison
     {
         internal static bool Like(string matchExpression, string pattern, LikeOptions likeOptions)
         {
+            if (pattern == null)
+            {
+                throw new ArgumentNullException(nameof(pattern), "Value cannot be null.");
+            }
+
             return Like(matchExpression, pattern, likeOptions.Escape, likeOptions.StringComparison, likeOptions.Wildcard, likeOptions.Single, likeOptions.Invert, likeOptions.Digits);
         }
 
         internal static string? LikeRegex(string pattern, LikeOptions likeOptions)
-        {
-            return LikeRegex(pattern, likeOptions.Escape, likeOptions.StringComparison, likeOptions.Wildcard, likeOptions.Single, likeOptions.Invert, likeOptions.Digits);
-        }
-
-        private static string? LikeRegex(string pattern, string escape, StringComparison comparisonType, string wildcard, string single, string invert, string digits)
         {
             if (pattern == null)
             {
                 throw new ArgumentNullException(nameof(pattern), "Value cannot be null.");
             }
 
+            return LikeRegex(pattern, likeOptions.Escape, likeOptions.StringComparison, likeOptions.Wildcard, likeOptions.Single, likeOptions.Invert, likeOptions.Digits);
+        }
+
+        private static bool Like(this string matchExpression, string pattern, string escape, StringComparison comparisonType, string wildcard, string single, string invert, string digits)
+        {
+            if (pattern.Contains(wildcard, comparisonType) || pattern.Contains(single, comparisonType) || pattern.Contains('[', comparisonType) || pattern.Contains(']', comparisonType) || pattern.Contains('^', comparisonType) || pattern.Contains(digits, comparisonType))
+            {
+                string? regexExpression = LikeRegex(pattern, escape, comparisonType, wildcard, single, invert, digits);
+
+                if (regexExpression != null)
+                {
+                    return LikeParse(matchExpression, regexExpression, comparisonType);
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            return matchExpression.Equals(pattern, comparisonType);
+        }
+
+        private static string? LikeRegex(string pattern, string escape, StringComparison comparisonType, string wildcard, string single, string invert, string digits)
+        {
             string[] letters = pattern.ToCharArray().Select(x => x.ToString()).ToArray();
 
             string regexExpression = "^";
@@ -137,30 +161,6 @@ namespace LikeComparison
                 throw;
             }
 #endif
-        }
-
-        private static bool Like(this string matchExpression, string pattern, string escape, StringComparison comparisonType, string wildcard, string single, string invert, string digits)
-        {
-            if (pattern == null)
-            {
-                throw new ArgumentNullException(nameof(pattern), "Value cannot be null.");
-            }
-
-            if (pattern.Contains(wildcard, comparisonType) || pattern.Contains(single, comparisonType) || pattern.Contains('[', comparisonType) || pattern.Contains(']', comparisonType) || pattern.Contains('^', comparisonType) || pattern.Contains(digits, comparisonType))
-            {
-                string? regexExpression = LikeRegex(pattern, escape, comparisonType, wildcard, single, invert, digits);
-
-                if (regexExpression != null)
-                {
-                    return LikeParse(matchExpression, regexExpression, comparisonType);
-                }
-                else
-                {
-                    return false;
-                }
-            }
-
-            return matchExpression.Equals(pattern, comparisonType);
         }
     }
 }
