@@ -8,22 +8,12 @@ namespace LikeComparison
     {
         internal static bool Like(string matchExpression, string pattern, LikeOptions likeOptions)
         {
-            return Like(matchExpression, pattern, escape: string.Empty, likeOptions.StringComparison, likeOptions.Wildcard, likeOptions.Single, likeOptions.Invert, likeOptions.Digits);
-        }
-
-        internal static bool Like(string matchExpression, string pattern, string escape, LikeOptions likeOptions)
-        {
-            return Like(matchExpression, pattern, escape, likeOptions.StringComparison, likeOptions.Wildcard, likeOptions.Single, likeOptions.Invert, likeOptions.Digits);
+            return Like(matchExpression, pattern, likeOptions.Escape, likeOptions.StringComparison, likeOptions.Wildcard, likeOptions.Single, likeOptions.Invert, likeOptions.Digits);
         }
 
         internal static string? LikeRegex(string pattern, LikeOptions likeOptions)
         {
-            return LikeRegex(pattern, escape: string.Empty, likeOptions);
-        }
-
-        internal static string? LikeRegex(string pattern, string escape, LikeOptions likeOptions)
-        {
-            return LikeRegex(pattern, escape, likeOptions.StringComparison, likeOptions.Wildcard, likeOptions.Single, likeOptions.Invert, likeOptions.Digits);
+            return LikeRegex(pattern, likeOptions.Escape, likeOptions.StringComparison, likeOptions.Wildcard, likeOptions.Single, likeOptions.Invert, likeOptions.Digits);
         }
 
         private static string? LikeRegex(string pattern, string escape, StringComparison comparisonType, string wildcard, string single, string invert, string digits)

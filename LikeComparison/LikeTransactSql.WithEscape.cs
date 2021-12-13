@@ -11,7 +11,9 @@ namespace LikeComparison.TransactSql
                 throw new ArgumentNullException(nameof(escape), "Value cannot be null.");
             }
 
-            return LikeString.Like(matchExpression, pattern, escape, LikeOptions);
+            LikeOptions likeOptions = new LikeOptions() { PatternStyle = PatternStyle.TransactSql, Escape = escape };
+
+            return LikeString.Like(matchExpression, pattern, likeOptions);
         }
 
         public static string? LikeRegex(string pattern, string escape)
@@ -21,7 +23,9 @@ namespace LikeComparison.TransactSql
                 throw new ArgumentNullException(nameof(escape), "Value cannot be null.");
             }
 
-            return LikeString.LikeRegex(pattern, escape, LikeOptions);
+            LikeOptions likeOptions = new LikeOptions() { PatternStyle = PatternStyle.TransactSql, Escape = escape };
+
+            return LikeString.LikeRegex(pattern, likeOptions);
         }
     }
 }

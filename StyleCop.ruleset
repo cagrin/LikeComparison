@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <RuleSet Name="StyleCop.Analyzers rules with default action" Description="StyleCop.Analyzers with default action. Rules with IsEnabledByDefault = false are disabled." ToolsVersion="17.0">
     <Rules AnalyzerId="Microsoft.Analyzers.ManagedCodeAnalysis" RuleNamespace="Microsoft.Rules.Managed">
+        <Rule Id="IDE0016" Action="None" />          <!-- Use throw expression -->
         <Rule Id="IDE0060" Action="None" />          <!-- Remove unused parameter -->
         <Rule Id="IDE0090" Action="None" />          <!-- Simplify new expression -->
     </Rules>

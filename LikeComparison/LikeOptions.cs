@@ -26,6 +26,8 @@ namespace LikeComparison
 
         public PatternStyle PatternStyle { get; set; } = PatternStyle.VisualBasic;
 
+        public string Escape { get; set; } = string.Empty;
+
         public StringComparison StringComparison { get => this.CaseSensitivity == CaseSensitivity.CaseInsensitive ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal; }
 
         public string Wildcard { get => this.PatternStyle == PatternStyle.VisualBasic ? "*" : "%"; }
