@@ -36,18 +36,23 @@ namespace LikeComparison
             string[] letters = pattern.ToCharArray().Select(x => x.ToString()).ToArray();
 
             string regexExpression = "^";
+            bool escaped = !string.IsNullOrEmpty(escape);
 
             bool insideMatchSingleCharacter = false;
             string lastLetter = string.Empty;
             foreach (string letter in letters)
             {
-                if (letter == escape && !insideMatchSingleCharacter)
+                if (escaped && letter == escape && !insideMatchSingleCharacter)
                 {
                     lastLetter = escape;
                     continue;
                 }
 
-                if (letter == "[" && insideMatchSingleCharacter)
+                if (escaped && lastLetter == escape && !insideMatchSingleCharacter)
+                {
+                    lastLetter = Regex.Escape(letter);
+                }
+                else if (letter == "[" && insideMatchSingleCharacter)
                 {
                     lastLetter = "\\[";
                 }
@@ -64,10 +69,6 @@ namespace LikeComparison
                 {
                     insideMatchSingleCharacter = false;
                     lastLetter = "<]>";
-                }
-                else if (lastLetter == escape && !insideMatchSingleCharacter)
-                {
-                    lastLetter = Regex.Escape(letter);
                 }
                 else if (letter == invert && insideMatchSingleCharacter)
                 {
