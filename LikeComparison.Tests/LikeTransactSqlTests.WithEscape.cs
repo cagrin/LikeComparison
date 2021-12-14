@@ -7,6 +7,7 @@ namespace LikeComparison.Tests
     public partial class LikeTransactSqlTests
     {
         [DataTestMethod]
+        [DataRow(null, "/")]
         [DataRow("a%", null)]
         [ExpectedException(typeof(ArgumentNullException))]
         public void LikeTransactSqlRegexWithEscapeThrowArgumentNullException(string pattern, string escape)
@@ -15,6 +16,7 @@ namespace LikeComparison.Tests
         }
 
         [DataTestMethod]
+        [DataRow("abcdef", null, "/")]
         [DataRow("abcdef", "a%", null)]
         [ExpectedException(typeof(ArgumentNullException))]
         public void LikeTransactSqlWithEscapeThrowArgumentNullException(string matchExpression, string pattern, string escape)
