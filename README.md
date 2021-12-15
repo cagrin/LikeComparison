@@ -69,3 +69,13 @@ https://docs.microsoft.com/en-us/sql/t-sql/language-elements/like-transact-sql
 https://www.postgresql.org/docs/current/functions-matching.html
 
 ```% _```
+## Supported targets
+### .NET 6.0
+- Recommended.
+- Default target for LikeComparison.Tests.
+### .NET 5.0
+- Supported.
+### .NET Core 3.1
+- Supported.
+### .NET Framework 4.8
+- Experimental supported with C# 8.
