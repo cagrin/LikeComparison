@@ -4,7 +4,7 @@ namespace LikeComparison
     using System.Linq;
     using System.Text.RegularExpressions;
 
-    internal static class LikeString
+    internal static partial class LikeString
     {
         internal static bool Like(string matchExpression, string pattern, LikeOptions likeOptions)
         {
