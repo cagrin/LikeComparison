@@ -16,7 +16,7 @@ jobs:
         with:
           dotnet-version: '6.0'
       - name: Run unit tests
-        run: dotnet test LikeComparison.Tests/LikeComparison.Tests.csproj --configuration Release /p:CollectCoverage=true /p:CoverletOutputFormat=lcov
+        run: dotnet test LikeComparison.Tests --configuration Release /p:CollectCoverage=true /p:CoverletOutputFormat=lcov
       - name: Run coveralls.io
         uses: coverallsapp/github-action@master
         with:
