@@ -66,14 +66,14 @@ namespace LikeComparison.Tests
             }
             catch (Exception ex)
             {
-                Assert.IsTrue(false, message + $". Exception:{ex.Message}.");
+                Assert.IsTrue(false, $"{message}. Exception:{ex.Message}.");
                 throw;
             }
         }
 
         private static async Task<bool> LikePostgreSqlOperatorAsync(string matchExpression, string pattern, string likeOperator)
         {
-            string query = "SELECT CASE WHEN '" + matchExpression + $"' {likeOperator} '" + pattern + "' THEN 1 ELSE 0 END";
+            string query = $"SELECT CASE WHEN '{matchExpression}' {likeOperator} '{pattern}' THEN 1 ELSE 0 END";
 
             using var connection = new NpgsqlConnection(testcontainer?.ConnectionString);
 

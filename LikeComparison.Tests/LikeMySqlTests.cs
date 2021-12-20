@@ -69,14 +69,14 @@ namespace LikeComparison.Tests
             }
             catch (Exception ex)
             {
-                Assert.IsTrue(false, message + $". Exception:{ex.Message}.");
+                Assert.IsTrue(false, $"{message}. Exception:{ex.Message}.");
                 throw;
             }
         }
 
         private static async Task<bool> LikeMySqlOperatorAsync(string matchExpression, string pattern)
         {
-            string query = "SELECT CASE WHEN '" + matchExpression + "' LIKE '" + pattern + "' THEN 1 ELSE 0 END";
+            string query = $"SELECT CASE WHEN '{matchExpression}' LIKE '{pattern}' THEN 1 ELSE 0 END";
 
             using var connection = new MySqlConnection(testcontainer?.ConnectionString);
 
