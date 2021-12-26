@@ -7,8 +7,8 @@ LikeComparison is a library that allows you to compare a string expression to a 
 
 It supports many LIKE operator syntax:
 - Visual Basic,
-- Transact-SQL,
-- PostgreSQL.
+- Transact-SQL (with ESCAPE),
+- PostgreSQL (LIKE & ILIKE).
 
 
 ## Using Like method
