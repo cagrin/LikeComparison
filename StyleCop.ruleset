@@ -1,7 +1,22 @@
 <?xml version="1.0"?>
 <RuleSet Name="StyleCop.Analyzers rules with default action" Description="StyleCop.Analyzers with default action. Rules with IsEnabledByDefault = false are disabled." ToolsVersion="17.0">
-    <Rules AnalyzerId="Microsoft.Analyzers.ManagedCodeAnalysis" RuleNamespace="Microsoft.Rules.Managed">
+    <Rules AnalyzerId="Microsoft.CodeAnalysis.CodeStyle" RuleNamespace="Microsoft.CodeAnalysis.CodeStyle.Unnecessary">
+        <Rule Id="IDE0001" Action="Warning" />          <!-- Simplify name -->
+        <Rule Id="IDE0002" Action="Warning" />          <!-- Simplify member access -->
+        <Rule Id="IDE0004" Action="Warning" />          <!-- Remove unnecessary cast -->
+        <Rule Id="IDE0005" Action="Warning" />          <!-- Remove unnecessary import -->
+        <Rule Id="IDE0035" Action="Warning" />          <!-- Remove unreachable code -->
+        <Rule Id="IDE0051" Action="Warning" />          <!-- Remove unused private member -->
+        <Rule Id="IDE0052" Action="Warning" />          <!-- Remove unread private member-->
+        <Rule Id="IDE0058" Action="None" />          <!-- Remove unnecessary expression value -->
+        <Rule Id="IDE0059" Action="Warning" />          <!-- Remove unnecessary value assignment -->
         <Rule Id="IDE0060" Action="None" />          <!-- Remove unused parameter -->
+        <Rule Id="IDE0079" Action="Warning" />          <!-- Remove unnecessary suppression -->
+        <Rule Id="IDE0080" Action="Warning" />          <!-- Remove unnecessary suppression operator -->
+        <Rule Id="IDE0100" Action="Warning" />          <!-- Remove unnecessary equality operator -->
+        <Rule Id="IDE0110" Action="Warning" />          <!-- Remove unnecessary discard -->
+    </Rules>
+    <Rules AnalyzerId="Microsoft.CodeAnalysis.CodeStyle" RuleNamespace="Microsoft.CodeAnalysis.CodeStyle.Language.ExpressionLevel">
         <Rule Id="IDE0090" Action="None" />          <!-- Simplify new expression -->
     </Rules>
 
