@@ -17,6 +17,28 @@
         <Rule Id="IDE0110" Action="Warning" />          <!-- Remove unnecessary discard -->
     </Rules>
     <Rules AnalyzerId="Microsoft.CodeAnalysis.CodeStyle" RuleNamespace="Microsoft.CodeAnalysis.CodeStyle.Language.ExpressionLevel">
+        <Rule Id="IDE0010" Action="Warning" />          <!-- Add missing cases to switch statement -->
+        <Rule Id="IDE0017" Action="Warning" />          <!-- Use object initializers -->
+        <Rule Id="IDE0018" Action="Warning" />          <!-- Inline variable declaration -->
+        <Rule Id="IDE0028" Action="Warning" />          <!-- Use collection initializers -->
+        <Rule Id="IDE0032" Action="Warning" />          <!-- Use auto property -->
+        <Rule Id="IDE0033" Action="Warning" />          <!-- Use explicitly provided tuple name -->
+        <Rule Id="IDE0034" Action="Warning" />          <!-- Simplify 'default' expression -->
+        <Rule Id="IDE0037" Action="Warning" />          <!-- Use inferred member name -->
+        <Rule Id="IDE0039" Action="Warning" />          <!-- Use local function instead of lambda -->
+        <Rule Id="IDE0042" Action="Warning" />          <!-- Deconstruct variable declaration -->
+        <Rule Id="IDE0045" Action="None" />          <!-- Use conditional expression for assignment -->
+        <Rule Id="IDE0046" Action="None" />          <!-- Use conditional expression for return -->
+        <Rule Id="IDE0050" Action="Warning" />          <!-- Convert anonymous type to tuple -->
+        <Rule Id="IDE0054" Action="Warning" />          <!-- Use compound assignment -->
+        <Rule Id="IDE0056" Action="Warning" />          <!-- Use index operator -->
+        <Rule Id="IDE0057" Action="Warning" />          <!-- Use range operator -->
+        <Rule Id="IDE0070" Action="Warning" />          <!-- Use 'System.HashCode.Combine' -->
+        <Rule Id="IDE0071" Action="Warning" />          <!-- Simplify interpolation -->
+        <Rule Id="IDE0072" Action="Warning" />          <!-- Add missing cases to switch expression -->
+        <Rule Id="IDE0074" Action="Warning" />          <!-- Use compound assignment -->
+        <Rule Id="IDE0075" Action="Warning" />          <!-- Simplify conditional expression -->
+        <Rule Id="IDE0082" Action="Warning" />          <!-- Convert typeof to nameof -->
         <Rule Id="IDE0090" Action="None" />          <!-- Simplify new expression -->
     </Rules>
 
