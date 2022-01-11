@@ -28,14 +28,14 @@ namespace LikeComparison
 
         public string Escape { get; set; } = string.Empty;
 
-        public StringComparison StringComparison { get => this.CaseSensitivity == CaseSensitivity.CaseInsensitive ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal; }
+        public StringComparison StringComparison => this.CaseSensitivity == CaseSensitivity.CaseInsensitive ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
 
-        public string Wildcard { get => this.PatternStyle == PatternStyle.VisualBasic ? "*" : "%"; }
+        public string Wildcard => this.PatternStyle == PatternStyle.VisualBasic ? "*" : "%";
 
-        public string Single { get => this.PatternStyle == PatternStyle.VisualBasic ? "?" : "_"; }
+        public string Single => this.PatternStyle == PatternStyle.VisualBasic ? "?" : "_";
 
-        public string Invert { get => this.PatternStyle == PatternStyle.VisualBasic ? "!" : "^"; }
+        public string Invert => this.PatternStyle == PatternStyle.VisualBasic ? "!" : "^";
 
-        public string Digits { get => this.PatternStyle == PatternStyle.VisualBasic ? "#" : "[0-9]"; }
+        public string Digits => this.PatternStyle == PatternStyle.VisualBasic ? "#" : "[0-9]";
     }
 }

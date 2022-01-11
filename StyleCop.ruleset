@@ -1,45 +1,82 @@
 <?xml version="1.0"?>
 <RuleSet Name="StyleCop.Analyzers rules with default action" Description="StyleCop.Analyzers with default action. Rules with IsEnabledByDefault = false are disabled." ToolsVersion="17.0">
-    <Rules AnalyzerId="Microsoft.CodeAnalysis.CodeStyle" RuleNamespace="Microsoft.CodeAnalysis.CodeStyle.Unnecessary">
+    <Rules AnalyzerId="Microsoft.CodeAnalysis.CodeStyle" RuleNamespace="Microsoft.CodeAnalysis.CodeStyle">
         <Rule Id="IDE0001" Action="Warning" />          <!-- Simplify name -->
         <Rule Id="IDE0002" Action="Warning" />          <!-- Simplify member access -->
+        <Rule Id="IDE0003" Action="None" />             <!-- Remove this qualification -->
         <Rule Id="IDE0004" Action="Warning" />          <!-- Remove unnecessary cast -->
         <Rule Id="IDE0005" Action="Warning" />          <!-- Remove unnecessary import -->
-        <Rule Id="IDE0035" Action="Warning" />          <!-- Remove unreachable code -->
-        <Rule Id="IDE0051" Action="Warning" />          <!-- Remove unused private member -->
-        <Rule Id="IDE0052" Action="Warning" />          <!-- Remove unread private member-->
-        <Rule Id="IDE0058" Action="None" />          <!-- Remove unnecessary expression value -->
-        <Rule Id="IDE0059" Action="Warning" />          <!-- Remove unnecessary value assignment -->
-        <Rule Id="IDE0060" Action="None" />          <!-- Remove unused parameter -->
-        <Rule Id="IDE0079" Action="Warning" />          <!-- Remove unnecessary suppression -->
-        <Rule Id="IDE0080" Action="Warning" />          <!-- Remove unnecessary suppression operator -->
-        <Rule Id="IDE0100" Action="Warning" />          <!-- Remove unnecessary equality operator -->
-        <Rule Id="IDE0110" Action="Warning" />          <!-- Remove unnecessary discard -->
-    </Rules>
-    <Rules AnalyzerId="Microsoft.CodeAnalysis.CodeStyle" RuleNamespace="Microsoft.CodeAnalysis.CodeStyle.Language.ExpressionLevel">
+        <Rule Id="IDE0007" Action="Warning" />          <!-- Use 'var' instead of explicit type -->
+        <Rule Id="IDE0008" Action="None" />             <!-- Use explicit type instead of 'var' -->
+        <Rule Id="IDE0009" Action="Warning" />          <!-- Add this qualification -->
         <Rule Id="IDE0010" Action="Warning" />          <!-- Add missing cases to switch statement -->
+        <Rule Id="IDE0011" Action="Warning" />          <!-- Add braces -->
+        <Rule Id="IDE0016" Action="Warning" />          <!-- Use throw expression -->
         <Rule Id="IDE0017" Action="Warning" />          <!-- Use object initializers -->
         <Rule Id="IDE0018" Action="Warning" />          <!-- Inline variable declaration -->
+        <Rule Id="IDE0019" Action="Warning" />          <!-- Use pattern matching to avoid as followed by a null check -->
+        <Rule Id="IDE0020" Action="Warning" />          <!-- Use pattern matching to avoid is check followed by a cast (with variable) -->
+        <Rule Id="IDE0021" Action="Warning" />          <!-- Use expression body for constructors -->
+        <Rule Id="IDE0022" Action="Warning" />          <!-- Use expression body for methods -->
+        <Rule Id="IDE0023" Action="Warning" />          <!-- Use expression body for conversion operators -->
+        <Rule Id="IDE0024" Action="Warning" />          <!-- Use expression body for operators -->
+        <Rule Id="IDE0025" Action="Warning" />          <!-- Use expression body for properties -->
+        <Rule Id="IDE0026" Action="Warning" />          <!-- Use expression body for indexers -->
+        <Rule Id="IDE0027" Action="Warning" />          <!-- Use expression body for accessors -->
         <Rule Id="IDE0028" Action="Warning" />          <!-- Use collection initializers -->
+        <Rule Id="IDE0029" Action="Warning" />          <!-- Use coalesce expression (non-nullable types) -->
+        <Rule Id="IDE0030" Action="Warning" />          <!-- Use coalesce expression (nullable types) -->
+        <Rule Id="IDE0031" Action="Warning" />          <!-- Use null propagation -->
         <Rule Id="IDE0032" Action="Warning" />          <!-- Use auto property -->
         <Rule Id="IDE0033" Action="Warning" />          <!-- Use explicitly provided tuple name -->
         <Rule Id="IDE0034" Action="Warning" />          <!-- Simplify 'default' expression -->
+        <Rule Id="IDE0035" Action="Warning" />          <!-- Remove unreachable code -->
+        <Rule Id="IDE0036" Action="Warning" />          <!-- Order modifiers -->
         <Rule Id="IDE0037" Action="Warning" />          <!-- Use inferred member name -->
+        <Rule Id="IDE0038" Action="Warning" />          <!-- Use pattern matching to avoid is check followed by a cast (without variable) -->
         <Rule Id="IDE0039" Action="Warning" />          <!-- Use local function instead of lambda -->
+        <Rule Id="IDE0040" Action="Warning" />          <!-- Add accessibility modifiers -->
+        <Rule Id="IDE0041" Action="Warning" />          <!-- Use is null check -->
         <Rule Id="IDE0042" Action="Warning" />          <!-- Deconstruct variable declaration -->
+        <Rule Id="IDE0044" Action="Warning" />          <!-- Add readonly modifier -->
         <Rule Id="IDE0045" Action="None" />          <!-- Use conditional expression for assignment -->
         <Rule Id="IDE0046" Action="None" />          <!-- Use conditional expression for return -->
+        <Rule Id="IDE0047" Action="None" />             <!-- Remove unnecessary parentheses -->
+        <Rule Id="IDE0048" Action="Warning" />          <!-- Add parentheses for clarity -->
+        <Rule Id="IDE0049" Action="Warning" />          <!-- Use language keywords instead of framework type names for type references -->
         <Rule Id="IDE0050" Action="Warning" />          <!-- Convert anonymous type to tuple -->
+        <Rule Id="IDE0051" Action="Warning" />          <!-- Remove unused private member -->
+        <Rule Id="IDE0052" Action="Warning" />          <!-- Remove unread private member-->
+        <Rule Id="IDE0053" Action="Warning" />          <!-- Use expression body for lambdas -->
         <Rule Id="IDE0054" Action="Warning" />          <!-- Use compound assignment -->
         <Rule Id="IDE0056" Action="Warning" />          <!-- Use index operator -->
         <Rule Id="IDE0057" Action="Warning" />          <!-- Use range operator -->
+        <Rule Id="IDE0058" Action="None" />          <!-- Remove unnecessary expression value -->
+        <Rule Id="IDE0059" Action="Warning" />          <!-- Remove unnecessary value assignment -->
+        <Rule Id="IDE0060" Action="None" />          <!-- Remove unused parameter -->
+        <Rule Id="IDE0061" Action="Warning" />          <!-- Use expression body for local functions -->
+        <Rule Id="IDE0062" Action="Warning" />          <!-- Make local function static -->
+        <Rule Id="IDE0063" Action="Warning" />          <!-- Use simple using statement -->
+        <Rule Id="IDE0064" Action="Warning" />          <!-- Make struct fields writable -->
+        <Rule Id="IDE0065" Action="None" />             <!-- using directive placement -->
+        <Rule Id="IDE0066" Action="Warning" />          <!-- Use switch expression -->
         <Rule Id="IDE0070" Action="Warning" />          <!-- Use 'System.HashCode.Combine' -->
         <Rule Id="IDE0071" Action="Warning" />          <!-- Simplify interpolation -->
         <Rule Id="IDE0072" Action="Warning" />          <!-- Add missing cases to switch expression -->
+        <Rule Id="IDE0073" Action="None" />             <!-- Require file header -->
         <Rule Id="IDE0074" Action="Warning" />          <!-- Use compound assignment -->
         <Rule Id="IDE0075" Action="Warning" />          <!-- Simplify conditional expression -->
+        <Rule Id="IDE0076" Action="None" />             <!-- Remove invalid global SuppressMessageAttribute -->
+        <Rule Id="IDE0077" Action="None" />             <!-- Avoid legacy format target in global SuppressMessageAttribute -->
+        <Rule Id="IDE0078" Action="Warning" />          <!-- Use pattern matching -->
+        <Rule Id="IDE0079" Action="Warning" />          <!-- Remove unnecessary suppression -->
+        <Rule Id="IDE0080" Action="Warning" />          <!-- Remove unnecessary suppression operator -->
         <Rule Id="IDE0082" Action="Warning" />          <!-- Convert typeof to nameof -->
+        <Rule Id="IDE0083" Action="Warning" />          <!-- Use pattern matching (not operator) -->
         <Rule Id="IDE0090" Action="None" />          <!-- Simplify new expression -->
+        <Rule Id="IDE0100" Action="Warning" />          <!-- Remove unnecessary equality operator -->
+        <Rule Id="IDE0110" Action="Warning" />          <!-- Remove unnecessary discard -->
+        <Rule Id="IDE1005" Action="Warning" />          <!-- Use conditional delegate call -->
     </Rules>
 
     <Rules AnalyzerId="Microsoft.CodeAnalysis.NetAnalyzers" RuleNamespace="Microsoft.CodeAnalysis.NetAnalyzers">
