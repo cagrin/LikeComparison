@@ -27,6 +27,7 @@ namespace LikeComparison.Tests
 
             testcontainer = testcontainersBuilder.Build();
             testcontainer.StartAsync().Wait();
+            _ = context;
         }
 
         [ClassCleanup]
