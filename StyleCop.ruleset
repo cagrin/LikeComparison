@@ -51,7 +51,7 @@
         <Rule Id="IDE0054" Action="Warning" />          <!-- Use compound assignment -->
         <Rule Id="IDE0056" Action="Warning" />          <!-- Use index operator -->
         <Rule Id="IDE0057" Action="Warning" />          <!-- Use range operator -->
-        <Rule Id="IDE0058" Action="None" />          <!-- Remove unnecessary expression value -->
+        <Rule Id="IDE0058" Action="Warning" />          <!-- Remove unnecessary expression value -->
         <Rule Id="IDE0059" Action="Warning" />          <!-- Remove unnecessary value assignment -->
         <Rule Id="IDE0060" Action="Warning" />          <!-- Remove unused parameter -->
         <Rule Id="IDE0061" Action="Warning" />          <!-- Use expression body for local functions -->

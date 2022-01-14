@@ -93,7 +93,8 @@ namespace LikeComparison.Tests
                 string matchExpression = c[0].ToString();
                 string pattern = c[1].ToString();
 
-                await LikeTransactSqlAssert(matchExpression, pattern).ConfigureAwait(false);
+                bool actual = await LikeTransactSqlAssert(matchExpression, pattern).ConfigureAwait(false);
+                Assert.IsNotNull(actual);
             }).Wait();
         }
 

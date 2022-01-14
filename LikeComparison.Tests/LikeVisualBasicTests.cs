@@ -14,7 +14,8 @@ namespace LikeComparison.Tests
         [ExpectedException(typeof(ArgumentNullException))]
         public void LikeThrowArgumentNullException(string matchExpression, string pattern)
         {
-            matchExpression.Like(pattern);
+            bool actual = matchExpression.Like(pattern);
+            Assert.IsNotNull(actual);
         }
 
         [DataTestMethod]

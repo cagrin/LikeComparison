@@ -12,7 +12,8 @@ namespace LikeComparison.Tests
         [ExpectedException(typeof(ArgumentNullException))]
         public void LikeTransactSqlRegexWithEscapeThrowArgumentNullException(string pattern, string escape)
         {
-            LikeTransactSql.LikeRegex(pattern, escape);
+            var regex = LikeTransactSql.LikeRegex(pattern, escape);
+            Assert.IsNotNull(regex);
         }
 
         [DataTestMethod]
@@ -21,7 +22,8 @@ namespace LikeComparison.Tests
         [ExpectedException(typeof(ArgumentNullException))]
         public void LikeTransactSqlWithEscapeThrowArgumentNullException(string matchExpression, string pattern, string escape)
         {
-            matchExpression.Like(pattern, escape);
+            var actual = matchExpression.Like(pattern, escape);
+            Assert.IsNotNull(actual);
         }
 
         [DataTestMethod]
@@ -49,7 +51,8 @@ namespace LikeComparison.Tests
                 string matchExpression = c[0].ToString();
                 string pattern = c[1].ToString();
 
-                await LikeTransactSqlWithEscapeAssert(matchExpression, pattern, escape).ConfigureAwait(false);
+                bool actual = await LikeTransactSqlWithEscapeAssert(matchExpression, pattern, escape).ConfigureAwait(false);
+                Assert.IsNotNull(actual);
             }).Wait();
         }
 
