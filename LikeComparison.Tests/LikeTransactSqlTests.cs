@@ -4,7 +4,6 @@ namespace LikeComparison.Tests
     using DotNet.Testcontainers.Containers.Builders;
     using DotNet.Testcontainers.Containers.Configurations.Databases;
     using DotNet.Testcontainers.Containers.Modules.Databases;
-    using DotNet.Testcontainers.Containers.WaitStrategies;
     using LikeComparison.TransactSql;
     using Microsoft.Data.SqlClient;
 
@@ -25,8 +24,7 @@ namespace LikeComparison.Tests
                     Password = password,
                 })
 #if DEBUG
-                .WithImage("cagrin/azure-sql-edge-arm64")
-                .WithWaitStrategy(Wait.ForUnixContainer().UntilCommandIsCompleted($"pwsh -Command 'Invoke-SqlCmd -ServerInstance \"localhost,1433\" -Username \"sa\" -Password \"{password}\" -ConnectionTimeout 60 -Query \"select 1\"'"));
+                .WithImage("cagrin/azure-sql-edge-arm64");
 #else
                 .WithImage("mcr.microsoft.com/mssql/server:2019-latest");
 #endif
