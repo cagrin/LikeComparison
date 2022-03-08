@@ -1,6 +1,6 @@
 [assembly: Parallelize(Workers = 8, Scope = ExecutionScope.MethodLevel)]
 
-namespace LikeComparison.Tests
+namespace LikeComparison.StringTests
 {
     using LikeComparison.VisualBasic;
     using Microsoft.VisualBasic;

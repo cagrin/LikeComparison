@@ -1,4 +1,4 @@
-namespace LikeComparison.Tests
+namespace LikeComparison.StringTests
 {
     using LikeComparison.VisualBasic;
 

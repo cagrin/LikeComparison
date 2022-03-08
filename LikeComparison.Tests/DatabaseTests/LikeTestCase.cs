@@ -1,4 +1,4 @@
-namespace LikeComparison.Tests
+namespace LikeComparison.DatabaseTests
 {
     public static class LikeTestCase
     {
