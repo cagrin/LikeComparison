@@ -11,7 +11,7 @@ It supports many LIKE operator syntax:
 - PostgreSQL (both LIKE and ILIKE).
 
 
-## Using Like method
+## Using Like method on strings
 
 You can simply use extension method on `String` class:
 ```cs
@@ -53,6 +53,50 @@ bool isMatched = matchExpression.ILike(pattern);
 // or case-sensitive
 bool isMatched = matchExpression.Like(pattern);
 ```
+
+## Using IsLike method on assertions
+
+You can simply use extension method on `Assert` class:
+```cs
+using LikeComparison.VisualBasic;
+```
+```cs
+string matchExpression = "abcdef";
+string pattern = "a*";
+
+Assert.That.IsLike(matchExpression, pattern);
+```
+or
+
+```cs
+using LikeComparison.TransactSql;
+```
+```cs
+string matchExpression = "abcdef";
+string pattern = "a%";
+
+// common use
+Assert.That.IsLike(matchExpression, pattern);
+
+// or with escape character
+Assert.That.IsLike(matchExpression, pattern, escapeCharacter: "/");
+```
+or
+
+```cs
+using LikeComparison.PostgreSql;
+```
+```cs
+string matchExpression = "abcdef";
+string pattern = "a%";
+
+// case-insensitive
+Assert.That.IsILike(matchExpression, pattern);
+
+// or case-sensitive
+Assert.That.IsLike(matchExpression, pattern);
+```
+
 ## Supported syntax
 ### Visual Basic
 

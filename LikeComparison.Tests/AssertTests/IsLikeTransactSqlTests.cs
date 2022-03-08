@@ -3,7 +3,7 @@ namespace LikeComparison.AssertTests
     using LikeComparison.TransactSql;
 
     [TestClass]
-    public class IsLikeTransactSqlTests
+    public partial class IsLikeTransactSqlTests
     {
         [TestMethod]
         public void IsLikeHello()
