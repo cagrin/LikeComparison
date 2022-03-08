@@ -16,6 +16,7 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All"/>
+		<PackageReference Include="MSTest.TestFramework" Version="2.2.8"/>
 		<None Include="../License" Pack="true" Visible="false" PackagePath=""/>
 		<None Include="../README.md" Pack="true" PackagePath=""/>
 	</ItemGroup>
