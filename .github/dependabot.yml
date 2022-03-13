@@ -5,6 +5,10 @@ updates:
     schedule:
       interval: "weekly"
   - package-ecosystem: "nuget"
+    directory: "/LikeComparison"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "nuget"
     directory: "/LikeComparison.Tests"
     schedule:
       interval: "daily"
