@@ -1,4 +1,4 @@
-[assembly: Parallelize(Workers = 8, Scope = ExecutionScope.MethodLevel)]
+[assembly: Parallelize(Workers = 8, Scope = ExecutionScope.ClassLevel)]
 
 namespace LikeComparison.StringTests
 {
