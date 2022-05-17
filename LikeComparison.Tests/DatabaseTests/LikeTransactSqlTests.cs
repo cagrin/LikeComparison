@@ -1,35 +1,40 @@
 namespace LikeComparison.DatabaseTests
 {
     using Dapper;
-    using DotNet.Testcontainers.Containers.Builders;
-    using DotNet.Testcontainers.Containers.Configurations.Databases;
-    using DotNet.Testcontainers.Containers.Modules.Databases;
+    using DotNet.Testcontainers.Builders;
+    using DotNet.Testcontainers.Configurations;
+    using DotNet.Testcontainers.Containers;
     using LikeComparison.TransactSql;
     using Microsoft.Data.SqlClient;
 
     [TestClass]
     public partial class LikeTransactSqlTests
     {
+#if DEBUG
+        private const string Image = "cagrin/azure-sql-edge-arm64";
+#else
+        private const string Image = "mcr.microsoft.com/mssql/server:2019-latest";
+#endif
+
+        private const string Password = "StrongP@ssw0rd!";
+
         private static MsSqlTestcontainer? testcontainer;
 
         [ClassInitialize]
         public static void ClassInitialize(TestContext context)
         {
-            var password = "StrongP@ssw0rd!";
-
             // docker run -e 'ACCEPT_EULA=1' -e 'MSSQL_SA_PASSWORD=StrongP@ssw0rd!' -p 1433:1433 -d mcr.microsoft.com/mssql/server:2019-latest
-            var testcontainersBuilder = new TestcontainersBuilder<MsSqlTestcontainer>()
-                .WithDatabase(new MsSqlTestcontainerConfiguration()
-                {
-                    Password = password,
-                })
-#if DEBUG
-                .WithImage("cagrin/azure-sql-edge-arm64");
-#else
-                .WithImage("mcr.microsoft.com/mssql/server:2019-latest");
-#endif
+            _ = context;
 
-            testcontainer = testcontainersBuilder.Build();
+            using var config = new MsSqlTestcontainerConfiguration(Image)
+            {
+                Password = Password,
+            };
+
+            testcontainer = new TestcontainersBuilder<MsSqlTestcontainer>()
+                .WithDatabase(config)
+                .Build();
+
             testcontainer.StartAsync().Wait();
         }
 

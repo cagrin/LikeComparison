@@ -1,33 +1,43 @@
 namespace LikeComparison.DatabaseTests
 {
     using Dapper;
-    using DotNet.Testcontainers.Containers.Builders;
-    using DotNet.Testcontainers.Containers.Configurations.Databases;
-    using DotNet.Testcontainers.Containers.Modules.Databases;
+    using DotNet.Testcontainers.Builders;
+    using DotNet.Testcontainers.Configurations;
+    using DotNet.Testcontainers.Containers;
     using LikeComparison.PostgreSql;
     using Npgsql;
 
     [TestClass]
     public class LikePostgreSqlTests
     {
+        private const string Image = "postgres";
+
+        private const string Database = "postgres";
+
+        private const string Username = "postgres";
+
+        private const string Password = "StrongP@ssw0rd!";
+
         private static PostgreSqlTestcontainer? testcontainer;
 
         [ClassInitialize]
         public static void ClassInitialize(TestContext context)
         {
             // docker run -e POSTGRES_PASSWORD=StrongP@ssw0rd! -p 5432:5432 -d postgres
-            var testcontainersBuilder = new TestcontainersBuilder<PostgreSqlTestcontainer>()
-                .WithDatabase(new PostgreSqlTestcontainerConfiguration()
-                {
-                    Database = "postgres",
-                    Username = "postgres",
-                    Password = "StrongP@ssw0rd!",
-                })
-                .WithImage("postgres");
-
-            testcontainer = testcontainersBuilder.Build();
-            testcontainer.StartAsync().Wait();
             _ = context;
+
+            using var config = new PostgreSqlTestcontainerConfiguration(Image)
+            {
+                Database = Database,
+                Username = Username,
+                Password = Password,
+            };
+
+            testcontainer = new TestcontainersBuilder<PostgreSqlTestcontainer>()
+                .WithDatabase(config)
+                .Build();
+
+            testcontainer.StartAsync().Wait();
         }
 
         [ClassCleanup]

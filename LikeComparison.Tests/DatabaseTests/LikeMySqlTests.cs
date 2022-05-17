@@ -1,35 +1,46 @@
 namespace LikeComparison.DatabaseTests
 {
     using Dapper;
-    using DotNet.Testcontainers.Containers.Builders;
-    using DotNet.Testcontainers.Containers.Configurations.Databases;
-    using DotNet.Testcontainers.Containers.Modules.Databases;
+    using DotNet.Testcontainers.Builders;
+    using DotNet.Testcontainers.Configurations;
+    using DotNet.Testcontainers.Containers;
     using LikeComparison.PostgreSql;
     using MySqlConnector;
 
     [TestClass]
     public class LikeMySqlTests
     {
+#if DEBUG
+        private const string Image = "mariadb";
+#else
+        private const string Image = "mysql";
+#endif
+
+        private const string Database = "mysql";
+
+        private const string Username = "mysql";
+
+        private const string Password = "StrongP@ssw0rd!";
+
         private static MySqlTestcontainer? testcontainer;
 
         [ClassInitialize]
         public static void ClassInitialize(TestContext context)
         {
             // docker run -e MYSQL_ROOT_PASSWORD=StrongP@ssw0rd! -p 3306:3306 -d mysql/mysql-server
-            var testcontainersBuilder = new TestcontainersBuilder<MySqlTestcontainer>()
-                .WithDatabase(new MySqlTestcontainerConfiguration()
-                {
-                    Database = "mysql",
-                    Username = "mysql",
-                    Password = "StrongP@ssw0rd!",
-                })
-#if DEBUG
-                .WithImage("mariadb");
-#else
-                .WithImage("mysql");
-#endif
+            _ = context;
 
-            testcontainer = testcontainersBuilder.Build();
+            using var config = new MySqlTestcontainerConfiguration(Image)
+            {
+                Database = Database,
+                Username = Username,
+                Password = Password,
+            };
+
+            testcontainer = new TestcontainersBuilder<MySqlTestcontainer>()
+                .WithDatabase(config)
+                .Build();
+
             testcontainer.StartAsync().Wait();
         }
 
