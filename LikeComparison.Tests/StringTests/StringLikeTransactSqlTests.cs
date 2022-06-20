@@ -23,5 +23,11 @@ namespace LikeComparison.AssertTests
         {
             Assert.IsNotNull(LikeTransactSql.LikeRegex("h_ll%"));
         }
+
+        [TestMethod]
+        public void LikeRegexNull()
+        {
+            Assert.IsFalse("Hello".Like("h_ll[["));
+        }
     }
 }
