@@ -19,7 +19,7 @@ namespace LikeComparison.AssertTests
         }
 
         [TestMethod]
-        public void TestRegex()
+        public void LikeRegex()
         {
             Assert.IsNotNull(LikeTransactSql.LikeRegex("h_ll%"));
         }

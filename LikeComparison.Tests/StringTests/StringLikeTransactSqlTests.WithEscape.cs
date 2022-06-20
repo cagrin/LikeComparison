@@ -25,9 +25,28 @@ namespace LikeComparison.AssertTests
         }
 
         [TestMethod]
-        public void TestRegexEscape()
+        public void LikeRegexEscape()
         {
             Assert.IsNotNull(LikeTransactSql.LikeRegex("h_ll%", "/"));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void LikeRegexThrowArgumentNullException()
+        {
+            Assert.IsNotNull(LikeTransactSql.LikeRegex("h_ll%", null!));
+        }
+
+        [DataTestMethod]
+        [DataRow("abcdef", "a%", "\\", true)]
+        [DataRow("abcdef", "a%", "a", false)]
+        [DataRow("abcdef", "EaEbEc%", "E", true)]
+        [DataRow("abcdef", "%\\e_", "\\", true)]
+        public void LikeTransactSqlWithEscapeSpecials(string matchExpression, string pattern, string escape, bool expected)
+        {
+            bool actual = matchExpression.Like(pattern, escape);
+
+            Assert.AreEqual(expected, actual);
         }
     }
 }

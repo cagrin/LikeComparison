@@ -32,9 +32,14 @@ namespace LikeComparison.AssertTests
         }
 
         [TestMethod]
-        public void TestRegex()
+        public void ILikeRegex()
         {
             Assert.IsNotNull(LikePostgreSql.ILikeRegex("h_ll%"));
+        }
+
+        [TestMethod]
+        public void LikeRegex()
+        {
             Assert.IsNotNull(LikePostgreSql.LikeRegex("H_ll%"));
         }
     }
