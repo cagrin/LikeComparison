@@ -1,7 +1,3 @@
-#if DEBUG
-[assembly: Parallelize(Workers = 8, Scope = ExecutionScope.ClassLevel)]
-#endif
-
 namespace LikeComparison.StringTests
 {
     using LikeComparison.VisualBasic;
