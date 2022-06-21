@@ -7,9 +7,9 @@ namespace LikeComparison.TransactSql
     {
         private static readonly LikeOptions LikeOptions = new LikeOptions() { PatternStyle = PatternStyle.TransactSql };
 
-        public static void ShouldBeLike(this string actual, string pattern)
+        public static void ShouldBeLike(this string actual, string pattern, string? customMessage = null)
         {
-            actual.AssertAwesomely(v => LikeString.Like(actual, pattern, LikeOptions), actual, pattern);
+            actual.AssertAwesomely(v => LikeString.Like(actual, pattern, LikeOptions), actual, pattern, customMessage);
         }
     }
 }

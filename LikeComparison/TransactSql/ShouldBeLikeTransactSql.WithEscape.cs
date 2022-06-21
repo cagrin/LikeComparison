@@ -5,7 +5,7 @@ namespace LikeComparison.TransactSql
 
     public static partial class ShouldBeLikeTransactSql
     {
-        public static void ShouldBeLike(this string actual, string pattern, string escape)
+        public static void ShouldBeLike(this string actual, string pattern, string escape, string? customMessage = null)
         {
             if (escape == null)
             {
@@ -14,7 +14,7 @@ namespace LikeComparison.TransactSql
 
             LikeOptions likeOptions = new LikeOptions() { PatternStyle = PatternStyle.TransactSql, Escape = escape };
 
-            actual.AssertAwesomely(v => LikeString.Like(actual, pattern, likeOptions), actual, pattern);
+            actual.AssertAwesomely(v => LikeString.Like(actual, pattern, likeOptions), actual, pattern, customMessage);
         }
     }
 }

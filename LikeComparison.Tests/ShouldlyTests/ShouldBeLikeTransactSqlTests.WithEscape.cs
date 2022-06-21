@@ -7,20 +7,20 @@ namespace LikeComparison.ShouldlyTests
         [TestMethod]
         public void IsLikeHelloWithEscape()
         {
-            "Hello".ShouldBeLike("h_ll%", "/");
+            "Hello".ShouldBeLike("h_ll%", escape: "/");
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void IsLikeHelloWithNullEscape()
         {
-            "Hello".ShouldBeLike("h_ll%", null!);
+            "Hello".ShouldBeLike("h_ll%", escape: null!);
         }
 
         [TestMethod]
         public void IsNotLikeHelloWithEscape()
         {
-            var exception = Should.Throw<ShouldAssertException>(() => "Hello".ShouldBeLike("Hal%", "/"));
+            var exception = Should.Throw<ShouldAssertException>(() => "Hello".ShouldBeLike("Hal%", escape: "/"));
 
             var message =
 """
