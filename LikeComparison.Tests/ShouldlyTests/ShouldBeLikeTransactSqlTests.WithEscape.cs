@@ -1,4 +1,4 @@
-namespace LikeComparison.AssertTests
+namespace LikeComparison.ShouldlyTests
 {
     using LikeComparison.TransactSql;
 
