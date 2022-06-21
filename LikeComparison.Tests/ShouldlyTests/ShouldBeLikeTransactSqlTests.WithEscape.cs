@@ -5,20 +5,20 @@ namespace LikeComparison.ShouldlyTests
     public partial class ShouldBeLikeTransactSqlTests
     {
         [TestMethod]
-        public void IsLikeHelloWithEscape()
+        public void ShouldBeLikeWithEscapeShouldPass()
         {
             "Hello".ShouldBeLike("h_ll%", escape: "/");
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void IsLikeHelloWithNullEscape()
+        public void ShouldBeLikeWithEscapeShouldThrowArgumentNullException()
         {
             "Hello".ShouldBeLike("h_ll%", escape: null!);
         }
 
         [TestMethod]
-        public void IsNotLikeHelloWithEscape()
+        public void ShouldBeLikeWithEscapeShouldThrowShouldAssertException()
         {
             var exception = Should.Throw<ShouldAssertException>(() => "Hello".ShouldBeLike("Hal%", escape: "/"));
 

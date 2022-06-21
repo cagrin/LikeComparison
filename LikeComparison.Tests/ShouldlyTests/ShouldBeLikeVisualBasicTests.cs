@@ -6,13 +6,13 @@ namespace LikeComparison.ShouldlyTests
     public class ShouldBeLikeVisualBasicTests
     {
         [TestMethod]
-        public void IsLikeHello()
+        public void ShouldBeLikeShouldPass()
         {
             "Hello".ShouldBeLike("h?ll*");
         }
 
         [TestMethod]
-        public void IsNotLikeHello()
+        public void ShouldBeLikeShouldThrowShouldAssertException()
         {
             var exception = Should.Throw<ShouldAssertException>(() => "Hello".ShouldBeLike("Hal*"));
 

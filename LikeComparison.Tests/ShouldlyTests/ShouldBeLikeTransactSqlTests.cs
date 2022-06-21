@@ -6,13 +6,13 @@ namespace LikeComparison.ShouldlyTests
     public partial class ShouldBeLikeTransactSqlTests
     {
         [TestMethod]
-        public void IsLikeHello()
+        public void ShouldBeLikeShouldPass()
         {
             "Hello".ShouldBeLike("h_ll%");
         }
 
         [TestMethod]
-        public void IsNotLikeHello()
+        public void ShouldBeLikeShouldThrowShouldAssertException()
         {
             var exception = Should.Throw<ShouldAssertException>(() => "Hello".ShouldBeLike("Hal%"));
 

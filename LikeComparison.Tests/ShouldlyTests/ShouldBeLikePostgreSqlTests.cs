@@ -6,19 +6,19 @@ namespace LikeComparison.ShouldlyTests
     public class ShouldBeLikePostgreSqlTests
     {
         [TestMethod]
-        public void IsILikeHello()
+        public void ShouldBeILikeShouldPass()
         {
             "Hello".ShouldBeILike("h_ll%");
         }
 
         [TestMethod]
-        public void IsLikeHello()
+        public void ShouldBeLikeShouldPass()
         {
             "Hello".ShouldBeLike("H_ll%");
         }
 
         [TestMethod]
-        public void IsNotILikeHello()
+        public void ShouldBeILikeShouldThrowShouldAssertException()
         {
             var exception = Should.Throw<ShouldAssertException>(() => "Hello".ShouldBeILike("Hal%"));
 
@@ -35,7 +35,7 @@ Should.Throw<ShouldAssertException>("Hello"
         }
 
         [TestMethod]
-        public void IsNotLikeHello()
+        public void ShouldBeLikeShouldThrowShouldAssertException()
         {
             var exception = Should.Throw<ShouldAssertException>(() => "Hello".ShouldBeLike("Hal%"));
 
