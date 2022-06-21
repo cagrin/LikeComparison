@@ -21,6 +21,8 @@
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="MSTest.TestFramework"/>
-        <PackageReference Include="Shouldly"/>
+        <PackageReference Include="Shouldly">
+            <ExcludeAssets>build</ExcludeAssets>
+        </PackageReference>
     </ItemGroup>
 </Project>
