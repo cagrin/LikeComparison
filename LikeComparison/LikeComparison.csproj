@@ -21,5 +21,6 @@
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="MSTest.TestFramework"/>
+        <PackageReference Include="Shouldly"/>
     </ItemGroup>
 </Project>

@@ -3,6 +3,7 @@
         <TargetFramework>net6.0</TargetFramework>
         <IsPackable>false</IsPackable>
         <ImplicitUsings>enable</ImplicitUsings>
+        <LangVersion>preview</LangVersion>
     </PropertyGroup>
     <ItemGroup>
         <ProjectReference Include="..\LikeComparison\LikeComparison.csproj"/>
@@ -11,6 +12,10 @@
         <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting"/>
         <PackageReference Include="MSTest.TestAdapter"/>
         <PackageReference Include="MSTest.TestFramework"/>
+    </ItemGroup>
+    <ItemGroup>
+        <Using Include="Shouldly"/>
+        <PackageReference Include="Shouldly"/>
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="coverlet.collector"/>
