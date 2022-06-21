@@ -15,7 +15,9 @@
     </ItemGroup>
     <ItemGroup>
         <Using Include="Shouldly"/>
-        <PackageReference Include="Shouldly"/>
+        <PackageReference Include="Shouldly">
+            <ExcludeAssets>build</ExcludeAssets>
+        </PackageReference>
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="coverlet.collector"/>
