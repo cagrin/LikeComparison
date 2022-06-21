@@ -5,18 +5,14 @@ namespace LikeComparison.PostgreSql
     [ShouldlyMethods]
     public static partial class ShouldBeLikePostgreSql
     {
-        private static readonly LikeOptions ILikeOptions = new LikeOptions() { PatternStyle = PatternStyle.TransactSql, CaseSensitivity = CaseSensitivity.CaseInsensitive };
-
-        private static readonly LikeOptions LikeOptions = new LikeOptions() { PatternStyle = PatternStyle.TransactSql, CaseSensitivity = CaseSensitivity.CaseSensitive };
-
         public static void ShouldBeILike(this string actual, string pattern)
         {
-            actual.AssertAwesomely(v => LikeString.Like(actual, pattern, ILikeOptions), actual, pattern);
+            actual.AssertAwesomely(v => LikeString.Like(actual, pattern, LikePostgreSql.ILikeOptions), actual, pattern);
         }
 
         public static void ShouldBeLike(this string actual, string pattern)
         {
-            actual.AssertAwesomely(v => LikeString.Like(actual, pattern, LikeOptions), actual, pattern);
+            actual.AssertAwesomely(v => LikeString.Like(actual, pattern, LikePostgreSql.LikeOptions), actual, pattern);
         }
     }
 }

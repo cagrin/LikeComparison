@@ -3,7 +3,7 @@ namespace LikeComparison.TransactSql
     // https://docs.microsoft.com/en-us/sql/t-sql/language-elements/like-transact-sql
     public static partial class LikeTransactSql
     {
-        private static readonly LikeOptions LikeOptions = new LikeOptions() { PatternStyle = PatternStyle.TransactSql };
+        internal static readonly LikeOptions LikeOptions = new LikeOptions() { PatternStyle = PatternStyle.TransactSql };
 
         public static bool Like(this string matchExpression, string pattern)
         {

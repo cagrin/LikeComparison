@@ -4,15 +4,11 @@ namespace LikeComparison.PostgreSql
 
     public static class IsLikePostgreSql
     {
-        private static readonly LikeOptions ILikeOptions = new LikeOptions() { PatternStyle = PatternStyle.TransactSql, CaseSensitivity = CaseSensitivity.CaseInsensitive };
-
-        private static readonly LikeOptions LikeOptions = new LikeOptions() { PatternStyle = PatternStyle.TransactSql, CaseSensitivity = CaseSensitivity.CaseSensitive };
-
         public static void IsILike(this Assert assert, string matchExpression, string pattern)
         {
             _ = assert;
 
-            if (!LikeString.Like(matchExpression, pattern, ILikeOptions))
+            if (!LikeString.Like(matchExpression, pattern, LikePostgreSql.ILikeOptions))
             {
                 throw new AssertFailedException($"Assert.That.IsILike failed. Expected that <{matchExpression}> is ILIKE <{pattern}>, but actually it is not.");
             }
@@ -22,7 +18,7 @@ namespace LikeComparison.PostgreSql
         {
             _ = assert;
 
-            if (!LikeString.Like(matchExpression, pattern, LikeOptions))
+            if (!LikeString.Like(matchExpression, pattern, LikePostgreSql.LikeOptions))
             {
                 throw new AssertFailedException($"Assert.That.IsLike failed. Expected that <{matchExpression}> is LIKE <{pattern}>, but actually it is not.");
             }
