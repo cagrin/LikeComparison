@@ -163,7 +163,7 @@ https://www.postgresql.org/docs/current/functions-matching.html
 
 ## Supported targets
 ### .NET 7.0
-- Preview.
+- Supported.
 - Additional target for LikeComparison.Tests.
 ### .NET 6.0
 - Recommended.
