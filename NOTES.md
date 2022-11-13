@@ -1,6 +1,7 @@
-## Show output during test
+## Show output during test with .NET 6
 
-```dotnet test ./LikeComparison.Tests -l "console;verbosity=detailed" /p:CollectCoverage=true /p:CoverletOutputFormat=lcov```
+```dotnet test ./LikeComparison.Tests --framework net6.0 -l "console;verbosity=detailed" -e CollectCoverage=true -e CoverletOutputFormat=lcov```
 
-## Filter smoke tests
-```dotnet test ./LikeComparison.Tests /p:CollectCoverage=true /p:CoverletOutputFormat=lcov --filter "(ClassName!~LikeComparison.DatabaseTests)"```
+## Filter smoke tests with .NET 6
+
+```dotnet test ./LikeComparison.Tests --framework net6.0 -e CollectCoverage=true -e CoverletOutputFormat=lcov --filter "(ClassName!~LikeComparison.DatabaseTests)"```

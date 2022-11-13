@@ -162,11 +162,12 @@ https://www.postgresql.org/docs/current/functions-matching.html
 ```% _```
 
 ## Supported targets
+### .NET 7.0
+- Preview.
+- Additional target for LikeComparison.Tests.
 ### .NET 6.0
 - Recommended.
-- Default target for LikeComparison.Tests.
-### .NET 5.0
-- Supported.
+- Default target for LikeComparison.Tests and code coverage.
 ### .NET Core 3.1
 - Supported.
 ### .NET Framework 4.8
