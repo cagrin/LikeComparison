@@ -14,11 +14,12 @@ namespace LikeComparison.ShouldlyTests
         [TestMethod]
         public void ShouldBeLikeShouldThrowShouldAssertException()
         {
-            var exception = Should.Throw<ShouldAssertException>(() => "Hello".ShouldBeLike("Hal%"));
+            string? matchExpression = "Hello";
+            var exception = Should.Throw<ShouldAssertException>(() => matchExpression.ShouldBeLike("Hal%"));
 
             var message =
 """
-Should.Throw<ShouldAssertException>("Hello"
+Should.Throw<ShouldAssertException>(matchExpression
     should be like
 "Hal%"
     but was
