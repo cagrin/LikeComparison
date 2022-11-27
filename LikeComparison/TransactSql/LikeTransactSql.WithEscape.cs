@@ -4,7 +4,7 @@ namespace LikeComparison.TransactSql
 
     public static partial class LikeTransactSql
     {
-        public static bool Like(this string matchExpression, string pattern, string escape)
+        public static bool Like(this string? matchExpression, string pattern, string escape)
         {
             if (escape == null)
             {

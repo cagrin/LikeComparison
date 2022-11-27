@@ -6,7 +6,7 @@ namespace LikeComparison.VisualBasic
     {
         internal static readonly LikeOptions LikeOptions = new LikeOptions() { PatternStyle = PatternStyle.VisualBasic };
 
-        public static bool Like(this string matchExpression, string pattern)
+        public static bool Like(this string? matchExpression, string pattern)
         {
             return LikeString.Like(matchExpression, pattern, LikeOptions);
         }

@@ -6,8 +6,13 @@ namespace LikeComparison
 
     internal static partial class LikeString
     {
-        internal static bool Like(string matchExpression, string pattern, LikeOptions likeOptions)
+        internal static bool Like(string? matchExpression, string pattern, LikeOptions likeOptions)
         {
+            if (matchExpression == null)
+            {
+                return false;
+            }
+
             if (pattern == null)
             {
                 throw new ArgumentNullException(nameof(pattern), "Value cannot be null.");

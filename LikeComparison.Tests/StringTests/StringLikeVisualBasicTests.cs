@@ -11,11 +11,13 @@ namespace LikeComparison.AssertTests
             Assert.IsTrue("Hello".Like("h?ll*"));
         }
 
-        [TestMethod]
+        [DataTestMethod]
+        [DataRow(null)]
+        [DataRow("Hello")]
         [ExpectedException(typeof(AssertFailedException))]
-        public void IsNotLikeHello()
+        public void IsNotLikeHello(string? matchExpression)
         {
-            Assert.IsTrue("Hello".Like("Hal*"));
+            Assert.IsTrue(matchExpression.Like("Hal*"));
         }
 
         [TestMethod]

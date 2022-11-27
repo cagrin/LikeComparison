@@ -17,11 +17,13 @@ namespace LikeComparison.AssertTests
             Assert.IsTrue("Hello".Like("h_ll%", null!));
         }
 
-        [TestMethod]
+        [DataTestMethod]
+        [DataRow(null)]
+        [DataRow("Hello")]
         [ExpectedException(typeof(AssertFailedException))]
-        public void IsNotLikeHelloWithEscape()
+        public void IsNotLikeHelloWithEscape(string? matchExpression)
         {
-            Assert.IsTrue("Hello".Like("Hal%", "/"));
+            Assert.IsTrue(matchExpression.Like("Hal%", "/"));
         }
 
         [TestMethod]

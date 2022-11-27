@@ -7,12 +7,12 @@ namespace LikeComparison.PostgreSql
 
         internal static readonly LikeOptions LikeOptions = new LikeOptions() { PatternStyle = PatternStyle.TransactSql, CaseSensitivity = CaseSensitivity.CaseSensitive };
 
-        public static bool ILike(this string matchExpression, string pattern)
+        public static bool ILike(this string? matchExpression, string pattern)
         {
             return LikeString.Like(matchExpression, pattern, ILikeOptions);
         }
 
-        public static bool Like(this string matchExpression, string pattern)
+        public static bool Like(this string? matchExpression, string pattern)
         {
             return LikeString.Like(matchExpression, pattern, LikeOptions);
         }

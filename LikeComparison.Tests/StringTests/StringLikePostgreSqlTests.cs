@@ -17,18 +17,22 @@ namespace LikeComparison.AssertTests
             Assert.IsTrue("Hello".Like("H_ll%"));
         }
 
-        [TestMethod]
+        [DataTestMethod]
+        [DataRow(null)]
+        [DataRow("Hello")]
         [ExpectedException(typeof(AssertFailedException))]
-        public void IsNotILikeHello()
+        public void IsNotILikeHello(string? matchExpression)
         {
-            Assert.IsTrue("Hello".ILike("Hal%"));
+            Assert.IsTrue(matchExpression.ILike("Hal%"));
         }
 
-        [TestMethod]
+        [DataTestMethod]
+        [DataRow(null)]
+        [DataRow("Hello")]
         [ExpectedException(typeof(AssertFailedException))]
-        public void IsNotLikeHello()
+        public void IsNotLikeHello(string? matchExpression)
         {
-            Assert.IsTrue("Hello".Like("Hal%"));
+            Assert.IsTrue(matchExpression.Like("Hal%"));
         }
 
         [TestMethod]
