@@ -20,11 +20,12 @@ namespace LikeComparison.ShouldlyTests
         [TestMethod]
         public void ShouldNotBeLikeWithEscapeShouldThrowShouldAssertException()
         {
-            var exception = Should.Throw<ShouldAssertException>(() => "Hello".ShouldNotBeLike("Hel%", escape: "/"));
+            string? matchExpression = "Hello";
+            var exception = Should.Throw<ShouldAssertException>(() => matchExpression.ShouldNotBeLike("Hel%", escape: "/"));
 
             var message =
 """
-Should.Throw<ShouldAssertException>("Hello"
+Should.Throw<ShouldAssertException>(matchExpression
     should not be like
 "Hel%"
     but was

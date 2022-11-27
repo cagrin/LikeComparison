@@ -20,11 +20,12 @@ namespace LikeComparison.ShouldlyTests
         [TestMethod]
         public void ShouldNotBeILikeShouldThrowShouldAssertException()
         {
-            var exception = Should.Throw<ShouldAssertException>(() => "Hello".ShouldNotBeILike("Hel%"));
+            string? matchExpression = "Hello";
+            var exception = Should.Throw<ShouldAssertException>(() => matchExpression.ShouldNotBeILike("Hel%"));
 
             var message =
 """
-Should.Throw<ShouldAssertException>("Hello"
+Should.Throw<ShouldAssertException>(matchExpression
     should not be i like
 "Hel%"
     but was
@@ -37,11 +38,12 @@ Should.Throw<ShouldAssertException>("Hello"
         [TestMethod]
         public void ShouldNotBeLikeShouldThrowShouldAssertException()
         {
-            var exception = Should.Throw<ShouldAssertException>(() => "Hello".ShouldNotBeLike("Hel%"));
+            string? matchExpression = "Hello";
+            var exception = Should.Throw<ShouldAssertException>(() => matchExpression.ShouldNotBeLike("Hel%"));
 
             var message =
 """
-Should.Throw<ShouldAssertException>("Hello"
+Should.Throw<ShouldAssertException>(matchExpression
     should not be like
 "Hel%"
     but was
