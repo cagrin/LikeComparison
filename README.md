@@ -22,10 +22,9 @@ You can simply use extension method on `String` class:
 using LikeComparison.VisualBasic;
 ```
 ```cs
-string matchExpression = "abcdef";
-string pattern = "a*";
+string? matchExpression = "abcdef";
 
-bool isMatched = matchExpression.Like(pattern);
+_ = matchExpression.Like(pattern: "a*");
 ```
 or
 
@@ -33,14 +32,13 @@ or
 using LikeComparison.TransactSql;
 ```
 ```cs
-string matchExpression = "abcdef";
-string pattern = "a%";
+string? matchExpression = "abcdef";
 
 // common use
-bool isMatched = matchExpression.Like(pattern);
+_ = matchExpression.Like(pattern: "a%");
 
 // or with escape character
-bool isMatched = matchExpression.Like(pattern, escapeCharacter: "/");
+_ = matchExpression.Like(pattern: "/a%", escapeCharacter: "/");
 ```
 or
 
@@ -48,14 +46,13 @@ or
 using LikeComparison.PostgreSql;
 ```
 ```cs
-string matchExpression = "abcdef";
-string pattern = "a%";
+string? matchExpression = "abcdef";
 
 // case-insensitive
-bool isMatched = matchExpression.ILike(pattern);
+_ = matchExpression.ILike(pattern: "A%");
 
 // or case-sensitive
-bool isMatched = matchExpression.Like(pattern);
+_ = matchExpression.Like(pattern: "a%");
 ```
 
 ## Using ```IsLike``` method on MSTest assertions
@@ -65,10 +62,9 @@ You can simply use extension method on `Assert` class:
 using LikeComparison.VisualBasic;
 ```
 ```cs
-string matchExpression = "abcdef";
-string pattern = "a*";
+string? matchExpression = "abcdef";
 
-Assert.That.IsLike(matchExpression, pattern);
+Assert.That.IsLike(matchExpression, pattern: "a*");
 ```
 or
 
@@ -76,14 +72,13 @@ or
 using LikeComparison.TransactSql;
 ```
 ```cs
-string matchExpression = "abcdef";
-string pattern = "a%";
+string? matchExpression = "abcdef";
 
 // common use
-Assert.That.IsLike(matchExpression, pattern);
+Assert.That.IsLike(matchExpression, pattern: "a%");
 
 // or with escape character
-Assert.That.IsLike(matchExpression, pattern, escape: "/");
+Assert.That.IsLike(matchExpression, pattern: "/a%", escape: "/");
 ```
 or
 
@@ -91,14 +86,13 @@ or
 using LikeComparison.PostgreSql;
 ```
 ```cs
-string matchExpression = "abcdef";
-string pattern = "a%";
+string? matchExpression = "abcdef";
 
 // case-insensitive
-Assert.That.IsILike(matchExpression, pattern);
+Assert.That.IsILike(matchExpression, pattern: "A%");
 
 // or case-sensitive
-Assert.That.IsLike(matchExpression, pattern);
+Assert.That.IsLike(matchExpression, pattern: "a%");
 ```
 
 ## Using ```ShouldBeLike``` method on Shouldly assertions
@@ -108,10 +102,9 @@ You can simply use extension method on `String` class:
 using LikeComparison.VisualBasic;
 ```
 ```cs
-string matchExpression = "abcdef";
-string pattern = "a*";
+string? matchExpression = "abcdef";
 
-matchExpression.ShouldBeLike(pattern);
+matchExpression.ShouldBeLike(pattern: "a*");
 ```
 or
 
@@ -119,14 +112,13 @@ or
 using LikeComparison.TransactSql;
 ```
 ```cs
-string matchExpression = "abcdef";
-string pattern = "a%";
+string? matchExpression = "abcdef";
 
 // common use
-matchExpression.ShouldBeLike(pattern);
+matchExpression.ShouldBeLike(pattern: "a%");
 
 // or with escape character
-matchExpression.ShouldBeLike(pattern, escape: "/");
+matchExpression.ShouldBeLike(pattern: "/a%", escape: "/");
 ```
 or
 
@@ -134,14 +126,13 @@ or
 using LikeComparison.PostgreSql;
 ```
 ```cs
-string matchExpression = "abcdef";
-string pattern = "a%";
+string? matchExpression = "abcdef";
 
 // case-insensitive
-matchExpression.ShouldBeILike(pattern);
+matchExpression.ShouldBeILike(pattern: "A%");
 
 // or case-sensitive
-matchExpression.ShouldBeLike(pattern);
+matchExpression.ShouldBeLike(pattern: "a%");
 ```
 
 ## Supported syntax
