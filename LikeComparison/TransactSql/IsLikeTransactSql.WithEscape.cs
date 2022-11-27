@@ -5,7 +5,7 @@ namespace LikeComparison.TransactSql
 
     public static partial class IsLikeTransactSql
     {
-        public static void IsLike(this Assert assert, string matchExpression, string pattern, string escape)
+        public static void IsLike(this Assert assert, string? matchExpression, string pattern, string escape)
         {
             _ = assert;
 
@@ -18,7 +18,7 @@ namespace LikeComparison.TransactSql
 
             if (!LikeString.Like(matchExpression, pattern, likeOptions))
             {
-                throw new AssertFailedException($"Assert.That.IsLike failed. Expected that <{matchExpression}> is LIKE <{pattern}> ESCAPE <{escape}>, but actually it is not.");
+                throw new AssertFailedException($"Assert.That.IsLike failed. Expected that <{matchExpression ?? "(null)"}> is LIKE <{pattern}> ESCAPE <{escape}>, but actually it is not.");
             }
         }
     }

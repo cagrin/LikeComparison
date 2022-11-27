@@ -11,12 +11,14 @@ namespace LikeComparison.AssertTests
             Assert.That.IsLike("Hello", "h?ll*");
         }
 
-        [TestMethod]
-        public void IsNotLikeHello()
+        [DataTestMethod]
+        [DataRow(null)]
+        [DataRow("Hello")]
+        public void IsNotLikeHello(string? matchExpression)
         {
-            var ex = Assert.ThrowsException<AssertFailedException>(() => Assert.That.IsLike("Hello", "Hal*"));
+            var ex = Assert.ThrowsException<AssertFailedException>(() => Assert.That.IsLike(matchExpression, "Hal*"));
 
-            Assert.AreEqual("Assert.That.IsLike failed. Expected that <Hello> is LIKE <Hal*>, but actually it is not.", ex.Message);
+            Assert.AreEqual($"Assert.That.IsLike failed. Expected that <{matchExpression ?? "(null)"}> is LIKE <Hal*>, but actually it is not.", ex.Message);
         }
     }
 }

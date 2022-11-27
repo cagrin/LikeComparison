@@ -17,20 +17,24 @@ namespace LikeComparison.AssertTests
             Assert.That.IsLike("Hello", "H_ll%");
         }
 
-        [TestMethod]
-        public void IsNotILikeHello()
+        [DataTestMethod]
+        [DataRow(null)]
+        [DataRow("Hello")]
+        public void IsNotILikeHello(string? matchExpression)
         {
-            var ex = Assert.ThrowsException<AssertFailedException>(() => Assert.That.IsILike("Hello", "Hal%"));
+            var ex = Assert.ThrowsException<AssertFailedException>(() => Assert.That.IsILike(matchExpression, "Hal%"));
 
-            Assert.AreEqual("Assert.That.IsILike failed. Expected that <Hello> is ILIKE <Hal%>, but actually it is not.", ex.Message);
+            Assert.AreEqual($"Assert.That.IsILike failed. Expected that <{matchExpression ?? "(null)"}> is ILIKE <Hal%>, but actually it is not.", ex.Message);
         }
 
-        [TestMethod]
-        public void IsNotLikeHello()
+        [DataTestMethod]
+        [DataRow(null)]
+        [DataRow("Hello")]
+        public void IsNotLikeHello(string? matchExpression)
         {
-            var ex = Assert.ThrowsException<AssertFailedException>(() => Assert.That.IsLike("Hello", "Hal%"));
+            var ex = Assert.ThrowsException<AssertFailedException>(() => Assert.That.IsLike(matchExpression, "Hal%"));
 
-            Assert.AreEqual("Assert.That.IsLike failed. Expected that <Hello> is LIKE <Hal%>, but actually it is not.", ex.Message);
+            Assert.AreEqual($"Assert.That.IsLike failed. Expected that <{matchExpression ?? "(null)"}> is LIKE <Hal%>, but actually it is not.", ex.Message);
         }
     }
 }
