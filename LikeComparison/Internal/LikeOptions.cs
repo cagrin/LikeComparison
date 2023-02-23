@@ -16,7 +16,7 @@ namespace LikeComparison
         TransactSql = 1,
     }
 
-    internal class LikeOptions
+    internal sealed class LikeOptions
     {
         public LikeOptions()
         {
