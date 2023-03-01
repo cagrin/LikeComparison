@@ -6,7 +6,6 @@
         <PackageVersion Include="coverlet.collector" Version="3.2.0"/>
         <PackageVersion Include="coverlet.msbuild" Version="3.2.0"/>
         <PackageVersion Include="Dapper" Version="2.0.123"/>
-        <PackageVersion Include="Testcontainers" Version="2.4.0"/>
         <PackageVersion Include="Microsoft.Data.SqlClient" Version="5.1.0"/>
         <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.5.0"/>
         <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="1.1.1"/>
@@ -16,5 +15,6 @@
         <PackageVersion Include="Npgsql" Version="7.0.2"/>
         <PackageVersion Include="Shouldly" Version="4.1.0"/>
         <PackageVersion Include="StyleCop.Analyzers" Version="1.2.0-beta.435"/>
+        <PackageVersion Include="Testcontainers" Version="2.4.0"/>
     </ItemGroup>
 </Project>

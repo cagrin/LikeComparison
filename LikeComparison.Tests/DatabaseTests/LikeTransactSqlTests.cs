@@ -31,7 +31,9 @@ namespace LikeComparison.DatabaseTests
                 Password = Password,
             };
 
+#pragma warning disable 618
             testcontainer = new TestcontainersBuilder<MsSqlTestcontainer>()
+#pragma warning restore 618
                 .WithDatabase(config)
                 .Build();
 
