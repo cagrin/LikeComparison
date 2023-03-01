@@ -8,19 +8,9 @@ namespace LikeComparison.DatabaseTests
     using MySqlConnector;
 
     [TestClass]
-    public class LikeMySqlTests
+    public class LikeMySqlTests : BaseDatabaseTests
     {
-#if DEBUG
-        private const string Image = "mariadb";
-#else
         private const string Image = "mysql";
-#endif
-
-        private const string Database = "mysql";
-
-        private const string Username = "mysql";
-
-        private const string Password = "StrongP@ssw0rd!";
 
         private static MySqlTestcontainer? testcontainer;
 

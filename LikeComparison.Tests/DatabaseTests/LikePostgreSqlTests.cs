@@ -8,15 +8,9 @@ namespace LikeComparison.DatabaseTests
     using Npgsql;
 
     [TestClass]
-    public class LikePostgreSqlTests
+    public class LikePostgreSqlTests : BaseDatabaseTests
     {
         private const string Image = "postgres";
-
-        private const string Database = "postgres";
-
-        private const string Username = "postgres";
-
-        private const string Password = "StrongP@ssw0rd!";
 
         private static PostgreSqlTestcontainer? testcontainer;
 

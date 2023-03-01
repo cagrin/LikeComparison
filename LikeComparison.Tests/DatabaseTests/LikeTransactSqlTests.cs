@@ -8,22 +8,16 @@ namespace LikeComparison.DatabaseTests
     using Microsoft.Data.SqlClient;
 
     [TestClass]
-    public partial class LikeTransactSqlTests
+    public partial class LikeTransactSqlTests : BaseDatabaseTests
     {
-#if DEBUG
-        private const string Image = "cagrin/azure-sql-edge-arm64";
-#else
-        private const string Image = "mcr.microsoft.com/mssql/server:2019-latest";
-#endif
-
-        private const string Password = "StrongP@ssw0rd!";
+        private const string Image = "mcr.microsoft.com/mssql/server";
 
         private static MsSqlTestcontainer? testcontainer;
 
         [ClassInitialize]
         public static void ClassInitialize(TestContext context)
         {
-            // docker run -e 'ACCEPT_EULA=1' -e 'MSSQL_SA_PASSWORD=StrongP@ssw0rd!' -p 1433:1433 -d mcr.microsoft.com/mssql/server:2019-latest
+            // docker run -e 'ACCEPT_EULA=1' -e 'MSSQL_SA_PASSWORD=StrongP@ssw0rd!' -p 1433:1433 -d mcr.microsoft.com/mssql/server
             _ = context;
 
             using var config = new MsSqlTestcontainerConfiguration(Image)
