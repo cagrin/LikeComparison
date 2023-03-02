@@ -1,8 +1,6 @@
 namespace LikeComparison.DatabaseTests
 {
-#pragma warning disable CA1052
-    public class BaseDatabaseTests
-#pragma warning restore CA1052
+    public abstract class BaseDatabaseTests
     {
         public const string Database = "DatabaseTests";
 
