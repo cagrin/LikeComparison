@@ -10,9 +10,9 @@ $Env:DOTNET_CLI_UI_LANGUAGE="en"
 dotnet test LikeComparison.Tests --framework net6.0 -e CollectCoverage=true -e CoverletOutputFormat=lcov --logger "console;verbosity=detailed" 
 ```
 
-## Filter smoke tests with .NET 6
+## Filter smoke tests with .NET 8
 
 ```
 pwsh
-dotnet test LikeComparison.Tests --framework net7.0 -e CollectCoverage=true -e CoverletOutputFormat=lcov --filter "(ClassName!~LikeComparison.DatabaseTests)"
+dotnet test LikeComparison.Tests --framework net8.0 -e CollectCoverage=true -e CoverletOutputFormat=lcov --filter "(ClassName!~LikeComparison.DatabaseTests)"
 ```
