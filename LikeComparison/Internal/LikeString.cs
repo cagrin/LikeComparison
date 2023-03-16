@@ -149,17 +149,10 @@ namespace LikeComparison
                 var regex = new Regex(regexExpression, options);
                 return regex.IsMatch(matchExpression);
             }
-#if NET5_0_OR_GREATER
             catch (RegexParseException)
             {
                 return false;
             }
-#else
-            catch (System.Exception)
-            {
-                throw;
-            }
-#endif
         }
     }
 }
