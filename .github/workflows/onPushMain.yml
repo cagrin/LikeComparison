@@ -4,24 +4,23 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
   test-on-ubuntu:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        framework: [net6.0, net7.0, net8.0]
     steps:
       - uses: actions/checkout@v3
-      - name: Setup dotnet
-        uses: actions/setup-dotnet@v3
+      - uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '8.0.x'
       - name: Run unit tests
-        run: dotnet test LikeComparison.Tests --configuration Release -e CollectCoverage=true -e CoverletOutputFormat=lcov
+        run: dotnet test LikeComparison.Tests --framework ${{ matrix.framework }} --configuration Release -e CollectCoverage=true -e CoverletOutputFormat=lcov
       - name: Run coveralls.io
+        if: ${{ matrix.framework == 'net6.0' }}
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path-to-lcov: ./LikeComparison.Tests/coverage.net6.0.info
-        if: github.event_name != 'pull_request'
