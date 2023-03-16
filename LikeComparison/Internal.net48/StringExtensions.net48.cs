@@ -4,7 +4,7 @@ namespace LikeComparison
     using System.Text.RegularExpressions;
     using StringComparison = System.StringComparison;
 
-    internal static partial class LikeString
+    internal static partial class StringExtensions
     {
         public static bool Contains(this string source, string value, StringComparison comparisonType)
         {
