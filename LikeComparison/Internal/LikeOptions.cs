@@ -1,6 +1,6 @@
 namespace LikeComparison
 {
-    using System;
+    using StringComparison = System.StringComparison;
 
     internal enum CaseSensitivity
     {

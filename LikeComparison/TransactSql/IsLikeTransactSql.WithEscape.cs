@@ -1,6 +1,5 @@
 namespace LikeComparison.TransactSql
 {
-    using System;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     public static partial class IsLikeTransactSql
@@ -9,10 +8,7 @@ namespace LikeComparison.TransactSql
         {
             _ = assert;
 
-            if (escape == null)
-            {
-                throw new ArgumentNullException(nameof(escape), "Value cannot be null.");
-            }
+            ArgumentNullException.ThrowIfNull(escape);
 
             LikeOptions likeOptions = new LikeOptions() { PatternStyle = PatternStyle.TransactSql, Escape = escape };
 

@@ -1,8 +1,8 @@
 #if NET48
 namespace LikeComparison
 {
-    using System;
     using System.Text.RegularExpressions;
+    using StringComparison = System.StringComparison;
 
     internal static partial class LikeString
     {

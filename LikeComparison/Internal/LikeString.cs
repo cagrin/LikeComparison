@@ -1,8 +1,8 @@
 namespace LikeComparison
 {
-    using System;
     using System.Linq;
     using System.Text.RegularExpressions;
+    using StringComparison = System.StringComparison;
 
     internal static partial class LikeString
     {
@@ -13,20 +13,14 @@ namespace LikeComparison
                 return false;
             }
 
-            if (pattern == null)
-            {
-                throw new ArgumentNullException(nameof(pattern), "Value cannot be null.");
-            }
+            ArgumentNullException.ThrowIfNull(pattern);
 
             return Like(matchExpression, pattern, likeOptions.Escape, likeOptions.StringComparison, likeOptions.Wildcard, likeOptions.Single, likeOptions.Invert, likeOptions.Digits);
         }
 
         internal static string? LikeRegex(string pattern, LikeOptions likeOptions)
         {
-            if (pattern == null)
-            {
-                throw new ArgumentNullException(nameof(pattern), "Value cannot be null.");
-            }
+            ArgumentNullException.ThrowIfNull(pattern);
 
             return LikeRegex(pattern, likeOptions.Escape, likeOptions.StringComparison, likeOptions.Wildcard, likeOptions.Single, likeOptions.Invert, likeOptions.Digits);
         }
@@ -161,7 +155,7 @@ namespace LikeComparison
                 return false;
             }
 #else
-            catch (Exception)
+            catch (System.Exception)
             {
                 throw;
             }

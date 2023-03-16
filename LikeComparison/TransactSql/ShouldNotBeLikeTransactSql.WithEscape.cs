@@ -1,16 +1,12 @@
 namespace LikeComparison.TransactSql
 {
-    using System;
     using Shouldly;
 
     public static partial class ShouldNotBeLikeTransactSql
     {
         public static void ShouldNotBeLike(this string? actual, string pattern, string escape, string? customMessage = null)
         {
-            if (escape == null)
-            {
-                throw new ArgumentNullException(nameof(escape), "Value cannot be null.");
-            }
+            ArgumentNullException.ThrowIfNull(escape);
 
             LikeOptions likeOptions = new LikeOptions() { PatternStyle = PatternStyle.TransactSql, Escape = escape };
 
