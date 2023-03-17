@@ -1,18 +1,14 @@
 namespace LikeComparison.DatabaseTests
 {
     using Dapper;
-    using DotNet.Testcontainers.Builders;
-    using DotNet.Testcontainers.Configurations;
-    using DotNet.Testcontainers.Containers;
     using LikeComparison.TransactSql;
     using Microsoft.Data.SqlClient;
+    using Testcontainers.MsSql;
 
     [TestClass]
-    public partial class LikeTransactSqlTests : BaseDatabaseTests
+    public partial class LikeTransactSqlTests
     {
-        private const string Image = "mcr.microsoft.com/mssql/server";
-
-        private static MsSqlTestcontainer? testcontainer;
+        private static MsSqlContainer? testcontainer;
 
         [ClassInitialize]
         public static void ClassInitialize(TestContext context)
@@ -20,15 +16,8 @@ namespace LikeComparison.DatabaseTests
             // docker run -e 'ACCEPT_EULA=1' -e 'MSSQL_SA_PASSWORD=StrongP@ssw0rd!' -p 1433:1433 -d mcr.microsoft.com/mssql/server
             _ = context;
 
-            using var config = new MsSqlTestcontainerConfiguration(Image)
-            {
-                Password = Password,
-            };
-
-#pragma warning disable 618
-            testcontainer = new TestcontainersBuilder<MsSqlTestcontainer>()
-#pragma warning restore 618
-                .WithDatabase(config)
+            testcontainer = new MsSqlBuilder()
+                .WithImage("mcr.microsoft.com/mssql/server")
                 .Build();
 
             testcontainer.StartAsync().Wait();
@@ -121,8 +110,7 @@ namespace LikeComparison.DatabaseTests
         {
             string query = $"SELECT CASE WHEN '{matchExpression}' LIKE '{pattern}' THEN 1 ELSE 0 END";
 
-            string connectionString = $"{testcontainer?.ConnectionString}TrustServerCertificate=True;";
-            using var connection = new SqlConnection(connectionString);
+            using var connection = new SqlConnection(testcontainer?.GetConnectionString());
 
             return await connection.ExecuteScalarAsync<bool>(query).ConfigureAwait(false);
         }

@@ -79,8 +79,7 @@ namespace LikeComparison.DatabaseTests
         {
             string query = $"SELECT CASE WHEN '{matchExpression}' LIKE '{pattern}' ESCAPE '{escape}' THEN 1 ELSE 0 END";
 
-            string connectionString = $"{testcontainer?.ConnectionString}TrustServerCertificate=True;";
-            using var connection = new SqlConnection(connectionString);
+            using var connection = new SqlConnection(testcontainer?.GetConnectionString());
 
             return await connection.ExecuteScalarAsync<bool>(query).ConfigureAwait(false);
         }

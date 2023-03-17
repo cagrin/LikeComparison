@@ -27,6 +27,8 @@
         <PackageReference Include="Microsoft.NET.Test.Sdk"/>
         <PackageReference Include="MySqlConnector"/>
         <PackageReference Include="Npgsql"/>
-        <PackageReference Include="Testcontainers"/>
+        <PackageReference Include="Testcontainers.MsSql"/>
+        <PackageReference Include="Testcontainers.MySql"/>
+        <PackageReference Include="Testcontainers.PostgreSql"/>
     </ItemGroup>
 </Project>

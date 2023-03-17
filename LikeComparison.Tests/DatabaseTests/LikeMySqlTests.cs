@@ -1,18 +1,14 @@
 namespace LikeComparison.DatabaseTests
 {
     using Dapper;
-    using DotNet.Testcontainers.Builders;
-    using DotNet.Testcontainers.Configurations;
-    using DotNet.Testcontainers.Containers;
     using LikeComparison.PostgreSql;
     using MySqlConnector;
+    using Testcontainers.MySql;
 
     [TestClass]
-    public class LikeMySqlTests : BaseDatabaseTests
+    public class LikeMySqlTests
     {
-        private const string Image = "mysql";
-
-        private static MySqlTestcontainer? testcontainer;
+        private static MySqlContainer? testcontainer;
 
         [ClassInitialize]
         public static void ClassInitialize(TestContext context)
@@ -20,17 +16,8 @@ namespace LikeComparison.DatabaseTests
             // docker run -e MYSQL_ROOT_PASSWORD=StrongP@ssw0rd! -p 3306:3306 -d mysql/mysql-server
             _ = context;
 
-            using var config = new MySqlTestcontainerConfiguration(Image)
-            {
-                Database = Database,
-                Username = Username,
-                Password = Password,
-            };
-
-#pragma warning disable 618
-            testcontainer = new TestcontainersBuilder<MySqlTestcontainer>()
-#pragma warning restore 618
-                .WithDatabase(config)
+            testcontainer = new MySqlBuilder()
+                .WithImage("mysql")
                 .Build();
 
             testcontainer.StartAsync().Wait();
@@ -81,7 +68,7 @@ namespace LikeComparison.DatabaseTests
         {
             string query = $"SELECT CASE WHEN '{matchExpression}' LIKE '{pattern}' THEN 1 ELSE 0 END";
 
-            using var connection = new MySqlConnection(testcontainer?.ConnectionString);
+            using var connection = new MySqlConnection(testcontainer?.GetConnectionString());
 
             return await connection.ExecuteScalarAsync<bool>(query).ConfigureAwait(false);
         }
