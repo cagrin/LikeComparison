@@ -8,9 +8,7 @@ namespace LikeComparison.TransactSql
         {
             ArgumentNullException.ThrowIfNull(escape);
 
-            LikeOptions likeOptions = new LikeOptions() { PatternStyle = PatternStyle.TransactSql, Escape = escape };
-
-            actual.AssertAwesomely(v => !LikeString.Like(actual, pattern, likeOptions), actual, pattern, customMessage);
+            actual.AssertAwesomely(v => !LikeTransactSql.Like(actual, pattern, escape), actual, pattern, customMessage);
         }
     }
 }

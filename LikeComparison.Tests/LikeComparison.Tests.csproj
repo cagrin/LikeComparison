@@ -7,6 +7,8 @@
     </PropertyGroup>
     <ItemGroup>
         <ProjectReference Include="..\LikeComparison\LikeComparison.csproj"/>
+        <ProjectReference Include="..\LikeComparison.MSTest\LikeComparison.MSTest.csproj"/>
+        <ProjectReference Include="..\LikeComparison.Shouldly\LikeComparison.Shouldly.csproj"/>
     </ItemGroup>
     <ItemGroup>
         <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting"/>
@@ -15,9 +17,7 @@
     </ItemGroup>
     <ItemGroup>
         <Using Include="Shouldly"/>
-        <PackageReference Include="Shouldly">
-            <ExcludeAssets>build</ExcludeAssets>
-        </PackageReference>
+        <PackageReference Include="Shouldly"/>
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="coverlet.collector"/>

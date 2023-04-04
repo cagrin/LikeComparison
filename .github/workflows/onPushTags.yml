@@ -8,6 +8,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        package: [LikeComparison, LikeComparison.MSTest, LikeComparison.Shouldly]
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-dotnet@v3
@@ -16,6 +19,6 @@ jobs:
       - name: Get version from tag
         run: echo "VERSION=${GITHUB_REF/refs\/tags\/}" >> $GITHUB_ENV
       - name: Pack
-        run: dotnet pack LikeComparison --configuration Release /p:Version=${VERSION} /p:ContinuousIntegrationBuild=true --output .
+        run: dotnet pack ${{ matrix.package }} --configuration Release /p:Version=${VERSION} /p:ContinuousIntegrationBuild=true --output .
       - name: NuGet push
-        run: dotnet nuget push LikeComparison.${VERSION}.nupkg --api-key ${{ secrets.NUGET_APIKEY }} --source https://api.nuget.org/v3/index.json
+        run: dotnet nuget push ${{ matrix.package }}.${VERSION}.nupkg --api-key ${{ secrets.NUGET_APIKEY }} --source https://api.nuget.org/v3/index.json

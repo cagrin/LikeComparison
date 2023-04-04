@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFrameworks>net48;net6.0;net7.0;net8.0</TargetFrameworks>
-        <PackageId>LikeComparison</PackageId>
+        <PackageId>LikeComparison.Shouldly</PackageId>
         <Authors>Krzysztof Strugiński</Authors>
         <Description>LikeComparison is a library that allows you to compare a string expression to a pattern in an "SQL LIKE" expression. It supports many LIKE operator syntax: Visual Basic, Transact-SQL, PostgreSQL.</Description>
         <PackageLicenseFile>License</PackageLicenseFile>
@@ -18,8 +18,16 @@
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
     <ItemGroup>
+        <ProjectReference Include="../LikeComparison/LikeComparison.csproj"/>
+    </ItemGroup>
+    <ItemGroup>
         <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All"/>
         <None Include="../License" Pack="true" Visible="false" PackagePath=""/>
         <None Include="../README.md" Pack="true" PackagePath=""/>
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Shouldly">
+            <ExcludeAssets>build</ExcludeAssets>
+        </PackageReference>
     </ItemGroup>
 </Project>

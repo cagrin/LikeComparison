@@ -8,7 +8,7 @@ namespace LikeComparison.PostgreSql
         {
             _ = assert;
 
-            if (!LikeString.Like(matchExpression, pattern, LikePostgreSql.ILikeOptions))
+            if (!LikePostgreSql.ILike(matchExpression, pattern))
             {
                 throw new AssertFailedException($"Assert.That.IsILike failed. Expected that <{matchExpression ?? "(null)"}> is ILIKE <{pattern}>, but actually it is not.");
             }
@@ -18,7 +18,7 @@ namespace LikeComparison.PostgreSql
         {
             _ = assert;
 
-            if (!LikeString.Like(matchExpression, pattern, LikePostgreSql.LikeOptions))
+            if (!LikePostgreSql.Like(matchExpression, pattern))
             {
                 throw new AssertFailedException($"Assert.That.IsLike failed. Expected that <{matchExpression ?? "(null)"}> is LIKE <{pattern}>, but actually it is not.");
             }

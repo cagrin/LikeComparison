@@ -1,7 +1,7 @@
 #if NET48
 namespace LikeComparison
 {
-    internal static class ArgumentNullException
+    public static class ArgumentNullException
     {
         public static void ThrowIfNull(object? argument)
         {

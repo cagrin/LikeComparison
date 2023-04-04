@@ -10,9 +10,7 @@ namespace LikeComparison.TransactSql
 
             ArgumentNullException.ThrowIfNull(escape);
 
-            LikeOptions likeOptions = new LikeOptions() { PatternStyle = PatternStyle.TransactSql, Escape = escape };
-
-            if (!LikeString.Like(matchExpression, pattern, likeOptions))
+            if (!LikeTransactSql.Like(matchExpression, pattern, escape))
             {
                 throw new AssertFailedException($"Assert.That.IsLike failed. Expected that <{matchExpression ?? "(null)"}> is LIKE <{pattern}> ESCAPE <{escape}>, but actually it is not.");
             }

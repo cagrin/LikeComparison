@@ -7,7 +7,7 @@ namespace LikeComparison.VisualBasic
     {
         public static void ShouldNotBeLike(this string? actual, string pattern)
         {
-            actual.AssertAwesomely(v => !LikeString.Like(actual, pattern, LikeVisualBasic.LikeOptions), actual, pattern);
+            actual.AssertAwesomely(v => !LikeVisualBasic.Like(actual, pattern), actual, pattern);
         }
     }
 }

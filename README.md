@@ -15,7 +15,7 @@ Main use:
 - ```IsLike``` method on MSTest assertions
 - ```ShouldBeLike``` method on Shouldly assertions
 
-## Using ```Like``` method on strings
+## Using ```Like``` method on strings from [LikeComparison](https://www.nuget.org/packages/LikeComparison) package
 
 You can simply use extension method on `String` class:
 ```cs
@@ -55,7 +55,8 @@ _ = matchExpression.ILike(pattern: "A%");
 _ = matchExpression.Like(pattern: "a%");
 ```
 
-## Using ```IsLike``` method on MSTest assertions
+## Using ```IsLike``` method on MSTest assertions from [LikeComparison.MSTest](https://www.nuget.org/packages/LikeComparison.MSTest) package
+
 
 You can simply use extension method on `Assert` class:
 ```cs
@@ -95,7 +96,8 @@ Assert.That.IsILike(matchExpression, pattern: "A%");
 Assert.That.IsLike(matchExpression, pattern: "a%");
 ```
 
-## Using ```ShouldBeLike``` method on Shouldly assertions
+## Using ```ShouldBeLike``` method on Shouldly assertions from [LikeComparison.Shouldly](https://www.nuget.org/packages/LikeComparison.Shouldly) package
+
 
 You can simply use extension method on `String` class:
 ```cs
