@@ -23,16 +23,7 @@ namespace LikeComparison.ShouldlyTests
             string? matchExpression = "Hello";
             var exception = Should.Throw<ShouldAssertException>(() => matchExpression.ShouldNotBeLike("Hel%", escape: "/"));
 
-            var message =
-"""
-Should.Throw<ShouldAssertException>(matchExpression
-    should not be like
-"Hel%"
-    but was
-"Hello"
-""";
-
-            exception.Message.ShouldBe(message);
+            exception.Message.ShouldBe("Should.Throw<ShouldAssertException>(matchExpression\r\n    should not be like\r\n\"Hel%\"\r\n    but was\r\n\"Hello\"");
         }
     }
 }
