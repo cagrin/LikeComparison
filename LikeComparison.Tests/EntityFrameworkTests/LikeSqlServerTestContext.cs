@@ -3,11 +3,11 @@ namespace LikeComparison.EntityFrameworkTests
     using Microsoft.Data.SqlClient;
     using Microsoft.EntityFrameworkCore;
 
-    public class LikeTestContext : DbContext
+    public class LikeSqlServerTestContext : DbContext
     {
         private readonly SqlConnection connection;
 
-        public LikeTestContext(string connectionString)
+        public LikeSqlServerTestContext(string connectionString)
         {
             this.connection = new SqlConnection(connectionString);
             this.connection.Open();

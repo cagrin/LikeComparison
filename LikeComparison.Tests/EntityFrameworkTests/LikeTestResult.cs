@@ -5,8 +5,6 @@ namespace LikeComparison.EntityFrameworkTests
     public class LikeTestResult
     {
         [Key]
-        public DateTime TestCase { get; set; }
-
         public bool Comparison { get; set; }
     }
  }
