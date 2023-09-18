@@ -3,7 +3,7 @@ namespace LikeComparison.TestCases
     public static class LikeTestCases
     {
         // https://docs.microsoft.com/en-us/sql/t-sql/language-elements/like-transact-sql?view=sql-server-ver15
-        public static IEnumerable<object[]> WildcardCharactersAsLiterals => new []
+        public static IEnumerable<object[]> WildcardCharactersAsLiterals => new[]
         {
             new object[] { string.Empty, string.Empty, true },
             ["5[%]", "5%", true],
