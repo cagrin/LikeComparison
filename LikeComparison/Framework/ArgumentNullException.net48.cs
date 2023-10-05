@@ -1,7 +1,8 @@
 #if NET48
 namespace LikeComparison
 {
-    internal sealed class ArgumentNullException : System.ArgumentException
+    [System.Serializable]
+    public sealed class ArgumentNullException : System.ArgumentException
     {
         public ArgumentNullException()
         {
@@ -14,6 +15,11 @@ namespace LikeComparison
 
         public ArgumentNullException(string message, System.Exception innerException)
         : base(message, innerException)
+        {
+        }
+
+        private ArgumentNullException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context)
+        : base(info, context)
         {
         }
 
