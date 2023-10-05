@@ -1,4 +1,4 @@
-name: Unit tests, coveralls.io
+name: Build, Test, coveralls.io
 
 on:
   push:
@@ -6,7 +6,19 @@ on:
       - main
 
 jobs:
-  test-on-ubuntu:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        package: [LikeComparison, LikeComparison.MSTest, LikeComparison.Shouldly]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
+      - name: Build
+        run: dotnet build ${{ matrix.package }}
+  test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
