@@ -2,6 +2,7 @@
     <PropertyGroup>
         <Nullable>enable</Nullable>
         <AnalysisMode>All</AnalysisMode>
+        <AnalysisLevel>Latest</AnalysisLevel>
         <CodeAnalysisRuleSet>../StyleCop.ruleset</CodeAnalysisRuleSet>
         <SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
     </PropertyGroup>
