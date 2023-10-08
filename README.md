@@ -155,7 +155,7 @@ https://www.postgresql.org/docs/current/functions-matching.html
 ```% _```
 
 ## Supported targets
-### .NET Framework 4.8
+### .NET Standard 2.0
 - Experimental supported with C# 8.
 ### .NET 6.0
 - Recommended.

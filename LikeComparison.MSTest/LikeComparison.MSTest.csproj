@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFrameworks>net48;net6.0;net7.0;net8.0</TargetFrameworks>
+        <TargetFrameworks>netstandard2.0;net6.0;net7.0;net8.0</TargetFrameworks>
         <PackageId>LikeComparison.MSTest</PackageId>
         <Authors>Krzysztof Strugiński</Authors>
         <Description>LikeComparison is a library that allows you to compare a string expression to a pattern in an "SQL LIKE" expression. It supports many LIKE operator syntax: Visual Basic, Transact-SQL, PostgreSQL.</Description>
@@ -11,10 +11,10 @@
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     </PropertyGroup>
-    <PropertyGroup Condition=" '$(TargetFramework)' == 'net48' ">
+    <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
         <LangVersion>8.0</LangVersion>
     </PropertyGroup>
-    <PropertyGroup Condition=" '$(TargetFramework)' != 'net48' ">
+    <PropertyGroup Condition=" '$(TargetFramework)' != 'netstandard2.0' ">
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
     <ItemGroup>
