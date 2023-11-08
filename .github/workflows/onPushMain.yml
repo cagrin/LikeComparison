@@ -23,6 +23,16 @@ jobs:
         framework: [net6.0, net7.0, net8.0]
     steps:
       - uses: actions/checkout@v4
+      - uses: devcontainers/ci@v0.3
+        with:
+          runCmd: dotnet test LikeComparison.Tests --framework ${{ matrix.framework }}
+  coverage:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        framework: [net6.0]
+    steps:
+      - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '8.0.x'
