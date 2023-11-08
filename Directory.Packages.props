@@ -6,8 +6,8 @@
         <PackageVersion Include="coverlet.collector" Version="6.0.0"/>
         <PackageVersion Include="coverlet.msbuild" Version="6.0.0"/>
         <PackageVersion Include="Dapper" Version="2.1.15"/>
-        <PackageVersion Include="Microsoft.Data.SqlClient" Version="5.1.1"/>
-        <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.7.2"/>
+        <PackageVersion Include="Microsoft.Data.SqlClient" Version="5.1.2"/>
+        <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.8.0"/>
         <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="1.1.1"/>
         <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Condition="'$(TargetFramework)' == 'net6.0'" Version="7.0.13" />
         <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Condition="'$(TargetFramework)' == 'net7.0'" Version="7.0.13" />
