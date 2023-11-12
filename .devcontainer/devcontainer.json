@@ -8,12 +8,15 @@
         },
         "ghcr.io/devcontainers/features/powershell:1": {},
         "./dotnet-outdated-tool": {}
-	},
-	"customizations": {
-		"vscode": {
-			"extensions": [
-				"ms-dotnettools.csdevkit"
-			]
-		}
-	}
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-dotnettools.csdevkit",
+                "ms-dotnettools.csharp",
+                "ms-dotnettools.vscodeintellicode-csharp",
+                "ms-dotnettools.vscode-dotnet-runtime"
+            ]
+        }
+    }
 }
