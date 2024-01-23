@@ -155,12 +155,10 @@ https://www.postgresql.org/docs/current/functions-matching.html
 ```% _```
 
 ## Supported targets
-### .NET Standard 2.0
-- Experimental supported with C# 8.
-### .NET 6.0
+### .NET 8.0
 - Recommended.
 - Default target for code coverage.
-### .NET 7.0
+### .NET 6.0
 - Supported.
-### .NET 8.0
-- Supported.
+### .NET Standard 2.0
+- Experimentally supported with C# 8.
