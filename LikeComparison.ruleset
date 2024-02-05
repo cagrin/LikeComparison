@@ -545,7 +545,7 @@
         <Rule Id="SA1651"  Action="Warning" />          <!-- Do not use placeholder elements -->
     </Rules>
     <Rules AnalyzerId="MSTest.Analyzers" RuleNamespace="MSTest.Analyzers">
-        <Rule Id="MSTEST0001" Action="None" />       <!-- Explicitly enable or disable tests parallelization -->
+        <Rule Id="MSTEST0001" Action="Warning" />       <!-- Explicitly enable or disable tests parallelization -->
         <Rule Id="MSTEST0002" Action="Warning" />       <!-- Test classes should have valid layout -->
         <Rule Id="MSTEST0003" Action="Warning" />       <!-- Test methods should have valid layout -->
         <Rule Id="MSTEST0004" Action="None" />       <!-- Public types should be test classes -->
