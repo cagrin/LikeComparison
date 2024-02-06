@@ -1,6 +1,6 @@
 namespace LikeComparison.TestCases
 {
-    public static class LikeTestCases
+    internal static class LikeTestCases
     {
         // https://docs.microsoft.com/en-us/sql/t-sql/language-elements/like-transact-sql?view=sql-server-ver15
         public static IEnumerable<object[]> WildcardCharactersAsLiterals => new[]

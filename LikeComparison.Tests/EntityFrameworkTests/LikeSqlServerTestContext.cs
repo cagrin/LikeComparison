@@ -3,7 +3,7 @@ namespace LikeComparison.EntityFrameworkTests
     using Microsoft.Data.SqlClient;
     using Microsoft.EntityFrameworkCore;
 
-    public class LikeSqlServerTestContext : DbContext
+    internal sealed class LikeSqlServerTestContext : DbContext
     {
         private readonly SqlConnection connection;
 

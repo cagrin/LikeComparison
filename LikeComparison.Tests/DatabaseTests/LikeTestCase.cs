@@ -1,6 +1,6 @@
 namespace LikeComparison.DatabaseTests
 {
-    public static class LikeTestCase
+    internal static class LikeTestCase
     {
         private const StringComparison IgnoreCase = StringComparison.OrdinalIgnoreCase;
 
