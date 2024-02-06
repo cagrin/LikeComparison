@@ -20,19 +20,17 @@ namespace LikeComparison.AssertTests
         [DataTestMethod]
         [DataRow(null)]
         [DataRow("Hello")]
-        [ExpectedException(typeof(AssertFailedException))]
         public void IsNotILikeHello(string? matchExpression)
         {
-            Assert.IsTrue(matchExpression.ILike("Hal%"));
+            _ = Assert.ThrowsException<AssertFailedException>(() => Assert.IsTrue(matchExpression.ILike("Hal%")));
         }
 
         [DataTestMethod]
         [DataRow(null)]
         [DataRow("Hello")]
-        [ExpectedException(typeof(AssertFailedException))]
         public void IsNotLikeHello(string? matchExpression)
         {
-            Assert.IsTrue(matchExpression.Like("Hal%"));
+            _ = Assert.ThrowsException<AssertFailedException>(() => Assert.IsTrue(matchExpression.Like("Hal%")));
         }
 
         [TestMethod]

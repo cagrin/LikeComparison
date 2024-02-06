@@ -550,6 +550,6 @@
         <Rule Id="MSTEST0003" Action="Warning" />       <!-- Test methods should have valid layout -->
         <Rule Id="MSTEST0004" Action="Warning" />       <!-- Public types should be test classes -->
         <Rule Id="MSTEST0005" Action="Warning" />       <!-- Test context property should have valid layout -->
-        <Rule Id="MSTEST0006" Action="None" />       <!-- Avoid [ExpectedException] -->
+        <Rule Id="MSTEST0006" Action="Warning" />       <!-- Avoid [ExpectedException] -->
     </Rules>
 </RuleSet>

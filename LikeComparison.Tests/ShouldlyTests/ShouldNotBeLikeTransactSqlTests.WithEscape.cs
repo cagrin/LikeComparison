@@ -11,10 +11,9 @@ namespace LikeComparison.ShouldlyTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void ShouldNotBeLikeWithEscapeShouldThrowArgumentNullException()
         {
-            "Hello".ShouldNotBeLike("ha_l%", escape: null!);
+            _ = Should.Throw<ArgumentNullException>(() => "Hello".ShouldNotBeLike("ha_l%", escape: null!));
         }
 
         [TestMethod]

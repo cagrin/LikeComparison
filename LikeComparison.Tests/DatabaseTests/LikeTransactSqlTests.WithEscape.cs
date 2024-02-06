@@ -9,21 +9,25 @@ namespace LikeComparison.DatabaseTests
         [DataTestMethod]
         [DataRow(null, "/")]
         [DataRow("a%", null)]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void LikeTransactSqlRegexWithEscapeThrowArgumentNullException(string pattern, string escape)
         {
-            var regex = LikeTransactSql.LikeRegex(pattern, escape);
-            Assert.IsNotNull(regex);
+            _ = Assert.ThrowsException<ArgumentNullException>(() =>
+            {
+                var regex = LikeTransactSql.LikeRegex(pattern, escape);
+                Assert.IsNotNull(LikeTransactSql.LikeRegex(pattern, escape));
+            });
         }
 
         [DataTestMethod]
         [DataRow("abcdef", null, "/")]
         [DataRow("abcdef", "a%", null)]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void LikeTransactSqlWithEscapeThrowArgumentNullException(string matchExpression, string pattern, string escape)
         {
-            var actual = matchExpression.Like(pattern, escape);
-            Assert.IsNotNull(actual);
+            _ = Assert.ThrowsException<ArgumentNullException>(() =>
+            {
+                var actual = matchExpression.Like(pattern, escape);
+                Assert.IsNotNull(actual);
+            });
         }
 
         [DataTestMethod]

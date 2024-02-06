@@ -11,10 +11,9 @@ namespace LikeComparison.AssertTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void IsLikeHelloWithNullEscape()
         {
-            Assert.That.IsLike("Hello", "h_ll%", null!);
+            _ = Assert.ThrowsException<ArgumentNullException>(() => Assert.That.IsLike("Hello", "h_ll%", null!));
         }
 
         [DataTestMethod]

@@ -9,11 +9,13 @@ namespace LikeComparison.StringTests
     {
         [DataTestMethod]
         [DataRow("abcdef", null)]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void LikeThrowArgumentNullException(string matchExpression, string pattern)
         {
-            bool actual = matchExpression.Like(pattern);
-            Assert.IsNotNull(actual);
+            _ = Assert.ThrowsException<ArgumentNullException>(() =>
+            {
+                bool actual = matchExpression.Like(pattern);
+                Assert.IsNotNull(actual);
+            });
         }
 
         [DataTestMethod]

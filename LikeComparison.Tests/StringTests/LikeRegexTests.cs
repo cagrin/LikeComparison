@@ -7,11 +7,13 @@ namespace LikeComparison.StringTests
     {
         [DataTestMethod]
         [DataRow(null)]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void LikeRegexThrowArgumentNullException(string pattern)
         {
-            var regex = LikeVisualBasic.LikeRegex(pattern);
-            Assert.IsNotNull(regex);
+            _ = Assert.ThrowsException<ArgumentNullException>(() =>
+            {
+                var regex = LikeVisualBasic.LikeRegex(pattern);
+                Assert.IsNotNull(regex);
+            });
         }
 
         [DataTestMethod]
