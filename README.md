@@ -24,7 +24,7 @@ using LikeComparison.VisualBasic;
 ```cs
 string? matchExpression = "abcdef";
 
-_ = matchExpression.Like(pattern: "a*");
+bool isLike = matchExpression.Like(pattern: "a*");
 ```
 or
 
@@ -35,10 +35,10 @@ using LikeComparison.TransactSql;
 string? matchExpression = "abcdef";
 
 // common use
-_ = matchExpression.Like(pattern: "a%");
+bool isLike = matchExpression.Like(pattern: "a%");
 
 // or with escape character
-_ = matchExpression.Like(pattern: "/a%", escapeCharacter: "/");
+bool isLike = matchExpression.Like(pattern: "/a%", escapeCharacter: "/");
 ```
 or
 
@@ -49,10 +49,10 @@ using LikeComparison.PostgreSql;
 string? matchExpression = "abcdef";
 
 // case-insensitive
-_ = matchExpression.ILike(pattern: "A%");
+bool isLike = matchExpression.ILike(pattern: "A%");
 
 // or case-sensitive
-_ = matchExpression.Like(pattern: "a%");
+bool isLike = matchExpression.Like(pattern: "a%");
 ```
 
 ## Using ```IsLike``` method on MSTest assertions from [LikeComparison.MSTest](https://www.nuget.org/packages/LikeComparison.MSTest) package
