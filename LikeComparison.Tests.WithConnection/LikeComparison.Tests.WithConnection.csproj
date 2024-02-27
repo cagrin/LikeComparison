@@ -1,13 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
+        <TargetFrameworks>net8.0</TargetFrameworks>
         <IsPackable>false</IsPackable>
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
     <ItemGroup>
         <ProjectReference Include="..\LikeComparison\LikeComparison.csproj"/>
-        <ProjectReference Include="..\LikeComparison.MSTest\LikeComparison.MSTest.csproj"/>
-        <ProjectReference Include="..\LikeComparison.Shouldly\LikeComparison.Shouldly.csproj"/>
     </ItemGroup>
     <ItemGroup>
         <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting"/>
@@ -22,6 +20,14 @@
     <ItemGroup>
         <PackageReference Include="coverlet.collector"/>
         <PackageReference Include="coverlet.msbuild"/>
+        <PackageReference Include="Dapper"/>
+        <PackageReference Include="Microsoft.Data.SqlClient"/>
         <PackageReference Include="Microsoft.NET.Test.Sdk"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
+        <PackageReference Include="MySqlConnector"/>
+        <PackageReference Include="Npgsql"/>
+        <PackageReference Include="Testcontainers.MsSql"/>
+        <PackageReference Include="Testcontainers.MySql"/>
+        <PackageReference Include="Testcontainers.PostgreSql"/>
     </ItemGroup>
 </Project>
