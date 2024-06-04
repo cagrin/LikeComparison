@@ -55,7 +55,7 @@ namespace LikeComparison.StringTests
         public void LikeVisualBasicSpecials(string pattern, string matchExpression, bool expected)
         {
             bool actual = matchExpression.Like(pattern);
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(expected, actual);
         }
     }
 }

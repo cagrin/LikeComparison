@@ -551,5 +551,25 @@
         <Rule Id="MSTEST0004" Action="Warning" />       <!-- Public types should be test classes -->
         <Rule Id="MSTEST0005" Action="Warning" />       <!-- Test context property should have valid layout -->
         <Rule Id="MSTEST0006" Action="Warning" />       <!-- Avoid [ExpectedException] -->
+        <Rule Id="MSTEST0007" Action="Warning" />       <!-- Use test attributes only on test methods -->
+        <Rule Id="MSTEST0008" Action="Warning" />       <!-- TestInitialize method should have valid layout -->
+        <Rule Id="MSTEST0009" Action="Warning" />       <!-- TestCleanup method should have valid layout -->
+        <Rule Id="MSTEST0010" Action="Warning" />       <!-- ClassInitialize method should have valid layout -->
+        <Rule Id="MSTEST0011" Action="Warning" />       <!-- ClassCleanup method should have valid layout -->
+        <Rule Id="MSTEST0012" Action="Warning" />       <!-- AssemblyInitialize method should have valid layout -->
+        <Rule Id="MSTEST0013" Action="Warning" />       <!-- AssemblyCleanup method should have valid layout -->
+        <Rule Id="MSTEST0014" Action="Warning" />       <!-- DataRow should be valid -->
+        <Rule Id="MSTEST0015" Action="Warning" />       <!-- Test method should not be ignored -->
+        <Rule Id="MSTEST0016" Action="Warning" />       <!-- Test class should have test method -->
+        <Rule Id="MSTEST0017" Action="Warning" />       <!-- Assertion arguments should be passed in the correct order -->
+        <Rule Id="MSTEST0018" Action="Warning" />       <!-- ??? -->
+        <Rule Id="MSTEST0019" Action="Warning" />       <!-- Prefer TestInitialize methods over constructors -->
+        <Rule Id="MSTEST0020" Action="Warning" />       <!-- Prefer constructors over TestInitialize methods -->
+        <Rule Id="MSTEST0021" Action="Warning" />       <!-- Prefer Dispose over TestCleanup methods -->
+        <Rule Id="MSTEST0022" Action="Warning" />       <!-- Prefer TestCleanup over Dispose methods -->
+        <Rule Id="MSTEST0023" Action="Warning" />       <!-- Do not negate boolean assertions -->
+        <Rule Id="MSTEST0024" Action="Warning" />       <!-- Do not store TestContext in a static member -->
+        <Rule Id="MSTEST0025" Action="Warning" />       <!-- Use 'Assert.Fail' instead of an always-failing assert -->
+        <Rule Id="MSTEST0026" Action="Warning" />       <!-- Avoid conditional access in assertions -->
     </Rules>
 </RuleSet>
