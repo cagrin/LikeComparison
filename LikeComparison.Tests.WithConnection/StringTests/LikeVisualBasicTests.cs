@@ -95,7 +95,7 @@ namespace LikeComparison.StringTests
         public void MicrosoftAccessTests(string pattern, string matchExpression, bool expected)
         {
             bool actual = matchExpression.Like(pattern);
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(expected, actual);
         }
 
         [DataTestMethod] // https://docs.microsoft.com/en-us/dotnet/visual-basic/language-reference/operators/like-operator
@@ -112,7 +112,7 @@ namespace LikeComparison.StringTests
         public void VisualBasicTests(string pattern, string matchExpression, bool expected)
         {
             bool actual = matchExpression.Like(pattern);
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
