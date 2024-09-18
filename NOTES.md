@@ -13,5 +13,5 @@ dotnet test LikeComparison.Tests --framework net6.0 -e CollectCoverage=true -e C
 ## Run unit tests with .NET 8 and coverage
 
 ```
-dotnet test LikeComparison.Tests --framework net8.0 -e CollectCoverage=true -e CoverletOutputFormat=lcov
+dotnet test LikeComparison.Tests --framework net8.0 -e CollectCoverage=true -e CoverletOutputFormat=lcov --logger "console;verbosity=detailed"
 ```

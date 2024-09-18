@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LikeComparison.Tests.WithConnection", "LikeComparison.Tests.WithConnection\LikeComparison.Tests.WithConnection.csproj", "{19B65BF2-BB2C-4F73-913C-7DFBD62E3548}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LikeComparison.Tests", "LikeComparison.Tests\LikeComparison.Tests.csproj", "{308DECEE-2885-4480-AC7A-DE77DBF1FB0C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LikeComparison.Shouldly", "LikeComparison.Shouldly\LikeComparison.Shouldly.csproj", "{DEAEEB68-0A00-482E-9802-5FDA627B1553}"
@@ -17,6 +19,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{19B65BF2-BB2C-4F73-913C-7DFBD62E3548}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19B65BF2-BB2C-4F73-913C-7DFBD62E3548}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19B65BF2-BB2C-4F73-913C-7DFBD62E3548}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19B65BF2-BB2C-4F73-913C-7DFBD62E3548}.Release|Any CPU.Build.0 = Release|Any CPU
 		{308DECEE-2885-4480-AC7A-DE77DBF1FB0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{308DECEE-2885-4480-AC7A-DE77DBF1FB0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{308DECEE-2885-4480-AC7A-DE77DBF1FB0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
