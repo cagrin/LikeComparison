@@ -11,7 +11,7 @@ namespace LikeComparison.EntityFrameworkTests
 
         private static LikeSqlServerTestContext testcontext = null!;
 
-        private static IEnumerable<object[]> WildcardCharactersAsLiterals => LikeTestCases.WildcardCharactersAsLiterals;
+        public static IEnumerable<object[]> WildcardCharactersAsLiterals => LikeTestCases.WildcardCharactersAsLiterals;
 
         [ClassInitialize]
         public static void ClassInitialize(TestContext context)
