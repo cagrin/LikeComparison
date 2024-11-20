@@ -156,9 +156,7 @@ https://www.postgresql.org/docs/current/functions-matching.html
 
 ## Supported targets
 ### .NET 8.0
-- Recommended.
-- Default target for code coverage.
-### .NET 6.0
 - Supported.
+- Default target for code coverage.
 ### .NET Standard 2.0
 - Experimentally supported with C# 8.
