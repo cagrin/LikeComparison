@@ -13,7 +13,7 @@ namespace LikeComparison.AssertTests
         [TestMethod]
         public void IsLikeHelloWithNullEscape()
         {
-            _ = Assert.ThrowsException<ArgumentNullException>(() => Assert.IsTrue("Hello".Like("h_ll%", null!)));
+            _ = Assert.ThrowsExactly<ArgumentNullException>(() => Assert.IsTrue("Hello".Like("h_ll%", null!)));
         }
 
         [DataTestMethod]
@@ -21,7 +21,7 @@ namespace LikeComparison.AssertTests
         [DataRow("Hello")]
         public void IsNotLikeHelloWithEscape(string? matchExpression)
         {
-            _ = Assert.ThrowsException<AssertFailedException>(() => Assert.IsTrue(matchExpression.Like("Hal%", "/")));
+            _ = Assert.ThrowsExactly<AssertFailedException>(() => Assert.IsTrue(matchExpression.Like("Hal%", "/")));
         }
 
         [TestMethod]
@@ -33,7 +33,7 @@ namespace LikeComparison.AssertTests
         [TestMethod]
         public void LikeRegexThrowArgumentNullException()
         {
-            _ = Assert.ThrowsException<ArgumentNullException>(() => Assert.IsNotNull(LikeTransactSql.LikeRegex("h_ll%", null!)));
+            _ = Assert.ThrowsExactly<ArgumentNullException>(() => Assert.IsNotNull(LikeTransactSql.LikeRegex("h_ll%", null!)));
         }
 
         [DataTestMethod]

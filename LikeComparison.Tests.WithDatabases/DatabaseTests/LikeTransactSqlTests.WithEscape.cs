@@ -11,7 +11,7 @@ namespace LikeComparison.DatabaseTests
         [DataRow("a%", null)]
         public void LikeTransactSqlRegexWithEscapeThrowArgumentNullException(string pattern, string escape)
         {
-            _ = Assert.ThrowsException<ArgumentNullException>(() =>
+            _ = Assert.ThrowsExactly<ArgumentNullException>(() =>
             {
                 var regex = LikeTransactSql.LikeRegex(pattern, escape);
                 Assert.IsNotNull(LikeTransactSql.LikeRegex(pattern, escape));
@@ -23,7 +23,7 @@ namespace LikeComparison.DatabaseTests
         [DataRow("abcdef", "a%", null)]
         public void LikeTransactSqlWithEscapeThrowArgumentNullException(string matchExpression, string pattern, string escape)
         {
-            _ = Assert.ThrowsException<ArgumentNullException>(() =>
+            _ = Assert.ThrowsExactly<ArgumentNullException>(() =>
             {
                 var actual = matchExpression.Like(pattern, escape);
                 Assert.IsNotNull(actual);

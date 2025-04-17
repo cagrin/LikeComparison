@@ -16,13 +16,13 @@ namespace LikeComparison.AssertTests
         [DataRow("Hello")]
         public void IsNotLikeHello(string? matchExpression)
         {
-            _ = Assert.ThrowsException<AssertFailedException>(() => Assert.IsTrue(matchExpression.Like("Hal*")));
+            _ = Assert.ThrowsExactly<AssertFailedException>(() => Assert.IsTrue(matchExpression.Like("Hal*")));
         }
 
         [TestMethod]
         public void LikeThrowArgumentNullException()
         {
-            _ = Assert.ThrowsException<ArgumentNullException>(() => Assert.IsTrue("Hello".Like(null!)));
+            _ = Assert.ThrowsExactly<ArgumentNullException>(() => Assert.IsTrue("Hello".Like(null!)));
         }
     }
 }

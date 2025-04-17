@@ -16,7 +16,7 @@ namespace LikeComparison.AssertTests
         [DataRow("Hello")]
         public void IsNotLikeHello(string? matchExpression)
         {
-            _ = Assert.ThrowsException<AssertFailedException>(() => Assert.IsTrue(matchExpression.Like("Hal%")));
+            _ = Assert.ThrowsExactly<AssertFailedException>(() => Assert.IsTrue(matchExpression.Like("Hal%")));
         }
 
         [TestMethod]

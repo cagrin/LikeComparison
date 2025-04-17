@@ -9,7 +9,7 @@ namespace LikeComparison.StringTests
         [DataRow(null)]
         public void LikeRegexThrowArgumentNullException(string pattern)
         {
-            _ = Assert.ThrowsException<ArgumentNullException>(() =>
+            _ = Assert.ThrowsExactly<ArgumentNullException>(() =>
             {
                 var regex = LikeVisualBasic.LikeRegex(pattern);
                 Assert.IsNotNull(regex);

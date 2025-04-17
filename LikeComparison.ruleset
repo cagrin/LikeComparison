@@ -583,7 +583,7 @@
         <Rule Id="MSTEST0036" Action="Warning" />       <!-- Do not use shadowing inside test class -->
         <Rule Id="MSTEST0037" Action="Warning" />       <!-- Use proper Assert methods -->
         <Rule Id="MSTEST0038" Action="Warning" />       <!-- Don't use Assert.AreSame or Assert.AreNotSame with value types -->
-        <Rule Id="MSTEST0039" Action="None" />       <!-- Use newer Assert.Throws methods -->
+        <Rule Id="MSTEST0039" Action="Warning" />       <!-- Use newer Assert.Throws methods -->
         <Rule Id="MSTEST0040" Action="Warning" />       <!-- Do not assert inside async void contexts -->
         <Rule Id="MSTEST0041" Action="Warning" />       <!-- Use ConditionBaseAttribute on test classes -->
     </Rules>
