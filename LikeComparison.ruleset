@@ -571,5 +571,20 @@
         <Rule Id="MSTEST0024" Action="Warning" />       <!-- Do not store TestContext in a static member -->
         <Rule Id="MSTEST0025" Action="Warning" />       <!-- Use 'Assert.Fail' instead of an always-failing assert -->
         <Rule Id="MSTEST0026" Action="Warning" />       <!-- Avoid conditional access in assertions -->
+        <Rule Id="MSTEST0027" Action="Warning" />       <!-- Non-nullable reference not initialized suppressor -->
+        <Rule Id="MSTEST0028" Action="Warning" />       <!-- Non-nullable reference not initialized suppressor -->
+        <Rule Id="MSTEST0029" Action="Warning" />       <!-- Avoid -->
+        <Rule Id="MSTEST0030" Action="Warning" />       <!-- Type containing TestMethod should be marked with TestClass -->
+        <Rule Id="MSTEST0031" Action="Warning" />       <!-- System.ComponentModel.DescriptionAttribute has no effect on test methods -->
+        <Rule Id="MSTEST0032" Action="Warning" />       <!-- Review or remove the assertion as its condition is known to be always true -->
+        <Rule Id="MSTEST0033" Action="Warning" />       <!-- Non-nullable reference not initialized suppressor -->
+        <Rule Id="MSTEST0034" Action="Warning" />       <!-- ClassCleanupBehavior.EndOfClass with the ClassCleanup -->
+        <Rule Id="MSTEST0035" Action="Warning" />       <!-- DeploymentItem can be specified only on test class or test method -->
+        <Rule Id="MSTEST0036" Action="Warning" />       <!-- Do not use shadowing inside test class -->
+        <Rule Id="MSTEST0037" Action="Warning" />       <!-- Use proper Assert methods -->
+        <Rule Id="MSTEST0038" Action="Warning" />       <!-- Don't use Assert.AreSame or Assert.AreNotSame with value types -->
+        <Rule Id="MSTEST0039" Action="None" />       <!-- Use newer Assert.Throws methods -->
+        <Rule Id="MSTEST0040" Action="Warning" />       <!-- Do not assert inside async void contexts -->
+        <Rule Id="MSTEST0041" Action="Warning" />       <!-- Use ConditionBaseAttribute on test classes -->
     </Rules>
 </RuleSet>
