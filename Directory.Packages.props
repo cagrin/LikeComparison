@@ -9,7 +9,7 @@
         <PackageVersion Include="Microsoft.Data.SqlClient" Version="6.0.1"/>
         <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.13.0"/>
         <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="8.0.0"/>
-        <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.3" />
+        <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.4" />
         <PackageVersion Include="MSTest.Analyzers" Version="3.8.3"/>
         <PackageVersion Include="MSTest.TestAdapter" Version="3.8.3"/>
         <PackageVersion Include="MSTest.TestFramework" Version="3.8.3"/>
@@ -17,8 +17,8 @@
         <PackageVersion Include="Npgsql" Version="9.0.3"/>
         <PackageVersion Include="Shouldly" Version="4.3.0"/>
         <PackageVersion Include="StyleCop.Analyzers" Version="1.2.0-beta.556"/>
-        <PackageVersion Include="Testcontainers.MsSql" Version="4.3.0"/>
-        <PackageVersion Include="Testcontainers.MySql" Version="4.3.0"/>
-        <PackageVersion Include="Testcontainers.PostgreSql " Version="4.3.0"/>
+        <PackageVersion Include="Testcontainers.MsSql" Version="4.4.0"/>
+        <PackageVersion Include="Testcontainers.MySql" Version="4.4.0"/>
+        <PackageVersion Include="Testcontainers.PostgreSql " Version="4.4.0"/>
     </ItemGroup>
 </Project>
