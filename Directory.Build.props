@@ -4,7 +4,6 @@
         <AnalysisMode>All</AnalysisMode>
         <AnalysisLevel>Latest</AnalysisLevel>
         <MSTestAnalysisMode>All</MSTestAnalysisMode>
-        <CodeAnalysisRuleSet>../LikeComparison.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="StyleCop.Analyzers" PrivateAssets="All"/>
