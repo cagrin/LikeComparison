@@ -70,7 +70,6 @@ namespace LikeComparison.DatabaseTests
         [DataRow("ab", "[^]%", 47244)]
         [DataRow("[]", "[^]%", 48174)]
         [DataRow("^!", "[^]%", 48050)]
-        [DataRow("ab", "[^]%", 47244)]
         public void LikeTransactSqlComparision(string expressionLetters, string patternLetters, int combinations)
         {
             var cases = LikeTestCase.Generate(expressionLetters, patternLetters);
