@@ -3,17 +3,23 @@
 [![Coverage Status](https://img.shields.io/coveralls/github/cagrin/LikeComparison)](https://coveralls.io/github/cagrin/LikeComparison)
 
 # LikeComparison
-LikeComparison is a library that allows you to compare a string expression to a pattern in an "SQL LIKE" expression.
+**LikeComparison** is a C# library that enables string pattern matching using SQL-style `LIKE` expressions. It mimics the behavior of the `LIKE` operator found in SQL dialects, making it useful for many .NET use cases.
 
-It supports many LIKE operator syntax:
-- Visual Basic,
-- Transact-SQL (with ESCAPE),
-- PostgreSQL (both LIKE and ILIKE).
+## Key Features
 
-Main use:
-- ```Like``` method on strings
-- ```IsLike``` method on MSTest assertions
-- ```ShouldBeLike``` method on Shouldly assertions
+- **Supports multiple SQL syntaxes**:
+  - [**Visual Basic**](https://docs.microsoft.com/en-us/office/vba/language/reference/user-interface-help/like-operator): `*`, `?`, `[ ]`, `^`, `#`
+  - [**Transact-SQL**](https://docs.microsoft.com/en-us/sql/t-sql/language-elements/like-transact-sql): `%`, `_`, `[ ]`, `!`, with optional `ESCAPE`
+  - [**PostgreSQL**](https://www.postgresql.org/docs/current/functions-matching.html): `LIKE` and `ILIKE` (case-insensitive), using `%`, `_`
+
+- **Extension Methods**:
+  - `Like()` and `ILike()` for string comparisons
+  - MSTest: `Assert.That.IsLike()` and `IsILike()`
+  - Shouldly: `ShouldBeLike()` and `ShouldBeILike()`
+
+- **Cross-platform compatibility**:
+  - .NET 8.0 (recommended)
+  - .NET Standard 2.0 (experimental support with C# 8)
 
 ## Using ```Like``` method on strings from [LikeComparison](https://www.nuget.org/packages/LikeComparison) package
 
@@ -136,27 +142,3 @@ matchExpression.ShouldBeILike(pattern: "A%");
 // or case-sensitive
 matchExpression.ShouldBeLike(pattern: "a%");
 ```
-
-## Supported syntax
-### Visual Basic
-
-https://docs.microsoft.com/en-us/office/vba/language/reference/user-interface-help/like-operator
-
-```* ? [ ] ^ #```
-###  Transact-SQL
-
-https://docs.microsoft.com/en-us/sql/t-sql/language-elements/like-transact-sql
-
-```% _ [ ] !```
-###  PostgreSQL
-
-https://www.postgresql.org/docs/current/functions-matching.html
-
-```% _```
-
-## Supported targets
-### .NET 8.0
-- Supported.
-- Default target for code coverage.
-### .NET Standard 2.0
-- Experimentally supported with C# 8.
