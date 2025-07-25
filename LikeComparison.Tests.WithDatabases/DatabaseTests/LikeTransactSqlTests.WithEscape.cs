@@ -25,8 +25,7 @@ namespace LikeComparison.DatabaseTests
         {
             _ = Assert.ThrowsExactly<ArgumentNullException>(() =>
             {
-                var actual = matchExpression.Like(pattern, escape);
-                Assert.IsNotNull(actual);
+                _ = matchExpression.Like(pattern, escape);
             });
         }
 
@@ -55,8 +54,7 @@ namespace LikeComparison.DatabaseTests
                 string matchExpression = c[0].ToString();
                 string pattern = c[1].ToString();
 
-                bool actual = await LikeTransactSqlWithEscapeAssert(matchExpression, pattern, escape).ConfigureAwait(false);
-                Assert.IsNotNull(actual);
+                _ = await LikeTransactSqlWithEscapeAssert(matchExpression, pattern, escape).ConfigureAwait(false);
             }).Wait();
         }
 

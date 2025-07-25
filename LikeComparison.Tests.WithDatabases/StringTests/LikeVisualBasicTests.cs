@@ -13,8 +13,7 @@ namespace LikeComparison.StringTests
         {
             _ = Assert.ThrowsExactly<ArgumentNullException>(() =>
             {
-                bool actual = matchExpression.Like(pattern);
-                Assert.IsNotNull(actual);
+                _ = matchExpression.Like(pattern);
             });
         }
 
