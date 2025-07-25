@@ -31,7 +31,7 @@ namespace LikeComparison.EntityFrameworkTests
             _ = testcontext.SaveChanges();
         }
 
-        [ClassCleanup]
+        [ClassCleanup(ClassCleanupBehavior.EndOfClass)]
         public static void ClassCleanup()
         {
             testcontext.Dispose();

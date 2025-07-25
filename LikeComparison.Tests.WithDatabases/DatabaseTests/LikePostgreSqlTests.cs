@@ -23,7 +23,7 @@ namespace LikeComparison.DatabaseTests
             testcontainer.StartAsync().Wait();
         }
 
-        [ClassCleanup]
+        [ClassCleanup(ClassCleanupBehavior.EndOfClass)]
         public static void ClassCleanup()
         {
             testcontainer?.DisposeAsync().AsTask().Wait();
