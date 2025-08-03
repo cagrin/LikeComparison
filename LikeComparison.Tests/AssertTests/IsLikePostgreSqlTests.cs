@@ -17,7 +17,7 @@ namespace LikeComparison.AssertTests
             Assert.That.IsLike("Hello", "H_ll%");
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow(null)]
         [DataRow("Hello")]
         public void IsNotILikeHello(string? matchExpression)
@@ -27,7 +27,7 @@ namespace LikeComparison.AssertTests
             Assert.AreEqual($"Assert.That.IsILike failed. Expected that <{matchExpression ?? "(null)"}> is ILIKE <Hal%>, but actually it is not.", ex.Message);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow(null)]
         [DataRow("Hello")]
         public void IsNotLikeHello(string? matchExpression)

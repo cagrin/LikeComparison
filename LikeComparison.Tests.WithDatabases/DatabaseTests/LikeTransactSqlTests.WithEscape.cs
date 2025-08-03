@@ -6,7 +6,7 @@ namespace LikeComparison.DatabaseTests
 
     public partial class LikeTransactSqlTests
     {
-        [DataTestMethod]
+        [TestMethod]
         [DataRow(null, "/")]
         [DataRow("a%", null)]
         public void LikeTransactSqlRegexWithEscapeThrowArgumentNullException(string pattern, string escape)
@@ -18,7 +18,7 @@ namespace LikeComparison.DatabaseTests
             });
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("abcdef", null, "/")]
         [DataRow("abcdef", "a%", null)]
         public void LikeTransactSqlWithEscapeThrowArgumentNullException(string matchExpression, string pattern, string escape)
@@ -29,7 +29,7 @@ namespace LikeComparison.DatabaseTests
             });
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("abcdef", "a%", "\\", true)]
         [DataRow("abcdef", "a%", "a", false)]
         [DataRow("abcdef", "EaEbEc%", "E", true)]
@@ -41,7 +41,7 @@ namespace LikeComparison.DatabaseTests
             Assert.AreEqual(expected, actual);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("aAB", "_%", 79860, "\\")]
         public void LikeTransactSqlWithEscapeComparision(string expressionLetters, string patternLetters, int combinations, string escape)
         {

@@ -38,7 +38,7 @@ namespace LikeComparison.EntityFrameworkTests
             testcontainer.DisposeAsync().AsTask().Wait();
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DynamicData(nameof(WildcardCharactersAsLiterals), DynamicDataSourceType.Property)]
         public async Task WildcardCharactersAsLiteralsTests(string pattern, string matchExpression, bool expected)
         {

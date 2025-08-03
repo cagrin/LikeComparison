@@ -29,7 +29,7 @@ namespace LikeComparison.DatabaseTests
             testcontainer?.DisposeAsync().AsTask().Wait();
         }
 
-        [DataTestMethod] // https://docs.microsoft.com/en-us/sql/t-sql/language-elements/like-transact-sql?view=sql-server-ver15
+        [TestMethod] // https://docs.microsoft.com/en-us/sql/t-sql/language-elements/like-transact-sql?view=sql-server-ver15
         [DataRow("5[%]", "5%", true)]
         [DataRow("5[%]", "5", false)]
         [DataRow("[_]n", "_n", true)]
@@ -62,7 +62,7 @@ namespace LikeComparison.DatabaseTests
             Assert.AreEqual(expected, actual);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("aAB", "%", 26620)]
         [DataRow("/\\", "_%", 9610)]
         [DataRow("*.", "_%", 9610)]

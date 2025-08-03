@@ -7,7 +7,7 @@ namespace LikeComparison.StringTests
     [TestClass]
     public class LikeVisualBasicTests
     {
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("abcdef", null)]
         public void LikeThrowArgumentNullException(string matchExpression, string pattern)
         {
@@ -17,7 +17,7 @@ namespace LikeComparison.StringTests
             });
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("", "")]
         [DataRow("", "*")]
         [DataRow("abcdef", "*")]
@@ -33,7 +33,7 @@ namespace LikeComparison.StringTests
             Assert.IsTrue(actual);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("abcdef", "")]
         [DataRow("abcdef", "abc")]
         [DataRow("abcdef", "*a")]
@@ -44,7 +44,7 @@ namespace LikeComparison.StringTests
             Assert.IsFalse(actual);
         }
 
-        [DataTestMethod] // https://support.microsoft.com/en-us/office/like-operator-b2f7ef03-9085-4ffb-9829-eef18358e931
+        [TestMethod] // https://support.microsoft.com/en-us/office/like-operator-b2f7ef03-9085-4ffb-9829-eef18358e931
         [DataRow("a*a", "aa", true)]
         [DataRow("a*a", "aBa", true)]
         [DataRow("a*a", "aBBBa", true)]
@@ -97,7 +97,7 @@ namespace LikeComparison.StringTests
             Assert.AreEqual(expected, actual);
         }
 
-        [DataTestMethod] // https://docs.microsoft.com/en-us/dotnet/visual-basic/language-reference/operators/like-operator
+        [TestMethod] // https://docs.microsoft.com/en-us/dotnet/visual-basic/language-reference/operators/like-operator
         [DataRow("F", "F", true)]
         [DataRow("f", "F", true)] // Option Compare Text (true) vs Binary (false)
         [DataRow("FFF", "F", false)]

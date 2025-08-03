@@ -29,7 +29,7 @@ namespace LikeComparison.DatabaseTests
             testcontainer?.DisposeAsync().AsTask().Wait();
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("aAB", "_%", 79860, "ILIKE")]
         [DataRow("aAB", "_%", 79860, "LIKE")]
         public void LikePostgreSqlComparision(string expressionLetters, string patternLetters, int combinations, string likeOperator)

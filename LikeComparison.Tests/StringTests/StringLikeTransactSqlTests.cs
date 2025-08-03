@@ -11,7 +11,7 @@ namespace LikeComparison.AssertTests
             Assert.IsTrue("Hello".Like("h_ll%"));
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow(null)]
         [DataRow("Hello")]
         public void IsNotLikeHello(string? matchExpression)

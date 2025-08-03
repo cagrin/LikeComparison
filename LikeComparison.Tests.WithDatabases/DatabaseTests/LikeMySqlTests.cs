@@ -29,7 +29,7 @@ namespace LikeComparison.DatabaseTests
             testcontainer?.DisposeAsync().AsTask().Wait();
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("aAB", "_%", 79860)]
         public void LikeMySqlComparision(string expressionLetters, string patternLetters, int combinations)
         {

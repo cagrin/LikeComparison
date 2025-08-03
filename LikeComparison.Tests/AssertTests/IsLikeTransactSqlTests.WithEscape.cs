@@ -16,7 +16,7 @@ namespace LikeComparison.AssertTests
             _ = Assert.ThrowsExactly<ArgumentNullException>(() => Assert.That.IsLike("Hello", "h_ll%", null!));
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow(null)]
         [DataRow("Hello")]
         public void IsNotLikeHelloWithEscape(string? matchExpression)

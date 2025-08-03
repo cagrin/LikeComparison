@@ -5,7 +5,7 @@ namespace LikeComparison.StringTests
     [TestClass]
     public class LikeRegexTests
     {
-        [DataTestMethod]
+        [TestMethod]
         [DataRow(null)]
         public void LikeRegexThrowArgumentNullException(string pattern)
         {
@@ -16,7 +16,7 @@ namespace LikeComparison.StringTests
             });
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("[[!]", "^[\\[\\!]$")]
         [DataRow("aaa]", "^aaa\\]$")]
         [DataRow("a[aa", "Null")]
@@ -40,7 +40,7 @@ namespace LikeComparison.StringTests
             Assert.AreEqual(excepted, actual);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("a[-]b", "a-b", true)]
         [DataRow("a[-]b", "aab", false)]
         [DataRow("a[-b]c", "abc", true)]
