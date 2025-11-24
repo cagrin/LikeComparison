@@ -12,7 +12,7 @@ jobs:
       matrix:
         package: [LikeComparison, LikeComparison.MSTest, LikeComparison.Shouldly]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: devcontainers/ci@v0.3
         with:
           runCmd: dotnet build ${{ matrix.package }}
@@ -22,7 +22,7 @@ jobs:
       matrix:
         framework: [net8.0]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: devcontainers/ci@v0.3
         with:
           runCmd: dotnet test LikeComparison.Tests --framework ${{ matrix.framework }}
@@ -31,7 +31,7 @@ jobs:
     env:
       framework: net8.0
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: actions/setup-dotnet@v5
         with:
           dotnet-version: '8.0.x'
