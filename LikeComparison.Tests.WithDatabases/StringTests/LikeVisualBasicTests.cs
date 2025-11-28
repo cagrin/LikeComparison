@@ -11,10 +11,7 @@ namespace LikeComparison.StringTests
         [DataRow("abcdef", null)]
         public void LikeThrowArgumentNullException(string matchExpression, string pattern)
         {
-            _ = Assert.ThrowsExactly<ArgumentNullException>(() =>
-            {
-                _ = matchExpression.Like(pattern);
-            });
+            _ = Assert.ThrowsExactly<ArgumentNullException>(() => _ = matchExpression.Like(pattern));
         }
 
         [TestMethod]
