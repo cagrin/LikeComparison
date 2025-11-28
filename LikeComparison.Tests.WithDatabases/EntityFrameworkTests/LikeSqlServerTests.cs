@@ -39,7 +39,7 @@ namespace LikeComparison.EntityFrameworkTests
         }
 
         [TestMethod]
-        [DynamicData(nameof(WildcardCharactersAsLiterals), DynamicDataSourceType.Property)]
+        [DynamicData(nameof(WildcardCharactersAsLiterals))]
         public async Task WildcardCharactersAsLiteralsTests(string pattern, string matchExpression, bool expected)
         {
             var result = await testcontext.LikeTestResults.Select(x => new { Comparison = EF.Functions.Like(matchExpression, pattern) }).SingleAsync().ConfigureAwait(false);
