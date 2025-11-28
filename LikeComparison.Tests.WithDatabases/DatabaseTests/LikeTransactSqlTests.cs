@@ -13,11 +13,11 @@ namespace LikeComparison.DatabaseTests
         [ClassInitialize]
         public static void ClassInitialize(TestContext context)
         {
-            // docker run -e 'ACCEPT_EULA=1' -e 'MSSQL_SA_PASSWORD=StrongP@ssw0rd!' -p 1433:1433 -d mcr.microsoft.com/mssql/server
+            // docker run -e 'ACCEPT_EULA=1' -e 'MSSQL_SA_PASSWORD=StrongP@ssw0rd!' -p 1433:1433 -d mcr.microsoft.com/mssql/server:2022-latest
             _ = context;
 
             testcontainer = new MsSqlBuilder()
-                .WithImage("mcr.microsoft.com/mssql/server")
+                .WithImage("mcr.microsoft.com/mssql/server:2022-latest")
                 .Build();
 
             testcontainer.StartAsync().Wait();

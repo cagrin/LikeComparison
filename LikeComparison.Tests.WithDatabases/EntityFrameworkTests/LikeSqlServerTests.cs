@@ -19,7 +19,7 @@ namespace LikeComparison.EntityFrameworkTests
             _ = context;
 
             testcontainer = new MsSqlBuilder()
-                .WithImage("mcr.microsoft.com/mssql/server")
+                .WithImage("mcr.microsoft.com/mssql/server:2022-latest")
                 .Build();
 
             testcontainer.StartAsync().Wait();
