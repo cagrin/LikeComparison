@@ -18,7 +18,7 @@
   - Shouldly: `ShouldBeLike()` and `ShouldBeILike()`
 
 - **Cross-platform compatibility**:
-  - .NET 8.0 (recommended)
+  - .NET 8.0 and 10.0 (recommended)
   - .NET Standard 2.0 (experimental support with C# 8)
 
 ## Using ```Like``` method on strings from [LikeComparison](https://www.nuget.org/packages/LikeComparison) package
