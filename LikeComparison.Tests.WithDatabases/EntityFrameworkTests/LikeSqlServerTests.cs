@@ -31,11 +31,11 @@ namespace LikeComparison.EntityFrameworkTests
             _ = testcontext.SaveChanges();
         }
 
-        [ClassCleanup(ClassCleanupBehavior.EndOfClass)]
-        public static void ClassCleanup()
+        [ClassCleanup]
+        public static async Task ClassCleanup()
         {
-            testcontext.Dispose();
-            testcontainer.DisposeAsync().AsTask().Wait();
+            await testcontext.DisposeAsync().ConfigureAwait(false);
+            await testcontainer.DisposeAsync().ConfigureAwait(false);
         }
 
         [TestMethod]

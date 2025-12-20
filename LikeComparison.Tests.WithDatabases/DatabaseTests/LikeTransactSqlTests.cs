@@ -23,10 +23,13 @@ namespace LikeComparison.DatabaseTests
             testcontainer.StartAsync().Wait();
         }
 
-        [ClassCleanup(ClassCleanupBehavior.EndOfClass)]
-        public static void ClassCleanup()
+        [ClassCleanup]
+        public static async Task ClassCleanup()
         {
-            testcontainer?.DisposeAsync().AsTask().Wait();
+            if (testcontainer != null)
+            {
+                await testcontainer.DisposeAsync().ConfigureAwait(false);
+            }
         }
 
         [TestMethod] // https://docs.microsoft.com/en-us/sql/t-sql/language-elements/like-transact-sql?view=sql-server-ver15
