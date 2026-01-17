@@ -16,9 +16,7 @@ namespace LikeComparison.DatabaseTests
             // docker run -e POSTGRES_PASSWORD=StrongP@ssw0rd! -p 5432:5432 -d postgres
             _ = context;
 
-            testcontainer = new PostgreSqlBuilder()
-                .WithImage("postgres")
-                .Build();
+            testcontainer = new PostgreSqlBuilder("postgres").Build();
 
             testcontainer.StartAsync().Wait();
         }

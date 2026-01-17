@@ -13,12 +13,10 @@ namespace LikeComparison.DatabaseTests
         [ClassInitialize]
         public static void ClassInitialize(TestContext context)
         {
-            // docker run -e MYSQL_ROOT_PASSWORD=StrongP@ssw0rd! -p 3306:3306 -d mysql/mysql-server
+            // docker run -e MYSQL_ROOT_PASSWORD=StrongP@ssw0rd! -p 3306:3306 -d mysql
             _ = context;
 
-            testcontainer = new MySqlBuilder()
-                .WithImage("mysql")
-                .Build();
+            testcontainer = new MySqlBuilder("mysql").Build();
 
             testcontainer.StartAsync().Wait();
         }
