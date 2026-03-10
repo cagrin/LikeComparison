@@ -65,8 +65,7 @@ namespace LikeComparison.DatabaseTests
             }
             catch (Exception ex)
             {
-                Assert.Fail($"{message}. Exception:{ex.Message}.");
-                throw;
+                throw new AssertFailedException($"{message}. Exception:{ex.Message}.", ex);
             }
         }
 

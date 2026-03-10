@@ -1,12 +1,6 @@
-## Switch dotnet cli to a non-system language
+## Run unit tests with .NET 10 with code coverage
 
 ```
-$Env:DOTNET_CLI_UI_LANGUAGE="en"
-```
-
-## Run unit tests with .NET 8 with code coverage
-
-```
-dotnet test LikeComparison.Tests               --framework net8.0 -e CollectCoverage=true -e CoverletOutputFormat=lcov --logger "console;verbosity=detailed"
-dotnet test LikeComparison.Tests.WithDatabases --framework net8.0 -e CollectCoverage=true -e CoverletOutputFormat=lcov --logger "console;verbosity=detailed"
+dotnet test LikeComparison.Tests               --framework net10.0 -e CollectCoverage=true -e CoverletOutputFormat=lcov --logger "console;verbosity=detailed"
+dotnet test LikeComparison.Tests.WithDatabases --framework net10.0 -e CollectCoverage=true -e CoverletOutputFormat=lcov --logger "console;verbosity=detailed"
 ```
