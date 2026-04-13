@@ -4,7 +4,7 @@
     </PropertyGroup>
     <ItemGroup>
         <PackageVersion Include="coverlet.collector" Version="8.0.0"/>
-        <PackageVersion Include="coverlet.msbuild" Version="8.0.0"/>
+        <PackageVersion Include="coverlet.msbuild" Version="8.0.1"/>
         <PackageVersion Include="Dapper" Version="2.1.72"/>
         <PackageVersion Include="Microsoft.Data.SqlClient" Version="6.1.4"/>
         <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.3.0"/>
