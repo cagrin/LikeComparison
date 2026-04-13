@@ -8,7 +8,7 @@
         <PackageVersion Include="Dapper" Version="2.1.72"/>
         <PackageVersion Include="Microsoft.Data.SqlClient" Version="6.1.4"/>
         <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.3.0"/>
-        <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="10.0.200"/>
+        <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="10.0.201"/>
         <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.14" Condition="'$(TargetFramework)' == 'net8.0'"/>
         <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.4" Condition="'$(TargetFramework)' == 'net10.0'"/>
         <PackageVersion Include="MSTest.Analyzers" Version="4.1.0"/>
