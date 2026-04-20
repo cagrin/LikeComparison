@@ -13,7 +13,10 @@ namespace LikeComparison
                 return false;
             }
 
-            ArgumentNullException.ThrowIfNull(pattern);
+            if (pattern == null)
+            {
+                return false;
+            }
 
             return Like(matchExpression, pattern, likeOptions.Escape, likeOptions.StringComparison, likeOptions.Wildcard, likeOptions.Single, likeOptions.Invert, likeOptions.Digits);
         }
