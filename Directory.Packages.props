@@ -3,7 +3,7 @@
         <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
     </PropertyGroup>
     <ItemGroup>
-        <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="10.0.202"/>
+        <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="10.0.203"/>
         <PackageVersion Include="MSTest.TestFramework" Version="4.2.1"/>
         <PackageVersion Include="Shouldly" Version="4.3.0"/>
     </ItemGroup>
