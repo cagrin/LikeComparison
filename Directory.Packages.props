@@ -4,7 +4,7 @@
     </PropertyGroup>
     <ItemGroup>
         <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="10.0.202"/>
-        <PackageVersion Include="MSTest.TestFramework" Version="4.2.1"/>
+        <PackageVersion Include="MSTest.TestFramework" Version="4.2.2"/>
         <PackageVersion Include="Shouldly" Version="4.3.0"/>
     </ItemGroup>
     <ItemGroup>
@@ -15,8 +15,8 @@
         <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.4.0"/>
         <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.15" Condition="'$(TargetFramework)' == 'net8.0'"/>
         <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.6" Condition="'$(TargetFramework)' == 'net10.0'"/>
-        <PackageVersion Include="MSTest.Analyzers" Version="4.2.1"/>
-        <PackageVersion Include="MSTest.TestAdapter" Version="4.2.1"/>
+        <PackageVersion Include="MSTest.Analyzers" Version="4.2.2"/>
+        <PackageVersion Include="MSTest.TestAdapter" Version="4.2.2"/>
         <PackageVersion Include="MySqlConnector" Version="2.5.0"/>
         <PackageVersion Include="Npgsql" Version="10.0.2"/>
         <PackageVersion Include="StyleCop.Analyzers" Version="1.2.0-beta.556"/>
