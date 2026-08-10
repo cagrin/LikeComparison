@@ -15,7 +15,6 @@ namespace LikeComparison.DatabaseTests
         }
 
         [TestMethod]
-        [DataRow("abcdef", null, "/")]
         [DataRow("abcdef", "a%", null)]
         public void LikeTransactSqlWithEscapeThrowArgumentNullException(string matchExpression, string pattern, string escape)
         {
@@ -27,6 +26,7 @@ namespace LikeComparison.DatabaseTests
         [DataRow("abcdef", "a%", "a", false)]
         [DataRow("abcdef", "EaEbEc%", "E", true)]
         [DataRow("abcdef", "%\\e_", "\\", true)]
+        [DataRow("abcdef", null, "/", false)]
         public async Task LikeTransactSqlWithEscapeSpecials(string matchExpression, string pattern, string escape, bool expected)
         {
             bool actual = await LikeTransactSqlWithEscapeAssert(matchExpression, pattern, escape).ConfigureAwait(false);

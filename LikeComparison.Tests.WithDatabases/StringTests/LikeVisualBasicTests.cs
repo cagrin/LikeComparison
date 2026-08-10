@@ -8,13 +8,6 @@ namespace LikeComparison.StringTests
     public class LikeVisualBasicTests
     {
         [TestMethod]
-        [DataRow("abcdef", null)]
-        public void LikeThrowArgumentNullException(string matchExpression, string pattern)
-        {
-            _ = Assert.ThrowsExactly<ArgumentNullException>(() => _ = matchExpression.Like(pattern));
-        }
-
-        [TestMethod]
         [DataRow("", "")]
         [DataRow("", "*")]
         [DataRow("abcdef", "*")]
@@ -35,6 +28,7 @@ namespace LikeComparison.StringTests
         [DataRow("abcdef", "abc")]
         [DataRow("abcdef", "*a")]
         [DataRow("abcdef", "**z")]
+        [DataRow("abcdef", null)]
         public void LikeAreNotMatched(string matchExpression, string pattern)
         {
             bool actual = matchExpression.Like(pattern);
