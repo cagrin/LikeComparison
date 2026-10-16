@@ -48,6 +48,10 @@ namespace LikeComparison.StringTests
         [DataRow("[z-a]", "a", false)]
         [DataRow("aa-", "aa-", true)]
         [DataRow("aa-", "aaa-", false)]
+        [DataRow("aaa]", "aaa]", true)]
+        [DataRow("aaa]", "aaab", false)]
+        [DataRow("a^b", "a^b", true)]
+        [DataRow("a^b", "a^c", false)]
         public void LikeVisualBasicSpecials(string pattern, string matchExpression, bool expected)
         {
             bool actual = matchExpression.Like(pattern);
